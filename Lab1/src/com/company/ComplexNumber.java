@@ -1,4 +1,5 @@
 package com.company;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Pattern;
