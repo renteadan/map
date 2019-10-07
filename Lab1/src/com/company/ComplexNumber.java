@@ -1,26 +1,50 @@
 package com.company;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-public class ComplexNumber {
-    int real, imaginary;
+class ComplexNumber {
+    private int real ,imaginary;
 
-
-    public ComplexNumber(String complex) {
-        Pattern p = Pattern.compile("([+-]?\\d+)?([+-]\\d+[iI])");
-        Pattern p3 = Pattern.compile("");
-        Matcher m = p3.matcher(complex);
-        System.out.println(m.group(1) + "\n" + m.group(2));
-        try {
-            if (m.find()) {
-                String a = m.group(1);
-                real = Integer.parseInt(a);
+    ComplexNumber(String complex) {
+        Pattern p = Pattern.compile("([+-]?\\d+(?![iI.\\d]))?([+-]?\\d*\\*?[iI])?");
+        Pattern t = Pattern.compile("(?=[iI.\\d+-])([+-]?(?:\\d+)(?![iI.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[iI])?");
+        Matcher m = t.matcher(complex);
+        String re = "", img = "";
+        if(m.find()) {
+            try {
+                re = m.group(1);
+                try {
+                    real = Integer.parseInt(re);
+                } catch (NumberFormatException e) {
+                    real = 0;
+                }
+            } catch (NullPointerException e) {
+                real = 0;
             }
-        } catch (NumberFormatException e) {
-            real = 0;
+            try {
+                img = m.group(2);
+            } catch (NullPointerException e) {
+                imaginary = 0;
+                return;
+            }
         }
 
-        Pattern p2 = Pattern.compile("([+-]{1}\\d+)i");
-        Matcher m2 = p2.matcher(m.group(2));
+        if(img == null) {
+            imaginary = 0;
+            return;
+        }
+        if(img.equals("-i")) {
+            imaginary = -1;
+            return;
+        }
+
+        if(img.equals("i") || img.equals("+i")) {
+            imaginary = 1;
+            return;
+        }
+        Pattern p2 = Pattern.compile("(?:([+-]?\\d+)\\*?[Ii])?");
+        Matcher m2 = p2.matcher(img);
         try {
             if (m2.find()) {
                 String a = m2.group(1);
@@ -29,8 +53,25 @@ public class ComplexNumber {
         } catch (NumberFormatException e) {
             imaginary = 0;
         }
-        System.out.println(real + " real\n" + imaginary + " imaginary\n");
     }
 
 
+    int getReal() {
+        return real;
+    }
+
+    int getImaginary() {
+        return imaginary;
+    }
+
+    private ComplexNumber(int a, int b) {
+        real = a;
+        imaginary = b;
+    }
+
+    ComplexNumber add (@NotNull ComplexNumber other) {
+        int a = real + other.real;
+        int b = imaginary + other.imaginary;
+        return new ComplexNumber(a ,b);
+    }
 }
