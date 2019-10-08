@@ -3,17 +3,12 @@ package com.company;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestComplex {
-
-    @Test
-    public void testAll() {
-        testParse();
-        testPlus();
-    }
+class ComplexTest {
 
     @Test
-    public void testParse() {
+    public void parseTest() {
 
         // both real and imaginary
         ComplexNumber a = new ComplexNumber("5+3i");
@@ -88,10 +83,20 @@ public class TestComplex {
         a = new ComplexNumber("");
         assertEquals(a.getReal(), 0);
         assertEquals(a.getImaginary(), 0);
+
+        a = new ComplexNumber("5+3*i");
+        assertEquals(a.getReal(), 5);
+        assertEquals(a.getImaginary(), 0);
+        a = new ComplexNumber("5test");
+        assertEquals(a.getReal(), 5);
+        assertEquals(a.getImaginary(), 0);
+        a = new ComplexNumber("-testi");
+        assertEquals(a.getReal(), 0);
+        assertEquals(a.getImaginary(), 0);
     }
 
     @Test
-    public void testPlus() {
+    public void addTest() {
         ComplexNumber a = new ComplexNumber("5+3i");
         ComplexNumber b = new ComplexNumber("2-3i");
         ComplexNumber c = a.add(b);
@@ -101,5 +106,43 @@ public class TestComplex {
         c = a.add(b);
         assertEquals(c.getReal(), -2);
         assertEquals(c.getImaginary(), -3);
+    }
+
+    @Test
+    public void subtractTest() {
+        ComplexNumber a = new ComplexNumber("5+3i");
+        ComplexNumber b = new ComplexNumber("2-3i");
+        ComplexNumber c = a.subtract(b);
+        assertEquals(c.getReal(), 3);
+        assertEquals(c.getImaginary(), 6);
+    }
+
+    @Test
+    public void multiplyTest() {
+        ComplexNumber a = new ComplexNumber("5+3i");
+        ComplexNumber b = new ComplexNumber("2-4i");
+        ComplexNumber c = a.multiply(b);
+        assertEquals(c.getReal(),22 );
+        assertEquals(c.getImaginary(), -14);
+        b = new ComplexNumber("5");
+        c = a.multiply(b);
+        assertEquals(c.getReal(), 25);
+        assertEquals(c.getImaginary(), 15);
+        a = new ComplexNumber("3i");
+        c = a.multiply(b);
+        assertEquals(c.getReal(), 0);
+        assertEquals(c.getImaginary(), 15);
+    }
+
+    private boolean compareFloats(float a, float b) {
+        return Math.abs(a-b) < 0.001f;
+    }
+    @Test
+    public void divideTest() {
+        ComplexNumber a = new ComplexNumber("5+3i");
+        ComplexNumber b = new ComplexNumber("2-4i");
+        ComplexNumber c = a.divide(b);
+        assertTrue(compareFloats(c.getReal(), -0.1f));
+        assertTrue(compareFloats(c.getImaginary(), (13.0f / 10.0f)));
     }
 }

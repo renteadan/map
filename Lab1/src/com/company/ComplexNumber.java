@@ -2,10 +2,12 @@ package com.company;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 class ComplexNumber {
-    private int real ,imaginary;
+    private float real ,imaginary;
 
     ComplexNumber(String complex) {
         Pattern p = Pattern.compile("([+-]?\\d+(?![iI.\\d]))?([+-]?\\d*\\*?[iI])?");
@@ -13,22 +15,13 @@ class ComplexNumber {
         Matcher m = t.matcher(complex);
         String re = "", img = "";
         if(m.find()) {
+            re = m.group(1);
             try {
-                re = m.group(1);
-                try {
-                    real = Integer.parseInt(re);
-                } catch (NumberFormatException e) {
-                    real = 0;
-                }
-            } catch (NullPointerException e) {
+                real = Integer.parseInt(re);
+            } catch (NumberFormatException e) {
                 real = 0;
             }
-            try {
-                img = m.group(2);
-            } catch (NullPointerException e) {
-                imaginary = 0;
-                return;
-            }
+            img = m.group(2);
         }
 
         if(img == null) {
@@ -57,22 +50,45 @@ class ComplexNumber {
     }
 
 
-    int getReal() {
+    float getReal() {
         return real;
     }
 
-    int getImaginary() {
+    float getImaginary() {
         return imaginary;
     }
 
-    private ComplexNumber(int a, int b) {
+    private ComplexNumber(float a, float b) {
         real = a;
         imaginary = b;
     }
 
     ComplexNumber add (@NotNull ComplexNumber other) {
-        int a = real + other.real;
-        int b = imaginary + other.imaginary;
+        float a = real + other.real;
+        float b = imaginary + other.imaginary;
         return new ComplexNumber(a ,b);
+    }
+
+    ComplexNumber subtract(@NotNull ComplexNumber other) {
+        float a = real - other.real;
+        float b = imaginary - other.imaginary;
+        return new ComplexNumber(a ,b);
+    }
+
+    ComplexNumber multiply(@NotNull ComplexNumber other) {
+        float a = real * other.real - imaginary*other.imaginary;
+        float b = real * other.imaginary + imaginary * other.real;
+        return new ComplexNumber(a, b);
+    }
+
+    private String convert(float a) {
+        return new BigDecimal(String.valueOf(a)).setScale(2,RoundingMode.FLOOR).toString();
+    }
+    ComplexNumber divide(@NotNull ComplexNumber other) {
+        float a = (real * other.real + imaginary * other.imaginary) / (other.real * other.real + other.imaginary * other.imaginary);
+        float b = (imaginary * other.real - real * other.imaginary) / (other.real * other.real + other.imaginary * other.imaginary);
+        a = Float.parseFloat(convert(a));
+        b = Float.parseFloat(convert(b));
+        return new ComplexNumber(a, b);
     }
 }
