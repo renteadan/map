@@ -9,6 +9,11 @@ import java.util.regex.Matcher;
 class ComplexNumber {
     private float real ,imaginary;
 
+    ComplexNumber() {
+        real = 0;
+        imaginary = 0;
+    }
+
     ComplexNumber(String complex) {
         Pattern p = Pattern.compile("([+-]?\\d+(?![iI.\\d]))?([+-]?\\d*\\*?[iI])?");
         Pattern t = Pattern.compile("(?=[iI.\\d+-])([+-]?(?:\\d+)(?![iI.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[iI])?");
@@ -90,5 +95,9 @@ class ComplexNumber {
         a = Float.parseFloat(convert(a));
         b = Float.parseFloat(convert(b));
         return new ComplexNumber(a, b);
+    }
+
+    boolean isValid(){
+        return !(real==0 && imaginary==0);
     }
 }

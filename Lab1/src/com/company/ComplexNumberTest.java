@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ComplexTest {
+public class ComplexNumberTest {
 
     @Test
     public void parseTest() {
@@ -96,7 +96,7 @@ class ComplexTest {
     }
 
     @Test
-    public void addTest() {
+    void addTest() {
         ComplexNumber a = new ComplexNumber("5+3i");
         ComplexNumber b = new ComplexNumber("2-3i");
         ComplexNumber c = a.add(b);
@@ -109,7 +109,7 @@ class ComplexTest {
     }
 
     @Test
-    public void subtractTest() {
+    void subtractTest() {
         ComplexNumber a = new ComplexNumber("5+3i");
         ComplexNumber b = new ComplexNumber("2-3i");
         ComplexNumber c = a.subtract(b);
@@ -118,7 +118,7 @@ class ComplexTest {
     }
 
     @Test
-    public void multiplyTest() {
+    void multiplyTest() {
         ComplexNumber a = new ComplexNumber("5+3i");
         ComplexNumber b = new ComplexNumber("2-4i");
         ComplexNumber c = a.multiply(b);
@@ -138,7 +138,7 @@ class ComplexTest {
         return Math.abs(a-b) < 0.001f;
     }
     @Test
-    public void divideTest() {
+    void divideTest() {
         ComplexNumber a = new ComplexNumber("5+3i");
         ComplexNumber b = new ComplexNumber("2-4i");
         ComplexNumber c = a.divide(b);
