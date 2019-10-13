@@ -1,5 +1,7 @@
-package com.company;
+package com.company.Test;
 
+import com.company.Task.MessageTask;
+import com.company.Task.SortingTask;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;

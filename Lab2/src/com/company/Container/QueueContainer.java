@@ -1,10 +1,10 @@
-package com.company;
+package com.company.Container;
 
-import java.util.Arrays;
+import com.company.Task.Task;
 
-public class QueueContainer extends AbstarctContainer{
+public class QueueContainer extends AbstractContainer {
 
-    QueueContainer() {
+    public QueueContainer() {
         arr = new Task[2];
         size = 0;
     }

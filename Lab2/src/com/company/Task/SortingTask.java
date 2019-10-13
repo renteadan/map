@@ -1,24 +1,24 @@
-package com.company;
+package com.company.Task;
 
 import java.util.Arrays;
 
-class SortingTask extends Task {
+public class SortingTask extends Task {
     private int[] arr;
 
     public int[] getArr() {
         return arr;
     }
-    SortingTask(String taskId, String description, int[] arr) {
+    public SortingTask(String taskId, String description, int[] arr) {
         super(taskId, description);
         this.arr = arr;
     }
 
-    void execute() {
+    public void execute() {
         sort("quick");
         System.out.println(Arrays.toString(arr));
     }
 
-    void execute(String strategy) {
+    public void execute(String strategy) {
         sort(strategy);
         System.out.println(Arrays.toString(arr));
     }

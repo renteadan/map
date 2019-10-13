@@ -1,8 +1,8 @@
-package com.company;
+package com.company.Task;
 
 import java.util.Objects;
 
-abstract class Task {
+public abstract class Task {
     private String taskId, description;
 
     Task(String taskId, String description) {
@@ -10,7 +10,7 @@ abstract class Task {
         this.description = description;
     }
 
-    String getTaskId() {
+    public String getTaskId() {
         return taskId;
     }
 
@@ -18,7 +18,7 @@ abstract class Task {
         return description;
     }
 
-    abstract void execute();
+    public abstract void execute();
 
     @Override
     public boolean equals(Object o) {

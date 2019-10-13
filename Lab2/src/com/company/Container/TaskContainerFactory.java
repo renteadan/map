@@ -1,11 +1,11 @@
-package com.company;
+package com.company.Container;
 
 public class TaskContainerFactory implements Factory {
 
     private static final TaskContainerFactory instance = new TaskContainerFactory();
-    private TaskContainerFactory(){};
+    private TaskContainerFactory(){}
 
-    static TaskContainerFactory getInstance() {
+    public static TaskContainerFactory getInstance() {
         return instance;
     }
 

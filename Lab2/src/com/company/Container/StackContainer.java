@@ -1,10 +1,10 @@
-package com.company;
+package com.company.Container;
 
-import java.util.Arrays;
+import com.company.Task.Task;
 
-public class StackContainer extends AbstarctContainer {
+public class StackContainer extends AbstractContainer {
 
-    StackContainer() {
+    public StackContainer() {
         arr = new Task[2];
         size = 0;
     }

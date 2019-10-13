@@ -1,4 +1,6 @@
-package com.company;
+package com.company.Container;
+
+import com.company.Task.Task;
 
 public interface Container {
     Task remove();

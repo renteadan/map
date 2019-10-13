@@ -1,8 +1,9 @@
-package com.company;
+package com.company.Container;
 
+import com.company.Task.Task;
 import java.util.Arrays;
 
-public abstract class AbstarctContainer implements Container {
+public abstract class AbstractContainer implements Container {
     int size;
     Task[] arr;
     void resize() {

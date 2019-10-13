@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="208.25" y="539.0">com.company.Task</node>
+    <node x="326.0" y="817.0">com.company.SortingTask</node>
+    <node x="465.5" y="177.0">com.company.AbstractTaskRunner</node>
+    <node x="603.0" y="1046.0">com.company.TaskRunnerTest</node>
+    <node x="617.5" y="0.0">com.company.TaskRunner</node>
+    <node x="215.0" y="1046.0">com.company.SortingTaskTest</node>
+    <node x="411.0" y="1046.0">com.company.Main</node>
+    <node x="164.0" y="399.0">com.company.QueueContainer</node>
+    <node x="0.0" y="399.0">com.company.StackContainer</node>
+    <node x="589.0" y="400.0">com.company.DelayTaskRunner</node>
+    <node x="590.0" y="539.0">com.company.Factory</node>
+    <node x="82.75" y="0.0">com.company.Container</node>
+    <node x="864.0" y="539.0">com.company.ContainerTest</node>
+    <node x="586.0" y="639.0">com.company.TaskContainerFactory</node>
+    <node x="709.5" y="166.0">com.company.StrategyTaskRunner</node>
+    <node x="71.75" y="166.0">com.company.AbstarctContainer</node>
+    <node x="0.0" y="1046.0">com.company.AbstractSorter</node>
+    <node x="0.0" y="795.0">com.company.MessageTask</node>
+    <node x="354.0" y="400.0">com.company.PrinterTaskRunner</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.SortingTask" target="com.company.Task">
+      <point x="0.0" y="-81.0" />
+      <point x="433.5" y="770.0" />
+      <point x="335.75" y="770.0" />
+      <point x="42.5" y="103.0" />
+    </edge>
+    <edge source="com.company.DelayTaskRunner" target="com.company.AbstractTaskRunner">
+      <point x="0.0" y="-36.5" />
+      <point x="693.5" y="375.0" />
+      <point x="633.5" y="375.0" />
+      <point x="56.0" y="81.0" />
+    </edge>
+    <edge source="com.company.AbstractTaskRunner" target="com.company.TaskRunner">
+      <point x="0.0" y="-81.0" />
+      <point x="577.5" y="141.0" />
+      <point x="659.25" y="141.0" />
+      <point x="-41.75" y="58.0" />
+    </edge>
+    <edge source="com.company.AbstarctContainer" target="com.company.Container">
+      <point x="0.0" y="-91.5" />
+      <point x="0.0" y="58.0" />
+    </edge>
+    <edge source="com.company.StrategyTaskRunner" target="com.company.TaskRunner">
+      <point x="0.0" y="-92.0" />
+      <point x="824.5" y="141.0" />
+      <point x="742.75" y="141.0" />
+      <point x="41.75" y="58.0" />
+    </edge>
+    <edge source="com.company.PrinterTaskRunner" target="com.company.AbstractTaskRunner">
+      <point x="0.0" y="-36.5" />
+      <point x="461.5" y="375.0" />
+      <point x="521.5" y="375.0" />
+      <point x="-56.0" y="81.0" />
+    </edge>
+    <edge source="com.company.QueueContainer" target="com.company.AbstarctContainer">
+      <point x="0.0" y="-47.5" />
+      <point x="236.5" y="374.0" />
+      <point x="195.5" y="374.0" />
+      <point x="41.25" y="91.5" />
+    </edge>
+    <edge source="com.company.TaskContainerFactory" target="com.company.Factory">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="com.company.StackContainer" target="com.company.AbstarctContainer">
+      <point x="0.0" y="-47.5" />
+      <point x="72.0" y="374.0" />
+      <point x="113.0" y="374.0" />
+      <point x="-41.25" y="91.5" />
+    </edge>
+    <edge source="com.company.MessageTask" target="com.company.Task">
+      <point x="0.0" y="-103.0" />
+      <point x="153.0" y="770.0" />
+      <point x="250.75" y="770.0" />
+      <point x="-42.5" y="103.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9123630672926447" x="309.5" y="299.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
