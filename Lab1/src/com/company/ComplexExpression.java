@@ -2,8 +2,10 @@ package com.company;
 
 class ComplexExpression {
     private ComplexNumber result;
+    private String operator;
 
     ComplexExpression(String[] expression) throws ComplexExpressionError, ComplexNumberError {
+        operator = "";
         if(expression.length==0)
         {
             throw new ComplexExpressionError("Empty expression");
@@ -17,6 +19,11 @@ class ComplexExpression {
             throw new ComplexExpressionError("Invalid complex number");
         for(int i=1; i<expression.length-1;i+=2) {
             result = operation(expression[i+1], expression[i]);
+            if(operator.equals("")) {
+                operator = expression[i];
+            } else if(!operator.equals(expression[i])) {
+                throw new ComplexExpressionError("Not same operator");
+            }
         }
     }
 

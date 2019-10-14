@@ -18,9 +18,9 @@ class ComplexExpressionTest {
         arr[0] = "3+5i";
         arr[1] = "+";
         arr[2] = "2-4i";
-        arr[3] = "-";
+        arr[3] = "+";
         arr[4] = "2+7i";
-        arr[5] = "-";
+        arr[5] = "+";
         arr[6] = "-9-5i";
     }
 
@@ -30,24 +30,69 @@ class ComplexExpressionTest {
         arr[1] = "+";
     }
 
+    void initializeFourth() {
+        arr = new String[3];
+        arr[0] = "1+2";
+        arr[1] = "+";
+        arr[2] = "+3i";
+    }
+
+    void initializeFifth() {
+        arr = new String[3];
+        arr[0] = "1-4iiii";
+        arr[1] = "/";
+        arr[2] = "i";
+    }
+
+    void initializeSixth() {
+        arr = new String[7];
+        arr[0] = "1-4i";
+        arr[1] = "*";
+        arr[2] = "2-3i";
+        arr[3] = "-";
+        arr[4] = "3";
+        arr[5] = "+";
+        arr[6] = "i";
+    }
+
+    void initializeSeventh() {
+        arr = new String[3];
+        arr[0] = "-2i";
+        arr[1] = "+";
+        arr[2] = "0";
+    }
+
     @Test
     void expressionTest() {
         initializeFirst();
         expressionBlockTest(5, 1, false);
         initializeSecond();
-        expressionBlockTest(12 ,-1, false);
+        expressionBlockTest(-2 ,3, false);
         arr = new String[]{"2+3i", "*", "1+5i"};
         expressionBlockTest(-13, 13, false);
         arr = new String[]{};
         expressionBlockTest(0, 0,true);
-
+        initializeFourth();
+        expressionBlockTest(0,0,true);
+        initializeFifth();
+        expressionBlockTest(0,0,true);
+        initializeSixth();
+        expressionBlockTest(0, 0, true);
+        initializeSeventh();
+        expressionBlockTest(0, -2, false);
+        arr = new String[1];
+        arr[0] = "2+3i";
+        expressionBlockTest(2,3,false);
     }
+
+
 
     void expressionBlockTest(float real, float img, boolean isFailing) {
         ComplexExpression exp = new ComplexExpression();
         try {
             exp = new ComplexExpression(arr);
         } catch (ComplexExpressionError | ComplexNumberError err) {
+            System.out.println(err.getMessage());
             assertTrue(isFailing);
             return;
         }

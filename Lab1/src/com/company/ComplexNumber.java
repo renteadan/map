@@ -8,17 +8,19 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 class ComplexNumber {
     private float real ,imaginary;
+    private boolean valid;
 
     ComplexNumber() {
         real = 0;
         imaginary = 0;
+        valid = true;
     }
 
     ComplexNumber(String complex) {
-        Pattern p = Pattern.compile("([+-]?\\d+(?![iI.\\d]))?([+-]?\\d*\\*?[iI])?");
-        Pattern t = Pattern.compile("(?=[iI.\\d+-])([+-]?(?:\\d+)(?![iI.\\d]))?([+-]?(?:(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)?[iI])?");
+        Pattern t = Pattern.compile("(?=[iI.\\d+-])([+-]?(?:\\d+)(?![iI]))?([+-]?(?:\\d*)?\\*?[iI]?(?![iI]))?");
         Matcher m = t.matcher(complex);
         String re = "", img = "";
+        valid = true;
         if(m.find()) {
             re = m.group(1);
             try {
@@ -28,10 +30,22 @@ class ComplexNumber {
             }
             img = m.group(2);
         }
-
         if(img == null) {
             imaginary = 0;
             return;
+        }
+
+        if(img.equals("-") || img.equals("+")) {
+            valid=false;
+            return;
+        }
+        try {
+            imaginary = Integer.parseInt(img);
+            valid = false;
+            return;
+        }
+        catch (NumberFormatException err){
+            valid = true;
         }
         if(img.equals("-i")) {
             imaginary = -1;
@@ -98,6 +112,6 @@ class ComplexNumber {
     }
 
     boolean isValid(){
-        return !(real==0 && imaginary==0);
+        return valid;
     }
 }

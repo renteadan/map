@@ -2,8 +2,7 @@ package com.company;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ComplexNumberTest {
 
@@ -84,15 +83,11 @@ public class ComplexNumberTest {
         assertEquals(a.getReal(), 0);
         assertEquals(a.getImaginary(), 0);
 
-        a = new ComplexNumber("5+3*i");
+        a = new ComplexNumber("5+3i");
         assertEquals(a.getReal(), 5);
-        assertEquals(a.getImaginary(), 0);
-        a = new ComplexNumber("5test");
-        assertEquals(a.getReal(), 5);
-        assertEquals(a.getImaginary(), 0);
+        assertEquals(a.getImaginary(), 3);
         a = new ComplexNumber("-testi");
-        assertEquals(a.getReal(), 0);
-        assertEquals(a.getImaginary(), 0);
+        assertFalse(a.isValid());
     }
 
     @Test
