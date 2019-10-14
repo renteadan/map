@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="84.5" y="0.0">com.company.Container.Container</node>
+    <node x="585.0" y="400.0">com.company.TaskRunner.PrinterTaskRunner</node>
+    <node x="206.75" y="539.0">com.company.Task.Task</node>
+    <node x="72.0" y="166.0">com.company.Container.AbstractContainer</node>
+    <node x="465.5" y="177.0">com.company.TaskRunner.AbstractTaskRunner</node>
+    <node x="0.0" y="1046.0">com.company.Task.AbstractSorter</node>
+    <node x="615.5" y="0.0">com.company.TaskRunner.TaskRunner</node>
+    <node x="325.0" y="817.0">com.company.Task.SortingTask</node>
+    <node x="411.0" y="1046.0">com.company.Test.TaskRunnerTest</node>
+    <node x="213.0" y="1046.0">com.company.Test.SortingTaskTest</node>
+    <node x="357.0" y="400.0">com.company.TaskRunner.DelayTaskRunner</node>
+    <node x="584.0" y="639.0">com.company.Container.TaskContainerFactory</node>
+    <node x="166.0" y="399.0">com.company.Container.QueueContainer</node>
+    <node x="859.0" y="539.0">com.company.Test.ContainerTest</node>
+    <node x="706.5" y="166.0">com.company.TaskRunner.StrategyTaskRunner</node>
+    <node x="0.0" y="795.0">com.company.Task.MessageTask</node>
+    <node x="0.0" y="399.0">com.company.Container.StackContainer</node>
+    <node x="587.0" y="539.0">com.company.Container.Factory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.company.Container.AbstractContainer" target="com.company.Container.Container">
+      <point x="0.0" y="-91.5" />
+      <point x="0.0" y="58.0" />
+    </edge>
+    <edge source="com.company.TaskRunner.DelayTaskRunner" target="com.company.TaskRunner.AbstractTaskRunner">
+      <point x="0.0" y="-36.5" />
+      <point x="461.0" y="375.0" />
+      <point x="520.75" y="375.0" />
+      <point x="-55.25" y="81.0" />
+    </edge>
+    <edge source="com.company.TaskRunner.PrinterTaskRunner" target="com.company.TaskRunner.AbstractTaskRunner">
+      <point x="0.0" y="-36.5" />
+      <point x="691.0" y="375.0" />
+      <point x="631.25" y="375.0" />
+      <point x="55.25" y="81.0" />
+    </edge>
+    <edge source="com.company.TaskRunner.StrategyTaskRunner" target="com.company.TaskRunner.TaskRunner">
+      <point x="0.0" y="-92.0" />
+      <point x="821.0" y="141.0" />
+      <point x="740.0" y="141.0" />
+      <point x="41.5" y="58.0" />
+    </edge>
+    <edge source="com.company.Task.MessageTask" target="com.company.Task.Task">
+      <point x="0.0" y="-103.0" />
+      <point x="152.5" y="770.0" />
+      <point x="249.5" y="770.0" />
+      <point x="-42.75" y="103.0" />
+    </edge>
+    <edge source="com.company.Container.QueueContainer" target="com.company.Container.AbstractContainer">
+      <point x="0.0" y="-47.5" />
+      <point x="239.0" y="374.0" />
+      <point x="198.0" y="374.0" />
+      <point x="42.0" y="91.5" />
+    </edge>
+    <edge source="com.company.TaskRunner.AbstractTaskRunner" target="com.company.TaskRunner.TaskRunner">
+      <point x="0.0" y="-81.0" />
+      <point x="576.0" y="141.0" />
+      <point x="657.0" y="141.0" />
+      <point x="-41.5" y="58.0" />
+    </edge>
+    <edge source="com.company.Container.StackContainer" target="com.company.Container.AbstractContainer">
+      <point x="0.0" y="-47.5" />
+      <point x="73.0" y="374.0" />
+      <point x="114.0" y="374.0" />
+      <point x="-42.0" y="91.5" />
+    </edge>
+    <edge source="com.company.Container.TaskContainerFactory" target="com.company.Container.Factory">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="com.company.Task.SortingTask" target="com.company.Task.Task">
+      <point x="0.0" y="-81.0" />
+      <point x="432.0" y="770.0" />
+      <point x="335.0" y="770.0" />
+      <point x="42.75" y="103.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="365.0" y="196.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
