@@ -1,0 +1,128 @@
+Colectii si generics
+
+class Student
+string nume, float media
+
+constructor(String, float)
+toString()
+equals(Student):boolean
+
+---------------------
+<interface>
+    Set
+
+add (e)
+remove (object)
+contains(Object): bool
+size(): 
+
+-------------
+
+HashSet<Student> hs = new HS<>();
+hs.add(new Student ("Dan", 9.8f));
+hs.add(new Student("Ana", 8.9f));
+hs.add(new Student("Dan", 9.8f));
+
+scrie hashCode() la student
+
+---------------
+pt comparare
+<interface>
+COmparable
+-compareTo(object):int
+
+
+<interface>
+Comparator
+-compare(this, ot): int
+
+
+---------------------
+class Student{
+
+private String nume;
+private float media;
+
+public Student(String n, float m)
+{
+nume=n;
+media = m;
+}
+
+public boolean equals(Object ob)
+{
+if(! ob instaceof Student)
+   return false;
+Student aux = Student(obj)
+return aux.medie == media && aux.nume == nume;
+}
+
+public int hashCode(){
+return Objects.hash(nume);
+}
+}
+
+
+-----------------------
+<interface>
+Map
+put(k, v)
+
+
+hashmap or treemap
+
+
+------------
+MyMap retine studentii dupa medie
+
+cheile in [0,10]
+valoarea asociata unei chei: lista studenti care au media rotunjita egala cu cheia
+cheile ordonate descrescator
+add (studnet)
+getEntries() -> multimea perechilor chei-valoare
+
+
+------------------------------
+TreeMap
+<Integer, List<Student>>
+
+
+
+public class MyMap{
+private TreeMap<Integer, List<Student>> m;
+
+public MyMap(){
+m = new TreeMap<>(new IntComparator());
+}
+
+class IntComparator implements Comparator<Integer> {
+public int compare (Integer a, Integer b){
+return b-a;
+}
+
+public void add(Student st){
+int med = Math.round(st.getGrade());
+Lista<Student> aux;
+if (!m.contain(med))
+	aux = new ArrayList<Student>();
+else
+	aux = map.get(med);
+aux.add(st);
+map.put(med, l);
+}
+}
+public Set<MapEntry<Integer, Lista<Student>>> getEntry(){
+return map.entrySet();
+}
+}
+
+
+public class Test{
+public static void main(String[] args){
+MyMap harta = new MyMap();
+harta.add(new Student("BOSS", 10f));
+harta.add(new Student("Iancu", 3.0f));
+for(lists){
+for el in lists}
+}
+}
