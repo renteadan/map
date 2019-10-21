@@ -1,5 +1,7 @@
 package com.company.entity;
 
+import java.util.Objects;
+
 public class Student<ID> extends Entity<ID> {
     private String firstName, lastName, group, email;
 
@@ -25,5 +27,18 @@ public class Student<ID> extends Entity<ID> {
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student<?> student = (Student<?>) o;
+        return Objects.equals(this.getId(),student.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getId());
     }
 }
