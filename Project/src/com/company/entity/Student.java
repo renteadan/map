@@ -34,11 +34,6 @@ public class Student<ID> extends Entity<ID> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student<?> student = (Student<?>) o;
-        return Objects.equals(this.getId(),student.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.getId());
+        return Objects.equals(this.getId(), student.getId());
     }
 }

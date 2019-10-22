@@ -1,0 +1,13 @@
+1.Definiti o interfata case specifica operatiile CRUD pentru un repository cu elemente generice care au un ID de tip generic
+
+Repository<ID,E>
+-save(E)
+-update(E,id)
+-delete(id)
+-findOne(id):E
+-findAll():Iterable<E>
+
+
+Entity<ID>
+-getid()
+-setID()

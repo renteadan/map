@@ -3,11 +3,16 @@ package com.company.repository;
 import com.company.entity.Entity;
 import com.company.exception.ValidationException;
 import com.company.validator.EntityValidator;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
+import java.util.HashMap;
 
 public class Repository<ID, E extends Entity<ID>> implements CrudRepository<ID, E> {
-  private Map<ID, E> storage;
+  private HashMap<ID, E> storage;
+
+  public Repository() {
+    storage = new HashMap<>();
+  }
 
   /**
    *
@@ -20,9 +25,9 @@ public class Repository<ID, E extends Entity<ID>> implements CrudRepository<ID, 
    */
 
   @Override
-  public E findOne(ID id) {
+  public E findOne(@Nullable ID id) {
     if(id==null)
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Invalid id!");
     return storage.get(id);
   }
 
@@ -69,9 +74,9 @@ public class Repository<ID, E extends Entity<ID>> implements CrudRepository<ID, 
    */
 
   @Override
-  public E delete(ID id) {
+  public E delete(@Nullable ID id) {
     if (id == null)
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Invalid id!");
     return storage.remove(id);
   }
 
@@ -88,7 +93,7 @@ public class Repository<ID, E extends Entity<ID>> implements CrudRepository<ID, 
    * if the entity is not valid.
    */
   @Override
-  public E update(E entity) throws ValidationException {
+  public E update(@Nullable E entity) throws ValidationException {
     if (entity == null)
       throw new IllegalArgumentException();
     EntityValidator<E> v = new EntityValidator<E>();
