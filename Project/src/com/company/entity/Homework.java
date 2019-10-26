@@ -4,8 +4,11 @@ public class Homework<ID> extends Entity<ID> {
   private int startWeek,endWeek;
   private String description;
 
-  Homework(ID id) {
+  public Homework(ID id,int startWeek, int endWeek, String description) {
     super(id);
+    this.startWeek = startWeek;
+    this.endWeek = endWeek;
+    this.description = description;
   }
 
   public int getStartWeek() {
