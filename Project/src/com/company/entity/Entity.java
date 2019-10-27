@@ -1,7 +1,7 @@
 package com.company.entity;
 
 public class Entity<ID> {
-    private ID id;
+    protected ID id;
 
     Entity(ID id) {
         this.id = id;

@@ -36,4 +36,8 @@ public class Student<ID> extends Entity<ID> {
         Student<?> student = (Student<?>) o;
         return Objects.equals(this.getId(), student.getId());
     }
+
+    public String info() {
+        return String.format("%s.My name is %s %s. I'm from gorup %s and my email is %s",id,firstName,lastName, group, email);
+    }
 }
