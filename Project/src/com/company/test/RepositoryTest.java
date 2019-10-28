@@ -5,9 +5,6 @@ import com.company.exception.ValidationException;
 import com.company.repository.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.SplittableRandom;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RepositoryTest {
