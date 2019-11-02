@@ -25,7 +25,7 @@ class ServiceTest {
     serv.update(st3);
     assertEquals(serv.find("1").getFirstName(), "Test");
     int c=0;
-    for (Student<String> x : serv.getAll()) {
+    for (Student x : serv.getAll()) {
       c++;
     }
     assertEquals(c,1);
