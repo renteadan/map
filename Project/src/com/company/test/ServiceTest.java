@@ -11,9 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ServiceTest {
 
   @Test
+  @SuppressWarnings("unchecked")
   void serviceTest() throws ValidationException {
-    HomeworkService<String> hm = new HomeworkService<>();
-    StudentService<String> serv = new StudentService<>();
+    HomeworkService<String> hm = HomeworkService.getInstance();
+    StudentService<String> serv = StudentService.getInstance();
+    serv.makeEmpty();
     Student<String> st = new Student<>("1", "Dan", "Rentea", "226", "secret");
     serv.add(st);
     assertEquals(serv.find("1").getFirstName(), "Dan");
@@ -25,7 +27,7 @@ class ServiceTest {
     serv.update(st3);
     assertEquals(serv.find("1").getFirstName(), "Test");
     int c=0;
-    for (Student x : serv.getAll()) {
+    for (Object x : serv.getAll()) {
       c++;
     }
     assertEquals(c,1);

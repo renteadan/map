@@ -13,6 +13,16 @@ public class Student<ID> extends Entity<ID> {
         this.email = email;
     }
 
+    @SuppressWarnings("unchecked")
+    public Student(String[] args) {
+        super((ID)args[0]);
+        this.firstName = args[1];
+        this.lastName = args[2];
+        this.group = args[3];
+        this.email = args[4];
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -39,5 +49,10 @@ public class Student<ID> extends Entity<ID> {
 
     public String info() {
         return String.format("%s.My name is %s %s. I'm from group %s and my email is %s",id,firstName,lastName, group, email);
+    }
+
+    @Override
+    public String toFile() {
+        return String.format("%s;%s;%s;%s;%s", id, firstName,lastName,group,email);
     }
 }

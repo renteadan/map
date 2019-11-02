@@ -2,8 +2,9 @@ package com.company.test;
 
 import com.company.entity.Homework;
 import com.company.exception.ValidationException;
-import com.company.repository.Repository;
+import com.company.repository.AbstractRepository;
 import com.company.validator.HomeworkValidator;
+import com.company.validator.Validator;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -25,24 +26,23 @@ class HomeworkTest {
     assertEquals(hm.getEndWeek(), c+2);
     assertEquals(hm.getDescription(), "test1");
     assertEquals(hm.getStartWeek(), c);
-    HomeworkValidator valid = new HomeworkValidator();
     Homework<String> finalHm = hm;
     assertDoesNotThrow(() -> {
-      valid.validate(finalHm);
+      Validator.validate(finalHm);
     });
     hm = new Homework<>("1", 1,"test2");
     Homework<String> finalHm1 = hm;
     assertThrows(ValidationException.class, () -> {
-      valid.validate(finalHm1);
+      Validator.validate(finalHm1);
     });
 
     hm = new Homework<>("1", 1,"test2");
     Homework<String> finalHm2 = hm;
     assertThrows(ValidationException.class, () -> {
-      valid.validate(finalHm2);
+      Validator.validate(finalHm2);
     });
 
-    Repository<String, Homework<String>> repo = new Repository<>();
+    AbstractRepository<String, Homework<String>> repo = new AbstractRepository<>();
 
     Homework<String> finalHm3 = hm;
     assertThrows(ValidationException.class, () -> {

@@ -1,6 +1,6 @@
 package com.company.entity;
 
-public class Entity<ID> {
+public abstract class Entity<ID> {
     protected ID id;
 
     Entity(ID id) {
@@ -13,4 +13,6 @@ public class Entity<ID> {
     public void setId(ID id) {
         this.id = id;
     }
+    public abstract String toFile();
+    public abstract String info();
 }

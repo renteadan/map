@@ -1,18 +1,24 @@
 package com.company.test;
 
+import com.company.entity.Grade;
+import com.company.entity.Homework;
 import com.company.entity.Student;
 import com.company.exception.ValidationException;
-import com.company.repository.Repository;
+import com.company.repository.GradeFileRepo;
+import com.company.repository.HomeworkFileRepo;
+import com.company.repository.AbstractRepository;
+import com.company.repository.StudentFileRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RepositoryTest {
-  Repository<String, Student<String>> repo;
+  private AbstractRepository<String, Student<String>> repo;
 
   @BeforeEach
   void populate() {
-   repo = new Repository<>();
+   repo = new AbstractRepository<>();
    Student<String> st1 = new Student<>("1", "Dan", "Rentea","226","Secret");
    Student<String> st2 = new Student<>("2", "Iulian", "Iancu","226","ceva");
    Student<String> st3 = new Student<>("3", "Bob", "Pop","226","test123");
@@ -43,6 +49,9 @@ class RepositoryTest {
     assertEquals(ret, st1);
     assertThrows(IllegalArgumentException.class, () -> {
       repo.findOne(null);
+    });
+    assertThrows(IllegalArgumentException.class, () -> {
+      repo.save(null);
     });
     ret = repo.findOne("6");
     assertNull(ret);
@@ -88,5 +97,43 @@ class RepositoryTest {
     for(Student x : repo.findAll()) {
       assertNotNull(x);
     }
+  }
+
+  @Test
+  void studentFileRepoTest() throws ValidationException {
+    StudentFileRepo<String> fr = new StudentFileRepo<>("test1");
+    Student<String> st1 = new Student<>("1", "George", "Richi", "223", "tradator@mail.com");
+    fr.save(st1);
+    st1 = new Student<>("51", "Dan1", "Test1", "226", "ceva");
+    fr.save(st1);
+    StudentFileRepo<String> fr2 = new StudentFileRepo<>("test1");
+    for(Student st: fr2.findAll()) {
+      assertEquals(st, fr.findOne((String) st.getId()));
+    }
+    Student<String> st3 = fr.delete("1");
+    assertEquals(st3.getFirstName(), "George");
+    st1 = new Student<>("1", "Traian", "Basescu", "299","ceva");
+    fr2.update(st1);
+    assertEquals(fr2.findOne("1").getFirstName(),"Traian");
+    st1 = new Student<>("1", "George", "Richi", "223", "tradator@mail.com");
+    fr.update(st1);
+  }
+
+  @Test
+  void homeworkFileRepoTest() throws ValidationException {
+    HomeworkFileRepo<String> hr = new HomeworkFileRepo<>("test2");
+    Homework<String> hm = new Homework<>("1",  50, "test1");
+    hr.save(hm);
+    HomeworkFileRepo<String> hr2 = new HomeworkFileRepo<>("test2");
+    assertEquals(hr2.findOne("1"), hr.findOne("1"));
+  }
+
+  @Test
+  void gradeFileRepoTest() throws ValidationException {
+    GradeFileRepo<String> gr = new GradeFileRepo<>("gradesTest");
+    gr.save(new Grade<>("1","1", "1", "gigi", 9));
+    GradeFileRepo<String> gr2 = new GradeFileRepo<>("gradesTest");
+    System.out.println(gr2.findOne("1").info());
+    assertEquals(gr2.findOne("1").getHomeworkId(), "1");
   }
 }

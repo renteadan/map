@@ -2,13 +2,13 @@ package com.company.service;
 
 import com.company.entity.Entity;
 import com.company.exception.ValidationException;
-import com.company.repository.Repository;
+import com.company.repository.AbstractRepository;
 
-public class AbstractService<ID, E extends Entity<ID>> {
+public class AbstractService<ID, E extends Entity<ID>> implements Service<ID, E> {
 
-  private Repository<ID,E> repo;
+  private AbstractRepository<ID,E> repo;
   AbstractService() {
-    repo = new Repository<>();
+    repo = new AbstractRepository<>();
   }
 
   public E find(ID id) {
@@ -29,5 +29,13 @@ public class AbstractService<ID, E extends Entity<ID>> {
 
   public E add(E entity) throws ValidationException {
     return repo.save(entity);
+  }
+
+  public void setRepo(AbstractRepository<ID, E> abs) {
+    repo = abs;
+  }
+
+  public void makeEmpty() {
+    repo.makeEmpty();
   }
 }
