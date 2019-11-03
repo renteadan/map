@@ -3,6 +3,7 @@ package com.company.test;
 import com.company.entity.Homework;
 import com.company.entity.Student;
 import com.company.exception.ValidationException;
+import com.company.repository.HomeworkFileRepo;
 import com.company.service.HomeworkService;
 import com.company.service.StudentService;
 import org.junit.jupiter.api.Test;
@@ -31,5 +32,7 @@ class ServiceTest {
       c++;
     }
     assertEquals(c,1);
+    serv = StudentService.getFileInstance("studentTest");
+    hm = HomeworkService.getFileInstance("hmTest");
   }
 }

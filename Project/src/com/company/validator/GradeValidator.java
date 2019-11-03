@@ -1,9 +1,10 @@
 package com.company.validator;
 
+import com.company.entity.Entity;
 import com.company.entity.Grade;
 import com.company.exception.ValidationException;
 
-class GradeValidator {
+class GradeValidator<E extends Entity> implements Validator<E> {
 
     static void validate(Grade entity) throws ValidationException {
         if (entity.getGrade() < 1 || entity.getGrade() > 10)

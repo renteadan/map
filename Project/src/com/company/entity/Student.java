@@ -48,7 +48,7 @@ public class Student<ID> extends Entity<ID> {
     }
 
     public String info() {
-        return String.format("%s.My name is %s %s. I'm from group %s and my email is %s",id,firstName,lastName, group, email);
+        return String.format("ID=%s.My name is %s %s. I'm from group %s and my email is %s",id,firstName,lastName, group, email);
     }
 
     @Override

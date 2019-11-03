@@ -3,7 +3,6 @@ package com.company.test;
 import com.company.entity.Homework;
 import com.company.exception.ValidationException;
 import com.company.repository.AbstractRepository;
-import com.company.validator.HomeworkValidator;
 import com.company.validator.Validator;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +19,7 @@ class HomeworkTest {
     String str = "2019-09-30 00:00";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-    int c = (int) ChronoUnit.WEEKS.between(dateTime,LocalDateTime.now());
+    int c = (int) ChronoUnit.WEEKS.between(dateTime,LocalDateTime.now()) + 1;
     Homework<String> hm = new Homework<>("1",  c+2, "test1");
     assertEquals(hm.getId(), "1");
     assertEquals(hm.getEndWeek(), c+2);

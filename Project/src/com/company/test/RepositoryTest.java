@@ -131,9 +131,12 @@ class RepositoryTest {
   @Test
   void gradeFileRepoTest() throws ValidationException {
     GradeFileRepo<String> gr = new GradeFileRepo<>("gradesTest");
-    gr.save(new Grade<>("1","1", "1", "gigi", 9));
+    gr.save(new Grade<>("1","1", "1", "gigi", 9, "feedback"));
     GradeFileRepo<String> gr2 = new GradeFileRepo<>("gradesTest");
     System.out.println(gr2.findOne("1").info());
     assertEquals(gr2.findOne("1").getHomeworkId(), "1");
+    assertThrows(ValidationException.class, () -> {
+      gr.save(new Grade<>("1", null, "2", "gigi", 4, "ceva"));
+    });
   }
 }

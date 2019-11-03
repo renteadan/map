@@ -18,9 +18,9 @@ public class Controller<ID> {
     private Scanner kb;
 
     public Controller() {
-        studentService =  StudentService.getFileInstance();
-        homeworkService = HomeworkService.getFileInstance();
-        gradeService = GradeService.getFileInstance();
+        studentService =  StudentService.getFileInstance("students");
+        homeworkService = HomeworkService.getFileInstance("homeworks");
+        gradeService = GradeService.getFileInstance("grades");
         kb = new Scanner(System.in);
     }
 
@@ -169,14 +169,21 @@ public class Controller<ID> {
         ID homeworkId = (ID) kb.nextLine();
         Homework<ID> hm =  homeworkService.find(homeworkId);
         System.out.println("Max grade for this homework is: " + hm.getMaxGrade());
+        Grade<ID> graded = gradeService.isHomeworkGraded(homeworkId);
+        if (graded != null) {
+            System.out.println("Homework is already graded!\n" + graded.info());
+            return;
+        }
         System.out.println("Insert id: ");
         ID id = (ID) kb.nextLine();
         System.out.println("Insert professor's name: ");
         String professor = kb.nextLine();
         System.out.println("Insert grade: ");
         int grade = Integer.parseInt(kb.nextLine());
-        Grade gr = gradeService.add(new Grade<ID>(id, studentId, homeworkId, professor, grade));
+        System.out.println("Insert feedback: ");
+        String feedback = kb.nextLine();
+        Grade gr = gradeService.add(new Grade<ID>(id, studentId, homeworkId, professor, grade, feedback));
         if (gr != null)
-            System.out.println("Homework already exists!");
+            System.out.println("Grade id already exists!");
     }
 }

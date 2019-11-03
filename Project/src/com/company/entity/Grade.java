@@ -1,5 +1,7 @@
 package com.company.entity;
 
+import com.github.cliftonlabs.json_simple.JsonObject;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -7,18 +9,18 @@ public class Grade<ID> extends Entity<ID> {
     private Student<ID> student;
     private Homework<ID> homework;
     private ID studentId,homeworkId;
-    private String professor;
+    private String professor, pattern = "yyyy-MM-dd HH:mm", feedback;
     private LocalDateTime date;
     private int grade;
-    private String pattern = "yyyy-MM-dd HH:mm";
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
-    public Grade(ID id, ID studentId, ID homeworkId, String professor, int grade) {
+    public Grade(ID id, ID studentId, ID homeworkId, String professor, int grade, String feedback) {
         super(id);
         this.studentId = studentId;
         this.homeworkId = homeworkId;
         this.professor = professor;
         this.grade = grade;
+        this.feedback = feedback;
         date = LocalDateTime.now();
     }
 
@@ -30,16 +32,28 @@ public class Grade<ID> extends Entity<ID> {
         this.professor = args[3];
         this.date = LocalDateTime.parse(args[4], formatter);
         this.grade = Integer.parseInt(args[5]);
+        this.feedback = args[6];
     }
 
     @Override
     public String toFile() {
-        return String.format("%s;%s;%s;%s;%s;%d",id,studentId,homeworkId,professor,date.format(formatter),grade);
+        return String.format("%s;%s;%s;%s;%s;%d;%s", id, studentId, homeworkId, professor, date.format(formatter), grade, feedback);
+    }
+
+    public JsonObject toEmail() {
+        JsonObject aux = new JsonObject();
+        aux.put("tema", homeworkId);
+        aux.put("nota", grade);
+        aux.put("predata", Homework.getWeekOf(date));
+        aux.put("deadline", homework.getEndWeek());
+        aux.put("feedback", feedback);
+        return aux;
     }
 
     @Override
     public String info() {
-        return String.format("%s.The grade is %d, for student %s from professor %s.It was given on %s, for homework %s", id, grade, studentId, professor, date, homeworkId);
+        return String.format("ID=%s.The grade is %d, for student %s from professor %s." +
+                "It was given on %s, for homework %s. Feedback is: %s", id, grade, studentId, professor, date, homeworkId, feedback);
     }
 
     public ID getStudentId() {
@@ -80,5 +94,9 @@ public class Grade<ID> extends Entity<ID> {
 
     public void setHomework(Homework<ID> homework) {
         this.homework = homework;
+    }
+
+    public String getFeedback() {
+        return feedback;
     }
 }

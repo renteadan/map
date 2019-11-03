@@ -6,14 +6,14 @@ import com.company.repository.StudentFileRepo;
 public class StudentService<ID> extends AbstractService<ID, Student<ID>> {
     private static StudentService instance = null;
     private static StudentService instanceFile = null;
-    private StudentFileRepo<ID> repo;
+
     private StudentService() {
         super();
     }
 
     private StudentService(String file) {
         super();
-        repo = new StudentFileRepo<>(file);
+        StudentFileRepo<ID> repo = new StudentFileRepo<>(file);
         setRepo(repo);
     }
 
@@ -23,9 +23,9 @@ public class StudentService<ID> extends AbstractService<ID, Student<ID>> {
         return instance;
     }
 
-    public static StudentService getFileInstance() {
+    public static StudentService getFileInstance(String filename) {
         if (instanceFile == null)
-            instanceFile = new StudentService("students");
+            instanceFile = new StudentService(filename);
         return instanceFile;
     }
 }

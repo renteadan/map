@@ -6,14 +6,14 @@ import com.company.repository.HomeworkFileRepo;
 public class HomeworkService<ID> extends AbstractService<ID, Homework<ID>> {
     private static HomeworkService instance = null;
     private static HomeworkService instanceFile = null;
-    private HomeworkFileRepo<ID> repo;
+
     private HomeworkService() {
         super();
     }
 
     private HomeworkService(String file) {
         super();
-        repo = new HomeworkFileRepo<>(file);
+        HomeworkFileRepo<ID> repo = new HomeworkFileRepo<>(file);
         setRepo(repo);
     }
 
@@ -23,9 +23,9 @@ public class HomeworkService<ID> extends AbstractService<ID, Homework<ID>> {
         return instance;
     }
 
-    public static HomeworkService getFileInstance() {
+    public static HomeworkService getFileInstance(String filename) {
         if (instanceFile == null)
-            instanceFile = new HomeworkService("homeworks");
+            instanceFile = new HomeworkService(filename);
         return instanceFile;
     }
 }
