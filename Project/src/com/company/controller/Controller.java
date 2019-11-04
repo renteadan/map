@@ -33,6 +33,7 @@ public class Controller<ID> {
   private void printMenu() {
     System.out.println("1.Create student\n2.Find student\n3.Create homework\n4.Find homework\n" +
         "5.Display all students\n6.Display all homeworks\n7.Grade a student\n" +
+        "8.Show all grades\n9.Motivate student absence\n" +
         "0.Exit\n");
   }
 
@@ -68,6 +69,10 @@ public class Controller<ID> {
             break;
           case 8:
             findAllGrades();
+            break;
+          case 9:
+            motivateWeek();
+            break;
           default:
         }
       } catch (ValidationException | IllegalArgumentException | NullPointerException e) {
@@ -168,7 +173,7 @@ public class Controller<ID> {
     Homework<ID> hm = homeworkService.find(homeworkId);
     if (hm == null)
       throw new ValidationException("Invalid homework ID!");
-    System.out.println("Max grade for this homework is: " + hm.getMaxGrade());
+    System.out.println("Max grade for this homework is: " + hm.getMaxGrade(0));
     Grade<ID> graded = gradeService.isHomeworkGraded(homeworkId);
     if (graded != null) {
       System.out.println("Homework is already graded!\n" + graded.info());
@@ -195,5 +200,14 @@ public class Controller<ID> {
     }
     if (empty)
       throw new NullPointerException("There are no grades!");
+  }
+
+  private void motivateWeek() throws ValidationException {
+    findAllStudents();
+    System.out.println("Chose student to motivate:");
+    ID id = (ID) kb.nextLine();
+    System.out.println("Insert week to motivate");
+    int week = Integer.parseInt(kb.nextLine());
+    studentService.motivateWeek(week, id);
   }
 }

@@ -1,9 +1,13 @@
 package com.company.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.Vector;
 
 public class Student<ID> extends Entity<ID> {
   private String firstName, lastName, group, email;
+  private HashSet<Integer> motivari = new HashSet<>();
 
   public Student(ID id, String firstName, String lastName, String group, String email) {
     super(id);
@@ -54,5 +58,13 @@ public class Student<ID> extends Entity<ID> {
   @Override
   public String toFile() {
     return String.format("%s;%s;%s;%s;%s", id, firstName, lastName, group, email);
+  }
+
+  public void motivateWeek(int week) {
+    motivari.add(week);
+  }
+
+  public HashSet<Integer> getMotivari() {
+    return motivari;
   }
 }

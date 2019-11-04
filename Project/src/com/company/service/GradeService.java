@@ -10,6 +10,8 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Vector;
 
 @SuppressWarnings("unchecked")
 public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
@@ -52,6 +54,12 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
       throw new ValidationException("Invalid foreign key");
     entity.setStudent(st);
     entity.setHomework(hm);
+    HashSet<Integer> vec = st.getMotivari();
+    int motivari = getMotivariBetween(hm.getEndWeek(), Homework.getCurrentWeek(), st.getMotivari());
+    if (hm.getMaxGrade(motivari) == 1)
+      entity.setGrade(1);
+    else
+      entity.setGrade(entity.getGrade() + motivari);
     Grade<ID> aux = super.add(entity);
     if (aux != null)
       return aux;
@@ -66,6 +74,15 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     } catch (IOException err) {
       System.out.println(err.getMessage());
     }
+  }
+
+  private int getMotivariBetween(int start, int end, HashSet<Integer> vec) {
+    int c=0;
+    for(int x: vec) {
+      if (x >= start && x<=end)
+        c++;
+    }
+    return c;
   }
 
   @Override

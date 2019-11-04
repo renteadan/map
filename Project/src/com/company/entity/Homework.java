@@ -27,21 +27,26 @@ public class Homework<ID> extends Entity<ID> {
     this.description = args[3];
   }
 
-  public int getMaxGrade() {
+  public int getMaxGrade(int motivate) {
+    int c = 10 - (getCurrentWeek() - endWeek) + motivate;
+    if (c >= 10)
+      return 10;
     if (getCurrentWeek() > endWeek) {
-      return 10 - (getCurrentWeek() - endWeek);
+      if ( getCurrentWeek() - endWeek - motivate > 2)
+        return 1;
+      return 10 - (getCurrentWeek() - endWeek - motivate);
     }
     return 10;
   }
 
-  public static int getWeekOf(LocalDateTime date) {
+  static int getWeekOf(LocalDateTime date) {
     String str = "2019-09-30 00:00";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
     return (int) ChronoUnit.WEEKS.between(dateTime, date) + 1;
   }
 
-  private int getCurrentWeek() {
+  public static int getCurrentWeek() {
     String str = "2019-09-30 00:00";
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
