@@ -6,7 +6,8 @@ import com.company.repository.AbstractRepository;
 
 public class AbstractService<ID, E extends Entity<ID>> implements Service<ID, E> {
 
-  private AbstractRepository<ID,E> repo;
+  private AbstractRepository<ID, E> repo;
+
   AbstractService() {
     repo = new AbstractRepository<>();
   }
