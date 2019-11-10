@@ -3,6 +3,7 @@ package com.company.service;
 import com.company.entity.Grade;
 import com.company.entity.Homework;
 import com.company.entity.Student;
+import com.company.entity.StudyYear;
 import com.company.exception.ValidationException;
 import com.company.repository.GradeFileRepo;
 import com.github.cliftonlabs.json_simple.JsonObject;
@@ -55,7 +56,7 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     entity.setStudent(st);
     entity.setHomework(hm);
     HashSet<Integer> vec = st.getMotivari();
-    int motivari = getMotivariBetween(hm.getEndWeek(), Homework.getCurrentWeek(), st.getMotivari());
+    int motivari = StudyYear.getMotivariBetween(hm.getEndWeek(), StudyYear.getCurrentWeek(), st.getMotivari());
     if (hm.getMaxGrade(motivari) == 1)
       entity.setGrade(1);
     else
@@ -76,15 +77,6 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     }
   }
 
-  private int getMotivariBetween(int start, int end, HashSet<Integer> vec) {
-    int c=0;
-    for(int x: vec) {
-      if (x >= start && x<=end)
-        c++;
-    }
-    return c;
-  }
-
   @Override
   public Grade<ID> find(ID id) {
     Grade<ID> grade = super.find(id);
@@ -97,11 +89,11 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     return grade;
   }
 
-  public Grade<ID> isHomeworkGraded(ID homeworkId) {
+  public boolean isHomeworkGraded(ID studentId, ID homeworkId) {
     for (Grade x : getAll()) {
-      if (x.getHomeworkId().equals(homeworkId))
-        return x;
+      if (x.getHomeworkId().equals(homeworkId) && x.getStudentId().equals(studentId))
+        return true;
     }
-    return null;
+    return false;
   }
 }

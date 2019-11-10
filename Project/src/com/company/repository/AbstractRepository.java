@@ -95,8 +95,7 @@ public class AbstractRepository<ID, E extends Entity<ID>> implements Repository<
     this.storage.clear();
   }
 
-  public E safeSave(E entity) {
+  void safeSave(E entity) {
     storage.put(entity.getId(), entity);
-    return null;
   }
 }

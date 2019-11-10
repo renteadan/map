@@ -3,6 +3,7 @@ package com.company.test;
 import com.company.entity.Grade;
 import com.company.entity.Homework;
 import com.company.entity.Student;
+import com.company.entity.StudyYear;
 import com.company.exception.ValidationException;
 import com.company.repository.AbstractRepository;
 import com.company.service.GradeService;
@@ -56,8 +57,29 @@ class GradeTest {
     assertEquals(aux.getFeedback(), "find null");
     assertNotNull(aux);
     service2.update(aux);
-    assertNull(service.isHomeworkGraded("198"));
-    assertNotNull(service2.isHomeworkGraded("1"));
-    assertNull(service2.isHomeworkGraded("391"));
+    assertFalse(service.isHomeworkGraded("1","198"));
+    assertTrue(service2.isHomeworkGraded("1","1"));
+    assertFalse(service2.isHomeworkGraded("3","391"));
+  }
+
+  @Test
+  void motivateTest() {
+    int c = StudyYear.getCurrentWeek();
+    Student<String> st3 = new Student<>("3", "Bob", "Pop", "226", "test123");
+    Homework<String> hm = new Homework<>("1", c-1, "test2");
+    st3.motivateWeek(c-1);
+    assertEquals(hm.getMaxGrade(), 9);
+    int m = StudyYear.getMotivariBetween(hm.getEndWeek(), StudyYear.getCurrentWeek(), st3.getMotivari());
+    assertEquals(m, 1);
+    assertEquals(hm.getMaxGrade(m), 10);
+    hm = new Homework<>("1", c-3, "test2");
+    assertEquals(hm.getMaxGrade(), 1);
+    assertEquals(hm.getMaxGrade(m), 8);
+    hm = new Homework<>("1", c-4, "test2");
+    assertEquals(hm.getMaxGrade(m), 1);
+    hm = new Homework<>("1", c-2, "test2");
+    assertEquals(hm.getMaxGrade(), 8);
+    hm = new Homework<>("1", c, "test2");
+    assertEquals(hm.getMaxGrade(), 10);
   }
 }

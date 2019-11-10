@@ -2,12 +2,14 @@ package com.company.test;
 
 import com.company.entity.Homework;
 import com.company.entity.Student;
+import com.company.entity.StudyYear;
 import com.company.exception.ValidationException;
 import com.company.service.HomeworkService;
 import com.company.service.StudentService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ServiceTest {
 
@@ -34,5 +36,23 @@ class ServiceTest {
     assertEquals(c, 1);
     serv = StudentService.getFileInstance("studentTest");
     hm = HomeworkService.getFileInstance("hmTest");
+  }
+
+  @SuppressWarnings("unchecked")
+  @Test
+  void studentServiceTest() throws ValidationException {
+    int c = StudyYear.getCurrentWeek();
+    StudentService<String> serv = StudentService.getInstance();
+    serv.makeEmpty();
+    Student<String> st = new Student<>("1", "Dan", "Rentea", "226", "secret");
+    serv.add(st);
+    serv.motivateWeek(c-1, "1");
+    assertThrows(IllegalArgumentException.class, () -> {
+      serv.motivateWeek(c+1, "1");
+    });
+    assertThrows(IllegalArgumentException.class, () -> {
+      serv.motivateWeek(c-1, null);
+    });
+    assertEquals(serv.getStudentsFromGroup("226").size(), 1);
   }
 }

@@ -1,8 +1,4 @@
 package com.company.entity;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Homework<ID> extends Entity<ID> {
@@ -11,10 +7,7 @@ public class Homework<ID> extends Entity<ID> {
 
   public Homework(ID id, int endWeek, String description) {
     super(id);
-    String str = "2019-09-30 00:00";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-    this.startWeek = (int) ChronoUnit.WEEKS.between(dateTime, LocalDateTime.now()) + 1;
+    this.startWeek = StudyYear.getCurrentWeek();
     this.endWeek = endWeek;
     this.description = description;
   }
@@ -28,29 +21,23 @@ public class Homework<ID> extends Entity<ID> {
   }
 
   public int getMaxGrade(int motivate) {
-    int c = 10 - (getCurrentWeek() - endWeek) + motivate;
-    if (c >= 10)
+    int x = StudyYear.getCurrentWeek();
+    int delay = x - endWeek - motivate;
+    if (delay > 2)
+      return 1;
+    if (delay <= 0)
       return 10;
-    if (getCurrentWeek() > endWeek) {
-      if ( getCurrentWeek() - endWeek - motivate > 2)
-        return 1;
-      return 10 - (getCurrentWeek() - endWeek - motivate);
-    }
-    return 10;
+    return 10 - delay;
   }
 
-  static int getWeekOf(LocalDateTime date) {
-    String str = "2019-09-30 00:00";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-    return (int) ChronoUnit.WEEKS.between(dateTime, date) + 1;
-  }
-
-  public static int getCurrentWeek() {
-    String str = "2019-09-30 00:00";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
-    return (int) ChronoUnit.WEEKS.between(dateTime, LocalDateTime.now()) + 1;
+  public int getMaxGrade() {
+    int x = StudyYear.getCurrentWeek();
+    int delay = x - endWeek;
+    if (delay > 2)
+      return 1;
+    if (delay <= 0)
+      return 10;
+    return 10 - delay;
   }
 
   public int getStartWeek() {

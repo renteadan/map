@@ -44,7 +44,7 @@ public class Grade<ID> extends Entity<ID> {
     JsonObject aux = new JsonObject();
     aux.put("tema", homeworkId);
     aux.put("nota", grade);
-    aux.put("predata", Homework.getWeekOf(date));
+    aux.put("predata", StudyYear.getWeekOf(date));
     aux.put("deadline", homework.getEndWeek());
     aux.put("feedback", feedback);
     return aux;

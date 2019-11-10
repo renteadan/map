@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.entity.Entity;
 import com.company.entity.Grade;
 import com.company.entity.Homework;
 import com.company.entity.Student;
@@ -33,8 +34,18 @@ public class Controller<ID> {
   private void printMenu() {
     System.out.println("1.Create student\n2.Find student\n3.Create homework\n4.Find homework\n" +
         "5.Display all students\n6.Display all homeworks\n7.Grade a student\n" +
-        "8.Show all grades\n9.Motivate student absence\n" +
+        "8.Show all grades\n9.Motivate student absence\n10.Apply filters\n" +
         "0.Exit\n");
+  }
+
+  private void printFilterMenu() {
+    System.out.println("1.Print all students from a group\n2.Print all students which handed a homework\n" +
+            "3.Print all students who have handed a homework to a specific teacher\n4.All grades on a homework\n0.Exit");
+  }
+
+  private <T extends Entity> void printIterable(Iterable<T> it) {
+    for(T x: it)
+      System.out.println(x.info());
   }
 
   public void run() {
@@ -62,7 +73,7 @@ public class Controller<ID> {
             findAllStudents();
             break;
           case 6:
-            findAllHomeworks();
+            findAllHomework();
             break;
           case 7:
             createGrade();
@@ -73,6 +84,24 @@ public class Controller<ID> {
           case 9:
             motivateWeek();
             break;
+          case 10:
+            printFilterMenu();
+            int filter = Integer.parseInt(kb.nextLine());
+            switch (filter) {
+              case 1:
+                findStudentsGroup();
+                break;
+              case 2:
+                break;
+              case 3:
+                break;
+              case 4:
+                break;
+              case 0:
+                break;
+              default:
+                break;
+            }
           default:
         }
       } catch (ValidationException | IllegalArgumentException | NullPointerException e) {
@@ -153,7 +182,7 @@ public class Controller<ID> {
       throw new NullPointerException("There are no students!");
   }
 
-  private void findAllHomeworks() {
+  private void findAllHomework() {
     boolean empty = true;
     for (Homework hm : homeworkService.getAll()) {
       System.out.println(hm.info());
@@ -168,19 +197,17 @@ public class Controller<ID> {
     findAllStudents();
     ID studentId = (ID) kb.nextLine();
     System.out.println("Choose a homework to assign the grade:");
-    findAllHomeworks();
+    findAllHomework();
     ID homeworkId = (ID) kb.nextLine();
     Homework<ID> hm = homeworkService.find(homeworkId);
     if (hm == null)
       throw new ValidationException("Invalid homework ID!");
-    System.out.println("Max grade for this homework is: " + hm.getMaxGrade(0));
-    Grade<ID> graded = gradeService.isHomeworkGraded(homeworkId);
-    if (graded != null) {
-      System.out.println("Homework is already graded!\n" + graded.info());
+    System.out.println("Max grade for this homework is: " + hm.getMaxGrade());
+    if (gradeService.isHomeworkGraded(studentId, homeworkId)) {
+      System.out.println("Homework is already graded!\n");
       return;
     }
-    System.out.println("Insert id: ");
-    ID id = (ID) kb.nextLine();
+    ID id = (ID) String.format("%s_%s", studentId,homeworkId);
     System.out.println("Insert professor's name: ");
     String professor = kb.nextLine();
     System.out.println("Insert grade: ");
@@ -209,5 +236,11 @@ public class Controller<ID> {
     System.out.println("Insert week to motivate");
     int week = Integer.parseInt(kb.nextLine());
     studentService.motivateWeek(week, id);
+  }
+
+  private void findStudentsGroup() {
+    System.out.println("Insert group number:");
+    String group = kb.nextLine();
+    printIterable(studentService.getStudentsFromGroup(group));
   }
 }
