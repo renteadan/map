@@ -8,6 +8,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class AbstractRepository<ID, E extends Entity<ID>> implements Repository<ID, E> {
+  HashMap<ID, E> getStorage() {
+    return storage;
+  }
+
+  void setStorage(HashMap<ID, E> storage) {
+    this.storage = storage;
+  }
+
   private HashMap<ID, E> storage;
 
   public AbstractRepository() {

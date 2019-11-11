@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.4" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>1</string>
+   <object class="com.company.entity.Student">
+    <void property="email">
+     <string>tradator@mail.com</string>
+    </void>
+    <void property="firstName">
+     <string>George</string>
+    </void>
+    <void property="group">
+     <string>223</string>
+    </void>
+    <void property="id">
+     <string>1</string>
+    </void>
+    <void property="lastName">
+     <string>Richi</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

@@ -9,6 +9,9 @@ public class Student<ID> extends Entity<ID> {
   private String firstName, lastName, group, email;
   private HashSet<Integer> motivari = new HashSet<>();
 
+  public Student() {
+  }
+
   public Student(ID id, String firstName, String lastName, String group, String email) {
     super(id);
     this.firstName = firstName;
@@ -66,5 +69,25 @@ public class Student<ID> extends Entity<ID> {
 
   public HashSet<Integer> getMotivari() {
     return motivari;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setGroup(String group) {
+    this.group = group;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setMotivari(HashSet<Integer> motivari) {
+    this.motivari = motivari;
   }
 }

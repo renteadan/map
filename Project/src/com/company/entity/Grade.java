@@ -7,12 +7,38 @@ import java.time.format.DateTimeFormatter;
 
 public class Grade<ID> extends Entity<ID> {
   private Student<ID> student;
+
+  public Grade() {
+  }
+
   private Homework<ID> homework;
   private ID studentId, homeworkId;
-  private String professor, pattern = "yyyy-MM-dd HH:mm", feedback;
+  private String professor, feedback;
   private LocalDateTime date;
   private int grade;
-  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+  private static final String pattern = "yyyy-MM-dd HH:mm";
+
+  public void setStudentId(ID studentId) {
+    this.studentId = studentId;
+  }
+
+  public void setHomeworkId(ID homeworkId) {
+    this.homeworkId = homeworkId;
+  }
+
+  public void setProfessor(String professor) {
+    this.professor = professor;
+  }
+
+  public void setFeedback(String feedback) {
+    this.feedback = feedback;
+  }
+
+  public void setDate(LocalDateTime date) {
+    this.date = date;
+  }
+
+  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
   public Grade(ID id, ID studentId, ID homeworkId, String professor, int grade, String feedback) {
     super(id);

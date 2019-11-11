@@ -20,6 +20,9 @@ public class Homework<ID> extends Entity<ID> {
     this.description = args[3];
   }
 
+  public Homework() {
+  }
+
   public int getMaxGrade(int motivate) {
     int x = StudyYear.getCurrentWeek();
     int delay = x - endWeek - motivate;
@@ -69,4 +72,15 @@ public class Homework<ID> extends Entity<ID> {
     return Objects.equals(this.getId(), homework.getId());
   }
 
+  public void setStartWeek(int startWeek) {
+    this.startWeek = startWeek;
+  }
+
+  public void setEndWeek(int endWeek) {
+    this.endWeek = endWeek;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }

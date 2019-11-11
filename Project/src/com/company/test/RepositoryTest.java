@@ -4,10 +4,7 @@ import com.company.entity.Grade;
 import com.company.entity.Homework;
 import com.company.entity.Student;
 import com.company.exception.ValidationException;
-import com.company.repository.AbstractRepository;
-import com.company.repository.GradeFileRepo;
-import com.company.repository.HomeworkFileRepo;
-import com.company.repository.StudentFileRepo;
+import com.company.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -138,5 +135,16 @@ class RepositoryTest {
     assertThrows(ValidationException.class, () -> {
       gr.save(new Grade<>("1", null, "2", "gigi", 4, "ceva"));
     });
+  }
+
+  @Test
+  void xmlRepoTest() throws ValidationException {
+    XmlRepo<String, Student<String>> repo = new XmlRepo<>("studentTest.xml");
+    Student<String> st = new Student<>("1", "George", "Richi", "223", "tradator@mail.com");
+    repo.save(st);
+    repo.findOne("1").info();
+    XmlRepo<String, Student<String>> repo2 = new XmlRepo<>("studentTest.xml");
+    assertNotNull(repo2.findOne("1"));
+    assertEquals(repo2.findOne("1").getLastName(), "Richi");
   }
 }
