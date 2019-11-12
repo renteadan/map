@@ -96,4 +96,31 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     }
     return false;
   }
+
+  public Vector<Student> getStudentsByHomework(ID homeworkId) {
+    Vector<Student> vec = new Vector<>();
+    for(Grade x:getAll()) {
+      if (x.getHomeworkId().equals(homeworkId))
+        vec.add(find((ID) x.getId()).getStudent());
+    }
+    return vec;
+  }
+
+  public Vector<Student> getStudentsByHomeworkAndProfessor(ID homeworkId, String professor) {
+    Vector<Student> vec = new Vector<>();
+    for(Grade x:getAll()) {
+      if (x.getHomeworkId().equals(homeworkId) && x.getProfessor().equals(professor))
+        vec.add(find((ID) x.getId()).getStudent());
+    }
+    return vec;
+  }
+
+  public Vector<Grade> getGradesByHomeworkAndWeek(ID homeworkId, int week) {
+    Vector<Grade> vec = new Vector<>();
+    for(Grade x:getAll()) {
+      if (x.getHomeworkId().equals(homeworkId) && StudyYear.getWeekOf(x.getDate()) == week)
+        vec.add(find((ID) x.getId()));
+    }
+    return vec;
+  }
 }

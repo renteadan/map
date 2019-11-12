@@ -2,8 +2,6 @@ package com.company.entity;
 
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-import java.util.Vector;
 
 public class Student<ID> extends Entity<ID> {
   private String firstName, lastName, group, email;

@@ -146,5 +146,19 @@ class RepositoryTest {
     XmlRepo<String, Student<String>> repo2 = new XmlRepo<>("studentTest.xml");
     assertNotNull(repo2.findOne("1"));
     assertEquals(repo2.findOne("1").getLastName(), "Richi");
+    XmlRepo<String, Grade<String>> repo3 = new XmlRepo<>("gradeTest.xml");
+    Homework<String> hm = new Homework<>("1", 50, "test1");
+    Grade<String> gr = new Grade<>("1", "1", "1", "gigi", 9, "feedback");
+    repo3.save(gr);
+    assertNotNull(repo3.findOne("1"));
+    XmlRepo<String, Grade<String>> repo4 = new XmlRepo<>("gradeTest.xml");
+    assertNotNull(repo4.findOne("1"));
+    XmlRepo<String, Homework<String>> repo5 = new XmlRepo<>("homeworkTest.xml");
+    repo5.save(hm);
+    XmlRepo<String, Homework<String>> repo6 = new XmlRepo<>("homeworkTest.xml");
+    repo6.update(hm);
+    assertNotNull(repo6.findOne("1"));
+    repo6.delete("1");
+    assertNull(repo6.findOne("1"));
   }
 }

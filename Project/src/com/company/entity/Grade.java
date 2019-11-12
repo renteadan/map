@@ -17,6 +17,7 @@ public class Grade<ID> extends Entity<ID> {
   private LocalDateTime date;
   private int grade;
   private static final String pattern = "yyyy-MM-dd HH:mm";
+  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
   public void setStudentId(ID studentId) {
     this.studentId = studentId;
@@ -33,12 +34,6 @@ public class Grade<ID> extends Entity<ID> {
   public void setFeedback(String feedback) {
     this.feedback = feedback;
   }
-
-  public void setDate(LocalDateTime date) {
-    this.date = date;
-  }
-
-  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
   public Grade(ID id, ID studentId, ID homeworkId, String professor, int grade, String feedback) {
     super(id);
@@ -96,6 +91,10 @@ public class Grade<ID> extends Entity<ID> {
 
   public LocalDateTime getDate() {
     return date;
+  }
+
+  public void setDate(LocalDateTime date) {
+    this.date = date;
   }
 
   public int getGrade() {

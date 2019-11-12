@@ -1,0 +1,83 @@
+some GUI things
+
+class MasinaController {
+
+@FXML TableView<Masina> table;
+@FXML TextField firmaField, marcaField, anField;
+@FXML Button adaugaBtn;
+ServiceMasina service;
+
+public MasinaController() {}
+
+@FXML
+public void initialize() {
+	List<Masina> lista = service.getAll();
+	for(Masina x: lista)
+		table.getItems().add(x);
+}
+
+@FXML
+void adauga(ActionEvent ac) {
+	String firma = firmaField.getText();
+	String model = modelField.getText();
+	String an = anField.getText();
+	try {
+		int a = Integer.parse(an);
+		Masina m = new Masina(firma, model, an);
+		m = service.add(m);
+		table.getItems().add(m);
+	} catch(NumberFormatException e) {
+		printError(e.getMessage);
+	} catch(ValidationException e) {
+		printError(e.getMessage();
+	}
+}
+
+public void setService(ServiceMasina s) {
+	this.service = s;
+}
+}
+
+
+
+
+FXML file
+guiMasina.fxml
+
+<BorderPane fx:controller="MasinaController">
+  <left>
+    <TableView fx:id="table"?
+      <TableColumn text="ID">
+        <CellValueFactory>
+	  <PropertyValueFactory property="id"/>
+        </CellValueFactory>
+      </TableColumn> 
+      <TableColumn text="firma">
+        <CellValueFactory>
+	  <PropertyValueFactory property="firma"/>
+        </CellValueFactory>
+      </TableColumn> 
+      <TableColumn text="model">
+        <CellValueFactory>
+	  <PropertyValueFactory property="model"/>
+        </CellValueFactory>
+      </TableColumn>
+      <TableColumn text="an">
+        <CellValueFactory>
+	  <PropertyValueFactory property="an"/>
+        </CellValueFactory>
+      </TableColumn>
+    </TableView>
+  </left>
+  <right>
+    <GridPane>
+      <Label text="Firma" gridPane.rowIndex="0" gridPane.columnIndex="0"/>
+      <TextField fx:id="firmaField" gridPane.rowIndex="0" gridPane.columnIndex="1"/>
+      <Label text="Model" gridPane.rowIndex="1" gridPane.columnIndex="0"/>
+      <TextField fx:id="modelField" gridPane.rowIndex="1" gridPane.columnIndex="1"/>
+      <Label text="An" gridPane.rowIndex="2" gridPane.columnIndex="0"/>
+      <TextField fx:id="anField" gridPane.rowIndex="2" gridPane.columnIndex="1"/>
+      <Button fx:id="adaugaBtn" onAction="#adauga" text="Adauga"/>
+    </GridPane>
+  </right>
+</BorderPane>

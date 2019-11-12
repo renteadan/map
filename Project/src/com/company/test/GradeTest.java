@@ -12,6 +12,8 @@ import com.company.service.StudentService;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.TemporalAccessor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,10 +26,13 @@ class GradeTest {
     Student<String> st2 = new Student<>("2", "Iulian", "Iancu", "226", "ceva");
     Student<String> st3 = new Student<>("3", "Bob", "Pop", "226", "test123");
     Homework<String> hm = new Homework<>("1", 50, "test2");
+    Homework<String> hm2 = new Homework<>("2", 50, "test2");
     StudentService.getInstance().add(st1);
     StudentService.getInstance().add(st2);
     HomeworkService.getInstance().add(hm);
+    HomeworkService.getInstance().add(hm2);
     Grade<String> gr = new Grade<>("1", "1", "1", "Baci", 10, "feedback");
+    Grade<String> gr2 = new Grade<>("2", "2", "1", "Daci", 10, "feedback");
     GradeService<String> service = GradeService.getInstance();
     service.add(gr);
     gr = service.find("1");
@@ -60,6 +65,13 @@ class GradeTest {
     assertFalse(service.isHomeworkGraded("1","198"));
     assertTrue(service2.isHomeworkGraded("1","1"));
     assertFalse(service2.isHomeworkGraded("3","391"));
+    int m = StudyYear.getCurrentWeek();
+    service.add(gr);
+    service.add(gr2);
+    assertEquals(service.getGradesByHomeworkAndWeek("1", m).size(), 2);
+    assertEquals(service.getStudentsByHomework("1").size(), 2);
+    assertEquals(service.getStudentsByHomeworkAndProfessor("1", "Baci").size(), 1);
+    assertEquals(service.getStudentsByHomeworkAndProfessor("1", "Random").size(), 0);
   }
 
   @Test

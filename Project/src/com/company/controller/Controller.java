@@ -40,7 +40,7 @@ public class Controller<ID> {
 
   private void printFilterMenu() {
     System.out.println("1.Print all students from a group\n2.Print all students which handed a homework\n" +
-            "3.Print all students who have handed a homework to a specific teacher\n4.All grades on a homework\n0.Exit");
+            "3.Print all students who have handed a homework to a specific teacher\n4.All grades for a homework in a week\n0.Exit");
   }
 
   private <T extends Entity> void printIterable(Iterable<T> it) {
@@ -92,10 +92,13 @@ public class Controller<ID> {
                 findStudentsGroup();
                 break;
               case 2:
+                getStudentsByHomework();
                 break;
               case 3:
+                getStudentsByHomeworkAndProfessor();
                 break;
               case 4:
+                getGradesByHomeworkAndWeek();
                 break;
               case 0:
                 break;
@@ -242,5 +245,27 @@ public class Controller<ID> {
     System.out.println("Insert group number:");
     String group = kb.nextLine();
     printIterable(studentService.getStudentsFromGroup(group));
+  }
+
+  private void getStudentsByHomework() {
+    System.out.println("Insert homework id:");
+    ID id = (ID) kb.nextLine();
+    printIterable(gradeService.getStudentsByHomework(id));
+  }
+
+  private void getStudentsByHomeworkAndProfessor() {
+    System.out.println("Insert homework id: ");
+    ID id = (ID) kb.nextLine();
+    System.out.println("Insert professor's name: ");
+    String professor = kb.nextLine();
+    printIterable(gradeService.getStudentsByHomeworkAndProfessor(id, professor));
+  }
+
+  private void getGradesByHomeworkAndWeek() {
+    System.out.println("Insert homework id:");
+    ID id = (ID) kb.nextLine();
+    System.out.println("Insert week:");
+    int week = Integer.parseInt(kb.nextLine());
+    printIterable(gradeService.getGradesByHomeworkAndWeek(id, week));
   }
 }
