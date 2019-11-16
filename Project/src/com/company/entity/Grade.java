@@ -35,6 +35,16 @@ public class Grade<ID> extends Entity<ID> {
     this.feedback = feedback;
   }
 
+  public Grade(ID studentId, ID homeworkId, String professor, int grade, String feedback) {
+    super();
+    this.studentId = studentId;
+    this.homeworkId = homeworkId;
+    this.professor = professor;
+    this.grade = grade;
+    this.feedback = feedback;
+    date = LocalDateTime.now();
+  }
+
   public Grade(ID id, ID studentId, ID homeworkId, String professor, int grade, String feedback) {
     super(id);
     this.studentId = studentId;

@@ -118,8 +118,6 @@ public class Controller<ID> {
    */
   private void createStudent() throws ValidationException {
 
-    System.out.println("Insert id: ");
-    ID id = (ID) kb.nextLine();
     System.out.println("Insert first name: ");
     String firstName = kb.nextLine();
     System.out.println("Insert last name: ");
@@ -128,7 +126,7 @@ public class Controller<ID> {
     String group = kb.nextLine();
     System.out.println("Insert email: ");
     String email = kb.nextLine();
-    Student st = studentService.add(new Student<ID>(id, firstName, lastName, group, email));
+    Student st = studentService.add(new Student<ID>(firstName, lastName, group, email));
     if (st != null)
       System.out.println("Student already exists!");
   }
@@ -149,13 +147,11 @@ public class Controller<ID> {
    * @throws ValidationException creates Homework from keyboard input
    */
   private void createHomework() throws ValidationException {
-    System.out.println("Insert id: ");
-    ID id = (ID) kb.nextLine();
     System.out.println("Insert end week: ");
     int endWeek = Integer.parseInt(kb.nextLine());
     System.out.println("Insert description: ");
     String description = kb.nextLine();
-    Homework hm = homeworkService.add(new Homework<ID>(id, endWeek, description));
+    Homework hm = homeworkService.add(new Homework<ID>(endWeek, description));
     if (hm != null)
       System.out.println("Homework already exists!");
   }

@@ -6,6 +6,7 @@ import com.company.validator.Validator;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.stream.StreamSupport;
 
 public class AbstractRepository<ID, E extends Entity<ID>> implements Repository<ID, E> {
   HashMap<ID, E> getStorage() {
@@ -55,9 +56,14 @@ public class AbstractRepository<ID, E extends Entity<ID>> implements Repository<
    */
 
   @Override
+  @SuppressWarnings("unchecked")
   public E save(@Nullable E entity) throws ValidationException {
     if (entity == null)
       throw new IllegalArgumentException();
+    int cate = (int) StreamSupport.stream(findAll().spliterator(), false).count();
+    cate++;
+    if (entity.getId() == null)
+      entity.setId((ID) String.valueOf(cate));
     Validator.validate(entity);
     if (storage.get(entity.getId()) != null)
       return entity;

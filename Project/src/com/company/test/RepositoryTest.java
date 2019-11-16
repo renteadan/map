@@ -30,19 +30,19 @@ class RepositoryTest {
 
   @Test
   void addFindTest() throws ValidationException {
-    Student<String> st1 = new Student<>("4", "Dan", "Rentea", "226", "Secret");
+    Student<String> st1 = new Student<>("Dan", "Rentea", "226", "Secret");
     Student<String> ret;
     ret = repo.save(st1);
     assertNull(ret);
-    st1 = new Student<>("5", "", "Rentea", "226", "Secret");
+    st1 = new Student<>("", "Rentea", "226", "Secret");
     Student<String> finalSt = st1;
     assertThrows(ValidationException.class, () -> {
       repo.save(finalSt);
     });
-    st1 = new Student<>("1", "Dan", "Rentea", "226", "Secret");
+    st1 = new Student<>("Dan", "Rentea", "226", "Secret");
     ret = repo.save(st1);
-    assertEquals(ret, st1);
-    ret = repo.findOne("1");
+    assertNull(ret);
+    ret = repo.findOne("5");
     assertEquals(ret, st1);
     assertThrows(IllegalArgumentException.class, () -> {
       repo.findOne(null);

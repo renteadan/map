@@ -70,7 +70,7 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
   }
 
   private void writeJson(JsonObject grade, String full_name) {
-    try (BufferedWriter pw = new BufferedWriter(new FileWriter(full_name, true))) {
+    try (BufferedWriter pw = new BufferedWriter(new FileWriter("src/com/company/files/"+full_name, true))) {
       pw.append(grade.toString()).append("\n");
     } catch (IOException err) {
       System.out.println(err.getMessage());

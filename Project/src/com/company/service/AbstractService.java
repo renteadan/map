@@ -4,6 +4,8 @@ import com.company.entity.Entity;
 import com.company.exception.ValidationException;
 import com.company.repository.AbstractRepository;
 
+import java.util.stream.StreamSupport;
+
 public class AbstractService<ID, E extends Entity<ID>> implements Service<ID, E> {
 
   private AbstractRepository<ID, E> repo;

@@ -10,7 +10,15 @@ public class Student<ID> extends Entity<ID> {
   public Student() {
   }
 
-  public Student(ID id, String firstName, String lastName, String group, String email) {
+  public Student(String firstName, String lastName, String group, String email) {
+    super();
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.group = group;
+    this.email = email;
+  }
+
+  public Student(ID id,String firstName, String lastName, String group, String email) {
     super(id);
     this.firstName = firstName;
     this.lastName = lastName;

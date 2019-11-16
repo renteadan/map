@@ -8,7 +8,6 @@ import java.beans.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
@@ -17,7 +16,7 @@ public class XmlRepo<ID, E extends Entity<ID>> extends AbstractRepository<ID,E>{
   private String filename;
   public XmlRepo(String filename) {
     super();
-    this.filename = filename;
+    this.filename = "src/com/company/files/"+filename;
     readXml();
   }
 

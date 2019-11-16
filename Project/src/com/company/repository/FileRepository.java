@@ -13,7 +13,7 @@ public abstract class FileRepository<ID, E extends Entity<ID>> extends AbstractR
 
   FileRepository(String filename) {
     super();
-    this.filename = filename;
+    this.filename = "src/com/company/files/"+filename;
     loadFile();
   }
 
