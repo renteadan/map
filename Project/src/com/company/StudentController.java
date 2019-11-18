@@ -76,9 +76,15 @@ public class StudentController {
   }
 
   @SuppressWarnings("unchecked")
-  private void updateUpdateTableView(TableView tb, Entity en) {
-    int index = Integer.parseInt((String) en.getId());
-    tb.getItems().set(index-1, en);
+  private void updateUpdateTableView(TableView<Student<String>> tb, Entity en) {
+    int index=0;
+    for (Student x: tb.getItems()) {
+      if (x.getId().equals(en.getId())) {
+        tb.getItems().set(index,(Student) en);
+        break;
+      } else
+        index++;
+    }
   }
 
   @FXML

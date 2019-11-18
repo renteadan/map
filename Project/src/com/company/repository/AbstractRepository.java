@@ -47,6 +47,17 @@ public class AbstractRepository<ID, E extends Entity<ID>> implements Repository<
     return storage.values();
   }
 
+
+  private int getMaxId() {
+    int max=0;
+    for(Entity x: storage.values()) {
+      int id = Integer.parseInt((String) x.getId());
+      if (id > max)
+        max = id;
+    }
+    return max;
+  }
+
   /**
    * @param entity entity must be not null
    * @return null- if the given entity is saved
@@ -60,7 +71,7 @@ public class AbstractRepository<ID, E extends Entity<ID>> implements Repository<
   public E save(@Nullable E entity) throws ValidationException {
     if (entity == null)
       throw new IllegalArgumentException();
-    int cate = (int) StreamSupport.stream(findAll().spliterator(), false).count();
+    int cate = getMaxId();
     cate++;
     if (entity.getId() == null)
       entity.setId((ID) String.valueOf(cate));
