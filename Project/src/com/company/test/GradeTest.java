@@ -22,9 +22,9 @@ class GradeTest {
 
   @Test
   void gradeTest() throws ValidationException {
-    Student<String> st1 = new Student<>("1", "Danu", "Rentea", "226", "Secret");
-    Student<String> st2 = new Student<>("2", "Iulian", "Iancu", "226", "ceva");
-    Student<String> st3 = new Student<>("3", "Bob", "Pop", "226", "test123");
+    Student<String> st1 = new Student<>("1", "Danu", "Rentea", "226", "Secret@mail.com");
+    Student<String> st2 = new Student<>("2", "Iulian", "Iancu", "226", "ceva@mail.com");
+    Student<String> st3 = new Student<>("3", "Bob", "Pop", "226", "test123@mail.com");
     Homework<String> hm = new Homework<>("1", 50, "test2");
     Homework<String> hm2 = new Homework<>("2", 50, "test2");
     StudentService.getInstance().add(st1);

@@ -16,9 +16,9 @@ class RepositoryTest {
   @BeforeEach
   void populate() {
     repo = new AbstractRepository<>();
-    Student<String> st1 = new Student<>("1", "Dan", "Rentea", "226", "Secret");
-    Student<String> st2 = new Student<>("2", "Iulian", "Iancu", "226", "ceva");
-    Student<String> st3 = new Student<>("3", "Bob", "Pop", "226", "test123");
+    Student<String> st1 = new Student<>("1", "Dan", "Rentea", "226", "Secret@gmail.com");
+    Student<String> st2 = new Student<>("2", "Iulian", "Iancu", "226", "ceva@gmail.com");
+    Student<String> st3 = new Student<>("3", "Bob", "Pop", "226", "test123@gmaio.com");
     try {
       repo.save(st1);
       repo.save(st2);
@@ -30,16 +30,16 @@ class RepositoryTest {
 
   @Test
   void addFindTest() throws ValidationException {
-    Student<String> st1 = new Student<>("Dan", "Rentea", "226", "Secret");
+    Student<String> st1 = new Student<>("Dan", "Rentea", "226", "Secret@dan.com");
     Student<String> ret;
     ret = repo.save(st1);
     assertNull(ret);
-    st1 = new Student<>("", "Rentea", "226", "Secret");
+    st1 = new Student<>("", "Rentea", "226", "Secret@dan.com");
     Student<String> finalSt = st1;
     assertThrows(ValidationException.class, () -> {
       repo.save(finalSt);
     });
-    st1 = new Student<>("Dan", "Rentea", "226", "Secret");
+    st1 = new Student<>("Dan", "Rentea", "226", "Secret@dan.com");
     ret = repo.save(st1);
     assertNull(ret);
     ret = repo.findOne("5");
@@ -82,11 +82,11 @@ class RepositoryTest {
     assertThrows(IllegalArgumentException.class, () -> {
       repo.update(null);
     });
-    st1 = new Student<>("51", "Dan1", "Test1", "226", "ceva");
+    st1 = new Student<>("51", "Dan1", "Test1", "226", "ceva@mail.com");
     assertEquals(st1, repo.update(st1));
     st1.setId("1");
     assertEquals("226", st1.getGroup());
-    assertEquals("ceva", st1.getEmail());
+    assertEquals("ceva@mail.com", st1.getEmail());
   }
 
   @Test
@@ -101,7 +101,7 @@ class RepositoryTest {
     StudentFileRepo<String> fr = new StudentFileRepo<>("test1");
     Student<String> st1 = new Student<>("1", "George", "Richi", "223", "tradator@mail.com");
     fr.save(st1);
-    st1 = new Student<>("51", "Dan1", "Test1", "226", "ceva");
+    st1 = new Student<>("51", "Dan1", "Test1", "226", "ceva@mail.com");
     fr.save(st1);
     StudentFileRepo<String> fr2 = new StudentFileRepo<>("test1");
     for (Student st : fr2.findAll()) {
@@ -109,7 +109,7 @@ class RepositoryTest {
     }
     Student<String> st3 = fr.delete("1");
     assertEquals(st3.getFirstName(), "George");
-    st1 = new Student<>("1", "Traian", "Basescu", "299", "ceva");
+    st1 = new Student<>("1", "Traian", "Basescu", "299", "ceva@mail.com");
     fr2.update(st1);
     assertEquals(fr2.findOne("1").getFirstName(), "Traian");
     st1 = new Student<>("1", "George", "Richi", "223", "tradator@mail.com");
