@@ -7,5 +7,8 @@
         <Tab text="Students">
             <fx:include source="StudentView.fxml"/>
         </Tab>
+        <Tab text="Homeworks">
+            <fx:include source="HomeworkView.fxml"/>
+        </Tab>
     </TabPane>
 </AnchorPane>

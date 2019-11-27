@@ -19,6 +19,13 @@ public class Homework<ID> extends Entity<ID> {
     this.description = description;
   }
 
+  public Homework(ID id,int startWeek, int endWeek, String description) {
+    super(id);
+    this.startWeek = startWeek;
+    this.endWeek = endWeek;
+    this.description = description;
+  }
+
   @SuppressWarnings("unchecked")
   public Homework(String[] args) {
     super((ID) args[0]);

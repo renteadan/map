@@ -1,0 +1,158 @@
+package com.company;
+
+import com.company.entity.Entity;
+import com.company.entity.Homework;
+import com.company.entity.Student;
+import com.company.exception.ValidationException;
+import com.company.service.HomeworkService;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+public class HomeworkController {
+  @FXML public TextField fnamefield, groupfield, lnamefield;
+  @FXML public TableView<Homework<String>> table;
+  private HomeworkService<String> service;
+  private String currentId;
+
+  public HomeworkController() {
+  }
+
+  @SuppressWarnings("unchecked")
+  private void initRepo() {
+    service = HomeworkService.getFileInstance("homeworks");
+    loadTable();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void loadTable() {
+    TableColumn idColumn = new TableColumn("Id");
+    TableColumn firstNameColumn = new TableColumn("Start week");
+    TableColumn lastNameColumn = new TableColumn("End week");
+    TableColumn groupColumn = new TableColumn("Description");
+
+    idColumn.setCellValueFactory(new PropertyValueFactory<Homework<String>, String>("Id"));
+    firstNameColumn.setCellValueFactory(new PropertyValueFactory<Homework<String>, Integer>("startWeek"));
+    lastNameColumn.setCellValueFactory(new PropertyValueFactory<Homework<String>, Integer>("endWeek"));
+    groupColumn.setCellValueFactory(new PropertyValueFactory<Student<String>, String>("description"));
+    table.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, groupColumn);
+    table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldE, newE) -> {
+      if(newE == null)
+        newE = oldE;
+      fnamefield.setText(String.valueOf(newE.getStartWeek()));
+      lnamefield.setText(String.valueOf(newE.getEndWeek()));
+      groupfield.setText(newE.getDescription());
+      currentId = newE.getId();
+    });
+    for (Homework x : service.getAll())
+      table.getItems().add(x);
+  }
+
+  @FXML
+  public void initialize() {
+    initRepo();
+  }
+
+  private void showError(Exception err) {
+    Alert alert = new Alert(Alert.AlertType.ERROR, err.getMessage());
+    alert.showAndWait();
+  }
+
+  private void showMessage(String msg) {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, msg);
+    alert.showAndWait();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void updateAddTableView(TableView tb, Entity en) {
+    tb.getItems().add(en);
+  }
+
+  private void updateDeleteTableView(TableView tb, Entity en) {
+    tb.getItems().remove(en);
+  }
+
+  @SuppressWarnings("unchecked")
+  private void updateUpdateTableView(TableView<Homework<String>> tb, Entity en) {
+    int index=0;
+    for (Homework x: tb.getItems()) {
+      if (x.getId().equals(en.getId())) {
+        tb.getItems().set(index,(Homework<String>) en);
+        break;
+      } else
+        index++;
+    }
+  }
+
+  @FXML
+  void create(ActionEvent ac) {
+    String firstName = fnamefield.getText();
+    String endWeek = lnamefield.getText();
+    String description = groupfield.getText();
+    try {
+      Homework<String> aux = new Homework<>(Integer.parseInt(endWeek), description);
+      Homework st = service.add(aux);
+      if (st != null) {
+        showError(new Exception("Homework already exists!"));
+        return;
+      }
+      updateAddTableView(table, aux);
+      showMessage("Homework has been added!");
+    } catch (ValidationException err) {
+      showError(err);
+    }
+  }
+
+  @FXML
+  void clear(ActionEvent ac) {
+    clear();
+  }
+
+  void clear() {
+    lnamefield.clear();
+    fnamefield.clear();
+    groupfield.clear();
+    currentId = null;
+  }
+
+  @FXML
+  void delete(ActionEvent ac) {
+    if(currentId == null) {
+      showMessage("You haven't selected any homework!");
+      return;
+    }
+    Homework aux = service.delete(currentId);
+    if(aux == null) {
+      showMessage("No homework was found with this id");
+      return;
+    }
+    showMessage("Homework was deleted!");
+    clear();
+    updateDeleteTableView(table, aux);
+  }
+
+  @FXML
+  void update(ActionEvent ac) {
+    if(currentId == null) {
+      showMessage("You haven't selected any homework!");
+      return;
+    }
+    String startWeek = fnamefield.getText();
+    String endWeek = lnamefield.getText();
+    String description = groupfield.getText();
+    Homework<String> aux = new Homework<>(currentId,Integer.parseInt(startWeek) ,Integer.parseInt(endWeek), description);
+    try {
+      Homework st = service.update(aux);
+      if (st == null) {
+        showMessage("Homework has been updated!");
+        updateUpdateTableView(table, aux);
+      }
+      else
+        showMessage("Homework doesn't exist!");
+    } catch (ValidationException e) {
+      showError(e);
+    }
+    clear();
+  }
+}
