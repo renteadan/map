@@ -97,4 +97,8 @@ public class Homework<ID> extends Entity<ID> {
   public void setDescription(String description) {
     this.description = description;
   }
+
+  public String toString() {
+    return description;
+  }
 }

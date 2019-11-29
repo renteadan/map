@@ -1,5 +1,6 @@
-package com.company;
+package com.company.controller;
 
+import com.company.Observer.Observable;
 import com.company.entity.Entity;
 import com.company.entity.Student;
 import com.company.exception.ValidationException;
@@ -9,10 +10,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class StudentController {
+public class StudentController implements Observable {
   @FXML public TextField fnamefield, groupfield, lnamefield, emailfield;
-  @FXML public TableView<Student<String>> studentTable;
-  private StudentService<String> studentService;
+
+  @FXML private TableView<Student<String>> table;
+  private StudentService<String> service;
   private String currentId;
 
   public StudentController() {
@@ -20,8 +22,16 @@ public class StudentController {
 
   @SuppressWarnings("unchecked")
   private void initStudentRepo() {
-    studentService = StudentService.getFileInstance("students");
+    service = StudentService.getFileInstance("students");
+    service.addObservable(this);
     loadStudentTable();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void loadData() {
+    table.getItems().clear();
+    for (Student x : service.getAll())
+      table.getItems().add(x);
   }
 
   @SuppressWarnings("unchecked")
@@ -37,8 +47,8 @@ public class StudentController {
     lastNameColumn.setCellValueFactory(new PropertyValueFactory<Student<String>, String>("lastName"));
     groupColumn.setCellValueFactory(new PropertyValueFactory<Student<String>, String>("group"));
     emailColumn.setCellValueFactory(new PropertyValueFactory<Student<String>, String>("email"));
-    studentTable.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, groupColumn, emailColumn);
-    studentTable.getSelectionModel().selectedItemProperty().addListener((observableValue, oldStudent, newStudent) -> {
+    table.getColumns().addAll(idColumn, firstNameColumn, lastNameColumn, groupColumn, emailColumn);
+    table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldStudent, newStudent) -> {
       if(newStudent == null)
         newStudent = oldStudent;
       fnamefield.setText(newStudent.getFirstName());
@@ -47,8 +57,7 @@ public class StudentController {
       emailfield.setText(newStudent.getEmail());
       currentId = newStudent.getId();
     });
-    for (Student x : studentService.getAll())
-      studentTable.getItems().add(x);
+    loadData();
   }
 
   @FXML
@@ -69,10 +78,12 @@ public class StudentController {
   @SuppressWarnings("unchecked")
   private void updateAddTableView(TableView tb, Entity en) {
     tb.getItems().add(en);
+    notifyObserver();
   }
 
   private void updateDeleteTableView(TableView tb, Entity en) {
     tb.getItems().remove(en);
+    notifyObserver();
   }
 
   @SuppressWarnings("unchecked")
@@ -85,6 +96,7 @@ public class StudentController {
       } else
         index++;
     }
+    notifyObserver();
   }
 
   @FXML
@@ -95,12 +107,12 @@ public class StudentController {
     String email = emailfield.getText();
     try {
       Student<String> aux = new Student<>(firstName, lastName, group, email);
-      Student st = studentService.add(aux);
+      Student st = service.add(aux);
       if (st != null) {
         showError(new Exception("Student already exists!"));
         return;
       }
-      updateAddTableView(studentTable, aux);
+      updateAddTableView(table, aux);
       showMessage("Student has been added!");
     } catch (ValidationException err) {
       showError(err);
@@ -112,7 +124,7 @@ public class StudentController {
     clearStudent();
   }
 
-  void clearStudent() {
+  private void clearStudent() {
     lnamefield.clear();
     fnamefield.clear();
     groupfield.clear();
@@ -126,14 +138,14 @@ public class StudentController {
       showMessage("You haven't selected any student!");
       return;
     }
-    Student aux = studentService.delete(currentId);
+    Student aux = service.delete(currentId);
     if(aux == null) {
       showMessage("No student was found with this id");
       return;
     }
     showMessage("Student was deleted!");
     clearStudent();
-    updateDeleteTableView(studentTable, aux);
+    updateDeleteTableView(table, aux);
   }
 
   @FXML
@@ -148,10 +160,10 @@ public class StudentController {
     String email = emailfield.getText();
     Student<String> aux = new Student<>(currentId,firstName,lastName,group,email);
     try {
-      Student st = studentService.update(aux);
+      Student st = service.update(aux);
       if (st == null) {
         showMessage("Student has been updated!");
-        updateUpdateTableView(studentTable, aux);
+        updateUpdateTableView(table, aux);
       }
       else
         showMessage("Student doesn't exist!");
@@ -159,5 +171,15 @@ public class StudentController {
       showError(e);
     }
     clearStudent();
+  }
+
+  @Override
+  public void getNotified() {
+    loadData();
+  }
+
+  @Override
+  public void notifyObserver() {
+    service.notifyObservables();
   }
 }

@@ -96,4 +96,8 @@ public class Student<ID> extends Entity<ID> {
   public void setMotivari(HashSet<Integer> motivari) {
     this.motivari = motivari;
   }
+
+  public String toString() {
+    return firstName + " " + lastName;
+  }
 }

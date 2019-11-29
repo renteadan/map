@@ -7,17 +7,15 @@ import java.time.format.DateTimeFormatter;
 
 public class Grade<ID> extends Entity<ID> {
   private Student<ID> student;
-
-  public Grade() {
-  }
-
   private Homework<ID> homework;
   private ID studentId, homeworkId;
   private String professor, feedback;
   private LocalDateTime date;
   private int grade;
-  private static final String pattern = "yyyy-MM-dd HH:mm";
-  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+  private String pattern = "yyyy-MM-dd HH:mm";
+  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+  public Grade() {
+  }
 
   public void setStudentId(ID studentId) {
     this.studentId = studentId;
@@ -103,6 +101,10 @@ public class Grade<ID> extends Entity<ID> {
     return date;
   }
 
+  public String getStringDate() {
+    return date.format(formatter);
+  }
+
   public void setDate(LocalDateTime date) {
     this.date = date;
   }
@@ -133,5 +135,17 @@ public class Grade<ID> extends Entity<ID> {
 
   public String getFeedback() {
     return feedback;
+  }
+
+  public String getName() {
+    if(student == null)
+      return null;
+    return student.getFirstName() + " " + student.getLastName();
+  }
+
+  public String getDescription() {
+    if(homework == null)
+      return null;
+    return homework.getDescription();
   }
 }

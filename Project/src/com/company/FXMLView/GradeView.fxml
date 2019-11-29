@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane snapToPixel="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.controller.GradeController">
+    <right>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+           <children>
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <children>
+                      <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                         <children>
+                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#create" text="Add" />
+                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#delete" text="Delete" />
+                             <Button mnemonicParsing="false" onAction="#studentChoice" text="Student" />
+                         </children>
+                      </VBox>
+                      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                         <children>
+                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clear" text="Clear" />
+                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#update" text="Update" />
+                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#homeworkChoice" text="Homework" />
+                         </children>
+                      </VBox>
+                  </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               </HBox>
+               <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.rowIndex="1">
+                   <GridPane.margin>
+                       <Insets right="15.0" />
+                   </GridPane.margin>
+                  <children>
+                      <TextField fx:id="studentField" editable="false" />
+                      <Label prefHeight="25.0" text="Professor" />
+                      <Label prefHeight="25.0" text="Grade" />
+                      <Label prefHeight="25.0" text="Feedback" />
+                      <Label prefHeight="25.0" text="Date" />
+                  </children>
+               </VBox>
+               <VBox prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <children>
+                      <TextField fx:id="homeworkField" editable="false" />
+                      <TextField fx:id="professorField" promptText="Professor" />
+                      <TextField fx:id="gradeField" promptText="Grade" />
+                      <TextField fx:id="feedbackField" promptText="Feedback" />
+                      <TextField fx:id="dateField" editable="false" promptText="Date" />
+                  </children>
+               </VBox>
+               <Label alignment="CENTER" contentDisplay="CENTER" text="Grade CRUD" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                   <font>
+                       <Font size="25.0" />
+                   </font>
+               </Label>
+           </children>
+        </GridPane>
+    </right>
+    <center>
+         <TableView fx:id="table" BorderPane.alignment="CENTER">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         </TableView>
+    </center>
+</BorderPane>

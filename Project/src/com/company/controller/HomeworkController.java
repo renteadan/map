@@ -1,5 +1,6 @@
-package com.company;
+package com.company.controller;
 
+import com.company.Observer.Observable;
 import com.company.entity.Entity;
 import com.company.entity.Homework;
 import com.company.entity.Student;
@@ -10,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class HomeworkController {
+public class HomeworkController implements Observable {
   @FXML public TextField fnamefield, groupfield, lnamefield;
   @FXML public TableView<Homework<String>> table;
   private HomeworkService<String> service;
@@ -22,7 +23,15 @@ public class HomeworkController {
   @SuppressWarnings("unchecked")
   private void initRepo() {
     service = HomeworkService.getFileInstance("homeworks");
+    service.addObservable(this);
     loadTable();
+  }
+
+  @SuppressWarnings("unchecked")
+  private void loadData() {
+    table.getItems().clear();
+    for (Homework x : service.getAll())
+      table.getItems().add(x);
   }
 
   @SuppressWarnings("unchecked")
@@ -45,8 +54,7 @@ public class HomeworkController {
       groupfield.setText(newE.getDescription());
       currentId = newE.getId();
     });
-    for (Homework x : service.getAll())
-      table.getItems().add(x);
+    loadData();
   }
 
   @FXML
@@ -67,10 +75,12 @@ public class HomeworkController {
   @SuppressWarnings("unchecked")
   private void updateAddTableView(TableView tb, Entity en) {
     tb.getItems().add(en);
+    notifyObserver();
   }
 
   private void updateDeleteTableView(TableView tb, Entity en) {
     tb.getItems().remove(en);
+    notifyObserver();
   }
 
   @SuppressWarnings("unchecked")
@@ -83,11 +93,11 @@ public class HomeworkController {
       } else
         index++;
     }
+    notifyObserver();
   }
 
   @FXML
   void create(ActionEvent ac) {
-    String firstName = fnamefield.getText();
     String endWeek = lnamefield.getText();
     String description = groupfield.getText();
     try {
@@ -109,7 +119,7 @@ public class HomeworkController {
     clear();
   }
 
-  void clear() {
+  private void clear() {
     lnamefield.clear();
     fnamefield.clear();
     groupfield.clear();
@@ -154,5 +164,15 @@ public class HomeworkController {
       showError(e);
     }
     clear();
+  }
+
+  @Override
+  public void getNotified() {
+    loadData();
+  }
+
+  @Override
+  public void notifyObserver() {
+    service.notifyObservables();
   }
 }

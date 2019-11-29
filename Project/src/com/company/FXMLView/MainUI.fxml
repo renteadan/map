@@ -10,5 +10,8 @@
         <Tab text="Homeworks">
             <fx:include source="HomeworkView.fxml"/>
         </Tab>
+        <Tab text="Grades">
+            <fx:include source="GradeView.fxml"/>
+        </Tab>
     </TabPane>
 </AnchorPane>

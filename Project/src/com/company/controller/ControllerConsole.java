@@ -12,13 +12,13 @@ import com.company.service.StudentService;
 import java.util.Scanner;
 
 @SuppressWarnings("unchecked")
-public class Controller<ID> {
+public class ControllerConsole<ID> {
   private StudentService<ID> studentService;
   private HomeworkService<ID> homeworkService;
   private GradeService<ID> gradeService;
   private Scanner kb;
 
-  public Controller() {
+  public ControllerConsole() {
     studentService = StudentService.getFileInstance("students");
     homeworkService = HomeworkService.getFileInstance("homeworks");
     gradeService = GradeService.getFileInstance("grades");

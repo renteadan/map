@@ -106,6 +106,15 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     return vec;
   }
 
+  public Iterable<Grade<ID>> getAll() {
+    Iterable<Grade<ID>> aux = super.getAll();
+    for (Grade x:aux) {
+      x.setStudent(sService.find((ID) x.getStudentId()));
+      x.setHomework(hService.find((ID) x.getHomeworkId()));
+    }
+    return aux;
+  }
+
   public Vector<Student> getStudentsByHomeworkAndProfessor(ID homeworkId, String professor) {
     Vector<Student> vec = new Vector<>();
     for(Grade x:getAll()) {

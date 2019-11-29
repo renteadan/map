@@ -1,11 +1,11 @@
 package com.company;
 
-import com.company.controller.Controller;
+import com.company.controller.ControllerConsole;
 
 public class Main {
 
   public static void main(String[] args) {
-    Controller<String> ct = new Controller<>();
+    ControllerConsole<String> ct = new ControllerConsole<>();
     ct.run();
     // write your code here
   }
