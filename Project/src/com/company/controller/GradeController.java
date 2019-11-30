@@ -15,7 +15,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Optional;
 
 public class GradeController implements Observable {
@@ -51,7 +50,7 @@ public class GradeController implements Observable {
   }
 
   @SuppressWarnings("unchecked")
-  private void loadTable() {
+  private void loadColumns() {
     TableColumn idColumn = new TableColumn("Id");
     TableColumn professorColumn = new TableColumn("Professor");
     TableColumn gradeColumn = new TableColumn("Grade");
@@ -67,6 +66,10 @@ public class GradeController implements Observable {
     nameColumn.setCellValueFactory(new PropertyValueFactory<Student<String>, String>("name"));
     descriptionColumn.setCellValueFactory(new PropertyValueFactory<Student<String>, String>("description"));
     table.getColumns().addAll(idColumn, professorColumn, gradeColumn, feedbackColumn, dateColumn, nameColumn, descriptionColumn);
+  }
+
+  private void loadTable() {
+    loadColumns();
     table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldE, newE) -> {
       if(newE == null)
         newE = oldE;
@@ -126,14 +129,14 @@ public class GradeController implements Observable {
   }
 
   private void studentChoice() {
-    ChoiceDialog<Student> studentDialog = new ChoiceDialog<Student>();
-    studentDialog.getItems().clear();
+    ChoiceDialog<Student> dialog = new ChoiceDialog<Student>();
+    dialog.getItems().clear();
     for (Student x: stService.getAll())
-      studentDialog.getItems().add(x);
-    studentDialog.setTitle("Student");
-    studentDialog.setHeaderText("Select a student");
-    studentDialog.setContentText("Students:");
-    Optional<Student> studentOptional = studentDialog.showAndWait();
+      dialog.getItems().add(x);
+    dialog.setTitle("Student");
+    dialog.setHeaderText("Select a student");
+    dialog.setContentText("Students:");
+    Optional<Student> studentOptional = dialog.showAndWait();
     studentOptional.ifPresent(student -> {
       studentId = (String) student.getId();
       studentField.setText(String.format("%s %s",student.getFirstName(), student.getLastName()));
@@ -146,14 +149,14 @@ public class GradeController implements Observable {
   }
 
   private void homeworkChoice() {
-    ChoiceDialog<Homework> homeworkDialog = new ChoiceDialog<Homework>();
-    homeworkDialog.getItems().clear();
+    ChoiceDialog<Homework> dialog = new ChoiceDialog<Homework>();
+    dialog.getItems().clear();
     for (Homework x: hmService.getAll())
-      homeworkDialog.getItems().add(x);
-    homeworkDialog.setTitle("Homework");
-    homeworkDialog.setHeaderText("Select a homework");
-    homeworkDialog.setContentText("Homework:");
-    Optional<Homework> homeworkOptional = homeworkDialog.showAndWait();
+      dialog.getItems().add(x);
+    dialog.setTitle("Homework");
+    dialog.setHeaderText("Select a homework");
+    dialog.setContentText("Homework:");
+    Optional<Homework> homeworkOptional = dialog.showAndWait();
     homeworkOptional.ifPresent(homework -> {
       homeworkId = (String) homework.getId();
       homeworkField.setText(homework.getDescription());
