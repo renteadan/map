@@ -45,6 +45,15 @@ public class StudentService<ID> extends AbstractService<ID, Student<ID>> {
     update(student);
   }
 
+  public Vector<Student> findStudentsByName(String name) {
+    Vector<Student> vec = new Vector<>();
+    for(Student x: getAll()) {
+      if (x.getFirstName().contains(name))
+        vec.add(x);
+    }
+    return vec;
+  }
+
   public Vector<Student> getStudentsFromGroup(String group) {
     Vector<Student> vec = new Vector<>();
     for(Student x:getAll()) {

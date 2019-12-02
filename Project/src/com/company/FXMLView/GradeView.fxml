@@ -54,10 +54,10 @@
                </VBox>
                <VBox prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <children>
-                      <TextField fx:id="homeworkField" editable="false" />
+                      <TextField fx:id="homeworkField" alignment="BOTTOM_RIGHT" editable="false" />
                       <TextField fx:id="professorField" promptText="Professor" />
                       <TextField fx:id="gradeField" promptText="Grade" />
-                      <TextField fx:id="feedbackField" promptText="Feedback" />
+                      <TextArea fx:id="feedbackField" promptText="Feedback" />
                       <TextField fx:id="dateField" editable="false" promptText="Date" />
                   </children>
                </VBox>

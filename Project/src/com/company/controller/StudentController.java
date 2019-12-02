@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.Vector;
+
 public class StudentController implements Observable {
   @FXML public TextField fnamefield, groupfield, lnamefield, emailfield;
 
@@ -32,6 +34,22 @@ public class StudentController implements Observable {
     table.getItems().clear();
     for (Student x : service.getAll())
       table.getItems().add(x);
+  }
+
+  private void loadData(Vector<Student> vec) {
+    table.getItems().clear();
+    for (Student x : vec)
+      table.getItems().add(x);
+  }
+
+  @FXML
+  public void findStudent(ActionEvent ac) {
+    String name = fnamefield.getText();
+    if(name.equals("")) {
+      showMessage("You haven't written any name");
+      return;
+    }
+    loadData(service.findStudentsByName(name));
   }
 
   @SuppressWarnings("unchecked")
@@ -130,6 +148,7 @@ public class StudentController implements Observable {
     groupfield.clear();
     emailfield.clear();
     currentId = null;
+    loadData();
   }
 
   @FXML

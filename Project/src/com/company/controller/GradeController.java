@@ -19,7 +19,8 @@ import java.util.Optional;
 
 public class GradeController implements Observable {
   @FXML
-  public TextField student,homework,professorField, gradeField, feedbackField, dateField;
+  public TextField student,homework,professorField, gradeField, dateField;
+  public TextArea feedbackField;
   @FXML
   public TableView<Grade<String>> table;
   public TextField homeworkField, studentField;
@@ -149,7 +150,7 @@ public class GradeController implements Observable {
   }
 
   private void homeworkChoice() {
-    ChoiceDialog<Homework> dialog = new ChoiceDialog<Homework>();
+    ChoiceDialog<Homework> dialog = new ChoiceDialog<>();
     dialog.getItems().clear();
     for (Homework x: hmService.getAll())
       dialog.getItems().add(x);
@@ -160,6 +161,12 @@ public class GradeController implements Observable {
     homeworkOptional.ifPresent(homework -> {
       homeworkId = (String) homework.getId();
       homeworkField.setText(homework.getDescription());
+      showMessage(String.format("Max grade for this homework is %d",homework.getMaxGrade()));
+      dateField.setText(LocalDateTime.now().toString());
+      if (homework.getMaxGrade() < 10)
+        feedbackField.setText(feedbackField.getText() + " " + "NOTA A FOST DIMINUATĂ DATORITĂ ÎNTÂRZIERILOR");
+      else
+        feedbackField.clear();
     });
   }
 
