@@ -23,9 +23,11 @@
                   <children>
                       <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                          <children>
-                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createStudent" text="Add" />
+                             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createStudent" text="Add">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Button>
                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteStudent" text="Delete" />
-                             <Button mnemonicParsing="false" onAction="#findStudent" text="Find" />
                          </children>
                       </VBox>
                       <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
@@ -33,6 +35,9 @@
                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clearStudent" text="Clear" />
                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#updateStudent" text="Update" />
                          </children>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                       </VBox>
                   </children>
                </HBox>
@@ -49,17 +54,29 @@
                </VBox>
                <VBox prefHeight="200.0" prefWidth="100.0" spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <children>
-                      <TextField fx:id="fnamefield" promptText="First Name" />
-                      <TextField fx:id="lnamefield" promptText="Last Name" />
-                      <TextField fx:id="groupfield" promptText="Group" />
-                      <TextField fx:id="emailfield" promptText="Email" />
+                      <TextField fx:id="fnameField" promptText="First Name" />
+                      <TextField fx:id="lnameField" promptText="Last Name" />
+                      <TextField fx:id="groupField" promptText="Group" />
+                      <TextField fx:id="emailField" promptText="Email" />
                   </children>
                </VBox>
-               <Label alignment="CENTER" contentDisplay="CENTER" text="Student CRUD" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                   <font>
-                       <Font size="25.0" />
-                   </font>
-               </Label>
+            <VBox GridPane.columnSpan="2">
+               <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="201.0" text="Student CRUD">
+                         <font>
+                             <Font size="25.0" />
+                         </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     </Label>
+                  <TextField fx:id="searchField" alignment="CENTER" onKeyReleased="#findStudents" promptText="Search.." GridPane.columnSpan="2">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
            </children>
         </GridPane>
     </right>

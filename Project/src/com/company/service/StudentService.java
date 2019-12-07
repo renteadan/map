@@ -48,7 +48,7 @@ public class StudentService<ID> extends AbstractService<ID, Student<ID>> {
   public Vector<Student> findStudentsByName(String name) {
     Vector<Student> vec = new Vector<>();
     for(Student x: getAll()) {
-      if (x.getFirstName().contains(name))
+      if (x.getFirstName().toLowerCase().contains(name) || x.getLastName().toLowerCase().contains(name))
         vec.add(x);
     }
     return vec;

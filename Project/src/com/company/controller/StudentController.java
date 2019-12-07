@@ -9,11 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 import java.util.Vector;
 
 public class StudentController implements Observable {
-  @FXML public TextField fnamefield, groupfield, lnamefield, emailfield;
+  @FXML public TextField fnameField, groupField, lnameField, emailField, searchField;
 
   @FXML private TableView<Student<String>> table;
   private StudentService<String> service;
@@ -43,10 +44,10 @@ public class StudentController implements Observable {
   }
 
   @FXML
-  public void findStudent(ActionEvent ac) {
-    String name = fnamefield.getText();
+  public void findStudents(KeyEvent ac) {
+    String name = searchField.getText().toLowerCase();
     if(name.equals("")) {
-      showMessage("You haven't written any name");
+      loadData();
       return;
     }
     loadData(service.findStudentsByName(name));
@@ -69,10 +70,10 @@ public class StudentController implements Observable {
     table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldStudent, newStudent) -> {
       if(newStudent == null)
         newStudent = oldStudent;
-      fnamefield.setText(newStudent.getFirstName());
-      lnamefield.setText(newStudent.getLastName());
-      groupfield.setText(newStudent.getGroup());
-      emailfield.setText(newStudent.getEmail());
+      fnameField.setText(newStudent.getFirstName());
+      lnameField.setText(newStudent.getLastName());
+      groupField.setText(newStudent.getGroup());
+      emailField.setText(newStudent.getEmail());
       currentId = newStudent.getId();
     });
     loadData();
@@ -119,10 +120,10 @@ public class StudentController implements Observable {
 
   @FXML
   void createStudent(ActionEvent ac) {
-    String firstName = fnamefield.getText();
-    String lastName = lnamefield.getText();
-    String group = groupfield.getText();
-    String email = emailfield.getText();
+    String firstName = fnameField.getText();
+    String lastName = lnameField.getText();
+    String group = groupField.getText();
+    String email = emailField.getText();
     try {
       Student<String> aux = new Student<>(firstName, lastName, group, email);
       Student st = service.add(aux);
@@ -143,10 +144,10 @@ public class StudentController implements Observable {
   }
 
   private void clearStudent() {
-    lnamefield.clear();
-    fnamefield.clear();
-    groupfield.clear();
-    emailfield.clear();
+    lnameField.clear();
+    fnameField.clear();
+    groupField.clear();
+    emailField.clear();
     currentId = null;
     loadData();
   }
@@ -173,10 +174,10 @@ public class StudentController implements Observable {
       showMessage("You haven't selected any student!");
       return;
     }
-    String firstName = fnamefield.getText();
-    String lastName = lnamefield.getText();
-    String group = groupfield.getText();
-    String email = emailfield.getText();
+    String firstName = fnameField.getText();
+    String lastName = lnameField.getText();
+    String group = groupField.getText();
+    String email = emailField.getText();
     Student<String> aux = new Student<>(currentId,firstName,lastName,group,email);
     try {
       Student st = service.update(aux);
