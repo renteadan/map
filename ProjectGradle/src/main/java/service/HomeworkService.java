@@ -2,6 +2,7 @@ package service;
 
 import entity.Homework;
 import repository.HomeworkFileRepo;
+import repository.XmlRepo;
 
 
 public class HomeworkService<ID> extends AbstractService<ID, Homework<ID>> {
@@ -14,7 +15,7 @@ public class HomeworkService<ID> extends AbstractService<ID, Homework<ID>> {
 
   private HomeworkService(String file) {
     super();
-    HomeworkFileRepo<ID> repo = new HomeworkFileRepo<>(file);
+    XmlRepo<ID, Homework<ID>> repo = new XmlRepo<>(file);
     setRepo(repo);
   }
 

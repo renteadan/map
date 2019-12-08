@@ -1,9 +1,9 @@
-import .entity.Homework;
-import .entity.Student;
-import .entity.StudyYear;
-import .exception.ValidationException;
-import .service.HomeworkService;
-import .service.StudentService;
+import entity.Homework;
+import entity.Student;
+import entity.StudyYear;
+import exception.ValidationException;
+import service.HomeworkService;
+import service.StudentService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

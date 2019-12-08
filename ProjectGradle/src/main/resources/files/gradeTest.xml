@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="13.0.1" class="java.beans.XMLDecoder">
+<java version="11.0.5" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>1</string>
-   <object class=".entity.Grade">
+   <object class="entity.Grade">
     <void property="date">
      <object class="java.time.LocalDateTime" method="of">
       <int>2019</int>
-      <object class="java.lang.Enum" id="Month0" method="valueOf">
+      <object class="java.lang.Enum" method="valueOf">
        <class>java.time.Month</class>
-       <string>NOVEMBER</string>
+       <string>DECEMBER</string>
       </object>
-      <int>11</int>
-      <int>18</int>
-      <int>57</int>
-      <int>39</int>
+      <int>8</int>
+      <int>20</int>
+      <int>24</int>
+      <int>51</int>
      </object>
     </void>
     <void property="feedback">
@@ -28,72 +28,6 @@
     </void>
     <void property="id">
      <string>1</string>
-    </void>
-    <void property="professor">
-     <string>gigi</string>
-    </void>
-    <void property="studentId">
-     <string>1</string>
-    </void>
-   </object>
-  </void>
-  <void method="put">
-   <string>2</string>
-   <object class=".entity.Grade">
-    <void property="date">
-     <object class="java.time.LocalDateTime" method="of">
-      <int>2019</int>
-      <object idref="Month0"/>
-      <int>16</int>
-      <int>10</int>
-      <int>59</int>
-      <int>32</int>
-     </object>
-    </void>
-    <void property="feedback">
-     <string>feedback</string>
-    </void>
-    <void property="grade">
-     <int>9</int>
-    </void>
-    <void property="homeworkId">
-     <string>1</string>
-    </void>
-    <void property="id">
-     <string>2</string>
-    </void>
-    <void property="professor">
-     <string>gigi</string>
-    </void>
-    <void property="studentId">
-     <string>1</string>
-    </void>
-   </object>
-  </void>
-  <void method="put">
-   <string>3</string>
-   <object class=".entity.Grade">
-    <void property="date">
-     <object class="java.time.LocalDateTime" method="of">
-      <int>2019</int>
-      <object idref="Month0"/>
-      <int>16</int>
-      <int>11</int>
-      <int>3</int>
-      <int>46</int>
-     </object>
-    </void>
-    <void property="feedback">
-     <string>feedback</string>
-    </void>
-    <void property="grade">
-     <int>9</int>
-    </void>
-    <void property="homeworkId">
-     <string>1</string>
-    </void>
-    <void property="id">
-     <string>3</string>
     </void>
     <void property="professor">
      <string>gigi</string>

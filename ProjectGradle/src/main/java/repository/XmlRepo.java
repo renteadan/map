@@ -16,7 +16,7 @@ public class XmlRepo<ID, E extends Entity<ID>> extends AbstractRepository<ID,E>{
   private String filename;
   public XmlRepo(String filename) {
     super();
-    this.filename = "src/com/company/files/"+filename;
+    this.filename = "src/main/resources/files/"+filename+".xml";
     readXml();
   }
 

@@ -4,6 +4,7 @@ import Observer.Observable;
 import entity.Entity;
 import entity.Homework;
 import entity.Student;
+import entity.StudyYear;
 import exception.ValidationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,7 @@ import service.HomeworkService;
 
 
 public class HomeworkController implements Observable {
-  @FXML public TextField fnamefield, groupfield, lnamefield;
+  @FXML public TextField startWeekField, descriptionField, endWeekField;
   @FXML public TableView<Homework<String>> table;
   private HomeworkService<String> service;
   private String currentId;
@@ -53,9 +54,9 @@ public class HomeworkController implements Observable {
     table.getSelectionModel().selectedItemProperty().addListener((observableValue, oldE, newE) -> {
       if(newE == null)
         newE = oldE;
-      fnamefield.setText(String.valueOf(newE.getStartWeek()));
-      lnamefield.setText(String.valueOf(newE.getEndWeek()));
-      groupfield.setText(newE.getDescription());
+      startWeekField.setText(String.valueOf(newE.getStartWeek()));
+      endWeekField.setText(String.valueOf(newE.getEndWeek()));
+      descriptionField.setText(newE.getDescription());
       currentId = newE.getId();
     });
     loadData();
@@ -64,6 +65,7 @@ public class HomeworkController implements Observable {
   @FXML
   public void initialize() {
     initRepo();
+    startWeekField.setText(String.valueOf(StudyYear.getCurrentWeek()));
   }
 
   private void showError(Exception err) {
@@ -102,8 +104,8 @@ public class HomeworkController implements Observable {
 
   @FXML
   void create(ActionEvent ac) {
-    String endWeek = lnamefield.getText();
-    String description = groupfield.getText();
+    String endWeek = endWeekField.getText();
+    String description = descriptionField.getText();
     try {
       Homework<String> aux = new Homework<>(Integer.parseInt(endWeek), description);
       Homework st = service.add(aux);
@@ -124,9 +126,9 @@ public class HomeworkController implements Observable {
   }
 
   private void clear() {
-    lnamefield.clear();
-    fnamefield.clear();
-    groupfield.clear();
+    endWeekField.clear();
+    startWeekField.setText(String.valueOf(StudyYear.getCurrentWeek()));
+    descriptionField.clear();
     currentId = null;
   }
 
@@ -152,9 +154,9 @@ public class HomeworkController implements Observable {
       showMessage("You haven't selected any homework!");
       return;
     }
-    String startWeek = fnamefield.getText();
-    String endWeek = lnamefield.getText();
-    String description = groupfield.getText();
+    String startWeek = startWeekField.getText();
+    String endWeek = endWeekField.getText();
+    String description = descriptionField.getText();
     Homework<String> aux = new Homework<>(currentId,Integer.parseInt(startWeek) ,Integer.parseInt(endWeek), description);
     try {
       Homework st = service.update(aux);

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="11.0.5" class="java.beans.XMLDecoder">
+ <object class="java.util.HashMap">
+  <void method="put">
+   <string>1</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object class="java.lang.Enum" method="valueOf">
+       <class>java.time.Month</class>
+       <string>DECEMBER</string>
+      </object>
+      <int>8</int>
+      <int>20</int>
+      <int>56</int>
+      <int>31</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>nimic</string>
+    </void>
+    <void property="grade">
+     <int>10</int>
+    </void>
+    <void property="homework">
+     <object class="entity.Homework">
+      <void property="description">
+       <string>Tema1</string>
+      </void>
+      <void property="endWeek">
+       <int>13</int>
+      </void>
+      <void property="id">
+       <string>1</string>
+      </void>
+      <void property="startWeek">
+       <int>10</int>
+      </void>
+     </object>
+    </void>
+    <void property="homeworkId">
+     <string>1</string>
+    </void>
+    <void property="id">
+     <string>1</string>
+    </void>
+    <void property="professor">
+     <string>Professor1</string>
+    </void>
+    <void property="student">
+     <object class="entity.Student">
+      <void property="email">
+       <string>dan@email.com</string>
+      </void>
+      <void property="firstName">
+       <string>Dan</string>
+      </void>
+      <void property="group">
+       <string>226</string>
+      </void>
+      <void property="id">
+       <string>1</string>
+      </void>
+      <void property="lastName">
+       <string>Rentea</string>
+      </void>
+     </object>
+    </void>
+    <void property="studentId">
+     <string>1</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

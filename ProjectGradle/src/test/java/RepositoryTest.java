@@ -1,8 +1,8 @@
-import .entity.Grade;
-import .entity.Homework;
-import .entity.Student;
-import .exception.ValidationException;
-import .repository.*;
+import entity.Grade;
+import entity.Homework;
+import entity.Student;
+import exception.ValidationException;
+import repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

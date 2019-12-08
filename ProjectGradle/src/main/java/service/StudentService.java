@@ -4,6 +4,7 @@ import entity.Student;
 import entity.StudyYear;
 import exception.ValidationException;
 import repository.StudentFileRepo;
+import repository.XmlRepo;
 
 import java.util.Vector;
 
@@ -17,7 +18,7 @@ public class StudentService<ID> extends AbstractService<ID, Student<ID>> {
 
   private StudentService(String file) {
     super();
-    StudentFileRepo<ID> repo = new StudentFileRepo<>(file);
+    XmlRepo<ID, Student<ID>> repo = new XmlRepo<>(file);
     setRepo(repo);
   }
 

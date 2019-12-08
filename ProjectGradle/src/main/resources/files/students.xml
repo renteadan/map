@@ -5,19 +5,19 @@
    <string>1</string>
    <object class="entity.Student">
     <void property="email">
-     <string>tradator@mail.com</string>
+     <string>dan@email.com</string>
     </void>
     <void property="firstName">
-     <string>George</string>
+     <string>Dan</string>
     </void>
     <void property="group">
-     <string>223</string>
+     <string>226</string>
     </void>
     <void property="id">
      <string>1</string>
     </void>
     <void property="lastName">
-     <string>Richi</string>
+     <string>Rentea</string>
     </void>
    </object>
   </void>

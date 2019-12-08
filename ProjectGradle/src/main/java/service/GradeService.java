@@ -7,6 +7,7 @@ import entity.Student;
 import entity.StudyYear;
 import exception.ValidationException;
 import repository.GradeFileRepo;
+import repository.XmlRepo;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -35,7 +36,7 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
 
   private GradeService(String file) {
     super();
-    GradeFileRepo<ID> repo = new GradeFileRepo<>(file);
+    XmlRepo<ID, Grade<ID>> repo = new XmlRepo<>(file);
     setRepo(repo);
     sService = StudentService.getFileInstance("students");
     hService = HomeworkService.getFileInstance("homeworks");
@@ -70,7 +71,7 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
   }
 
   private void writeJson(JsonObject grade, String full_name) {
-    try (BufferedWriter pw = new BufferedWriter(new FileWriter("src/com/company/files/"+full_name, true))) {
+    try (BufferedWriter pw = new BufferedWriter(new FileWriter("src/main/resources/files/"+full_name, true))) {
       pw.append(grade.toString()).append("\n");
     } catch (IOException err) {
       System.out.println(err.getMessage());
