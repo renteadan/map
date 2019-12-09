@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="11.0.5" class="java.beans.XMLDecoder">
+<java version="11.0.4" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>1</string>
@@ -15,6 +15,74 @@
     </void>
     <void property="startWeek">
      <int>10</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>2</string>
+   <object class="entity.Homework">
+    <void property="description">
+     <string>tema2</string>
+    </void>
+    <void property="endWeek">
+     <int>14</int>
+    </void>
+    <void property="id">
+     <string>2</string>
+    </void>
+    <void property="startWeek">
+     <int>11</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>3</string>
+   <object class="entity.Homework">
+    <void property="description">
+     <string>tema5</string>
+    </void>
+    <void property="endWeek">
+     <int>12</int>
+    </void>
+    <void property="id">
+     <string>3</string>
+    </void>
+    <void property="startWeek">
+     <int>11</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>4</string>
+   <object class="entity.Homework">
+    <void property="description">
+     <string>tema3</string>
+    </void>
+    <void property="endWeek">
+     <int>12</int>
+    </void>
+    <void property="id">
+     <string>4</string>
+    </void>
+    <void property="startWeek">
+     <int>11</int>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>5</string>
+   <object class="entity.Homework">
+    <void property="description">
+     <string>tema4</string>
+    </void>
+    <void property="endWeek">
+     <int>14</int>
+    </void>
+    <void property="id">
+     <string>5</string>
+    </void>
+    <void property="startWeek">
+     <int>11</int>
     </void>
    </object>
   </void>

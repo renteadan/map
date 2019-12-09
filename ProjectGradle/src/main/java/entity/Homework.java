@@ -101,4 +101,8 @@ public class Homework<ID> extends Entity<ID> {
   public String toString() {
     return description;
   }
+
+  public int getWeight() {
+    return endWeek - startWeek;
+  }
 }

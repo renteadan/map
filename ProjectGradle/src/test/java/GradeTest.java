@@ -1,11 +1,9 @@
-import entity.Grade;
-import entity.Homework;
-import entity.Student;
-import entity.StudyYear;
+import entity.*;
 import exception.ValidationException;
 import repository.AbstractRepository;
 import service.GradeService;
 import service.HomeworkService;
+import service.ReportService;
 import service.StudentService;
 import org.junit.jupiter.api.Test;
 
@@ -49,21 +47,21 @@ class GradeTest {
     });
     AbstractRepository<String, Grade<String>> r = new AbstractRepository<>();
     service.setRepo(r);
-    GradeService<String> service2 = GradeService.getFileInstance("gradesTest");
+    GradeService<String> service2 = GradeService.getFileInstance("gradeTest");
     int c = 0;
     for (Grade ignored : service2.getAll())
       c++;
-    assertEquals(c, 2);
+    assertEquals(c, 1);
+    service2.add(gr2);
     Grade<String> aux = service2.find("3");
-    assertEquals(aux.getFeedback(), "find null");
-    assertNotNull(aux);
-    service2.update(aux);
+    assertNull(aux);
     assertFalse(service.isHomeworkGraded("1","198"));
     assertTrue(service2.isHomeworkGraded("1","1"));
     assertFalse(service2.isHomeworkGraded("3","391"));
     int m = StudyYear.getCurrentWeek();
     service.add(gr);
     service.add(gr2);
+    service2.delete(gr2.getId());
     assertEquals(service.getGradesByHomeworkAndWeek("1", m).size(), 2);
     assertEquals(service.getStudentsByHomework("1").size(), 2);
     assertEquals(service.getStudentsByHomeworkAndProfessor("1", "Baci").size(), 1);
@@ -89,5 +87,21 @@ class GradeTest {
     assertEquals(hm.getMaxGrade(), 8);
     hm = new Homework<>("1", c, "test2");
     assertEquals(hm.getMaxGrade(), 10);
+  }
+
+  @Test
+  void reportTest() throws ValidationException {
+    GradeService<String> gr = GradeService.getFileInstance("gradeTest");
+    Grade<String> gr2 = new Grade<>("2", "2", "1", "Daci", 10, "feedback");
+    Grade<String> gr3 = new Grade<>("3", "2", "2", "Daci", 6, "feedback");
+    gr.add(gr2);
+    gr.add(gr3);
+    ReportService<String> repo = new ReportService<>(GradeService.getFileInstance("gradeTest"));
+    for (Report x: repo.calculateAll()) {
+      System.out.println(x.info());
+    }
+    for(Grade y: gr.getAll()) {
+      System.out.println(y.info());
+    }
   }
 }

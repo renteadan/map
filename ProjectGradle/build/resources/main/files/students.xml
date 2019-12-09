@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="11.0.5" class="java.beans.XMLDecoder">
+<java version="11.0.4" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>1</string>
@@ -18,6 +18,66 @@
     </void>
     <void property="lastName">
      <string>Rentea</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>2</string>
+   <object class="entity.Student">
+    <void property="email">
+     <string>portocala@email.com</string>
+    </void>
+    <void property="firstName">
+     <string>Ala</string>
+    </void>
+    <void property="group">
+     <string>331</string>
+    </void>
+    <void property="id">
+     <string>2</string>
+    </void>
+    <void property="lastName">
+     <string>Bala</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>3</string>
+   <object class="entity.Student">
+    <void property="email">
+     <string>george@email.com</string>
+    </void>
+    <void property="firstName">
+     <string>George</string>
+    </void>
+    <void property="group">
+     <string>223</string>
+    </void>
+    <void property="id">
+     <string>3</string>
+    </void>
+    <void property="lastName">
+     <string>George</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>4</string>
+   <object class="entity.Student">
+    <void property="email">
+     <string>munte@gmail.com</string>
+    </void>
+    <void property="firstName">
+     <string>Ghita</string>
+    </void>
+    <void property="group">
+     <string>113</string>
+    </void>
+    <void property="id">
+     <string>4</string>
+    </void>
+    <void property="lastName">
+     <string>Munteanu</string>
     </void>
    </object>
   </void>
