@@ -13,3 +13,5 @@
 {feedback=nimic, tema=2, deadline=4, nota=9, predata=6}
 {feedback=nimic, tema=2, deadline=4, nota=9, predata=6}
 {feedback=nimic, tema=1, deadline=13, nota=10, predata=10}
+{feedback=nimic special, tema=2, deadline=14, nota=8, predata=11}
+{feedback=feedback, tema=3, deadline=12, nota=8, predata=11}

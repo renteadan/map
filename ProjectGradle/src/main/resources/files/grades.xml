@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="11.0.5" class="java.beans.XMLDecoder">
+<java version="11.0.4" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>1</string>
@@ -7,7 +7,7 @@
     <void property="date">
      <object class="java.time.LocalDateTime" method="of">
       <int>2019</int>
-      <object class="java.lang.Enum" method="valueOf">
+      <object class="java.lang.Enum" id="Month0" method="valueOf">
        <class>java.time.Month</class>
        <string>DECEMBER</string>
       </object>
@@ -24,7 +24,7 @@
      <int>10</int>
     </void>
     <void property="homework">
-     <object class="entity.Homework">
+     <object class="entity.Homework" id="Homework0">
       <void property="description">
        <string>Tema1</string>
       </void>
@@ -49,7 +49,7 @@
      <string>Professor1</string>
     </void>
     <void property="student">
-     <object class="entity.Student">
+     <object class="entity.Student" id="Student0">
       <void property="email">
        <string>dan@email.com</string>
       </void>
@@ -69,6 +69,165 @@
     </void>
     <void property="studentId">
      <string>1</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>2</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>11</int>
+      <int>13</int>
+      <int>0</int>
+      <int>57</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>nimic special</string>
+    </void>
+    <void property="grade">
+     <int>8</int>
+    </void>
+    <void property="homework">
+     <object class="entity.Homework">
+      <void property="description">
+       <string>tema2</string>
+      </void>
+      <void property="endWeek">
+       <int>14</int>
+      </void>
+      <void property="id">
+       <string>2</string>
+      </void>
+      <void property="startWeek">
+       <int>11</int>
+      </void>
+     </object>
+    </void>
+    <void property="homeworkId">
+     <string>2</string>
+    </void>
+    <void property="id">
+     <string>2</string>
+    </void>
+    <void property="professor">
+     <string>Proff2</string>
+    </void>
+    <void property="student">
+     <object idref="Student0"/>
+    </void>
+    <void property="studentId">
+     <string>1</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>3</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>11</int>
+      <int>13</int>
+      <int>12</int>
+      <int>8</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>feedback</string>
+    </void>
+    <void property="grade">
+     <int>8</int>
+    </void>
+    <void property="homework">
+     <object class="entity.Homework">
+      <void property="description">
+       <string>tema5</string>
+      </void>
+      <void property="endWeek">
+       <int>12</int>
+      </void>
+      <void property="id">
+       <string>3</string>
+      </void>
+      <void property="startWeek">
+       <int>11</int>
+      </void>
+     </object>
+    </void>
+    <void property="homeworkId">
+     <string>3</string>
+    </void>
+    <void property="id">
+     <string>3</string>
+    </void>
+    <void property="professor">
+     <string>prof3</string>
+    </void>
+    <void property="student">
+     <object idref="Student0"/>
+    </void>
+    <void property="studentId">
+     <string>1</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>4</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>11</int>
+      <int>13</int>
+      <int>15</int>
+      <int>3</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>esti praf</string>
+    </void>
+    <void property="grade">
+     <int>5</int>
+    </void>
+    <void property="homework">
+     <object idref="Homework0"/>
+    </void>
+    <void property="homeworkId">
+     <string>1</string>
+    </void>
+    <void property="id">
+     <string>4</string>
+    </void>
+    <void property="professor">
+     <string>rau</string>
+    </void>
+    <void property="student">
+     <object class="entity.Student">
+      <void property="email">
+       <string>portocala@email.com</string>
+      </void>
+      <void property="firstName">
+       <string>Ala</string>
+      </void>
+      <void property="group">
+       <string>331</string>
+      </void>
+      <void property="id">
+       <string>2</string>
+      </void>
+      <void property="lastName">
+       <string>Bala</string>
+      </void>
+     </object>
+    </void>
+    <void property="studentId">
+     <string>2</string>
     </void>
    </object>
   </void>

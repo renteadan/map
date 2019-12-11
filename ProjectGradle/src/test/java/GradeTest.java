@@ -1,11 +1,11 @@
 import entity.*;
 import exception.ValidationException;
+import org.junit.jupiter.api.Test;
 import repository.AbstractRepository;
 import service.GradeService;
 import service.HomeworkService;
 import service.ReportService;
 import service.StudentService;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
@@ -30,8 +30,6 @@ class GradeTest {
     GradeService<String> service = GradeService.getInstance();
     service.add(gr);
     gr = service.find("1");
-    System.out.println(gr.getHomework().info());
-    System.out.println(gr.getStudent().info());
     assertNull(service.find("56"));
     gr.setGrade(5);
     assertEquals(gr.getGrade(), 5);
@@ -96,12 +94,9 @@ class GradeTest {
     Grade<String> gr3 = new Grade<>("3", "2", "2", "Daci", 6, "feedback");
     gr.add(gr2);
     gr.add(gr3);
-    ReportService<String> repo = new ReportService<>(GradeService.getFileInstance("gradeTest"));
-    for (Report x: repo.calculateAll()) {
-      System.out.println(x.info());
-    }
-    for(Grade y: gr.getAll()) {
-      System.out.println(y.info());
-    }
+    ReportService<String> service = new ReportService<>(gr);
+    service.calculateAll();
+    Report r = service.find("1");
+    assertEquals(r.getAverage(), 8.f);
   }
 }

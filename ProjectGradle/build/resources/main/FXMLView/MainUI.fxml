@@ -14,5 +14,8 @@
         <Tab text="Grades">
             <fx:include source="GradeView.fxml"/>
         </Tab>
+        <Tab text="Reports">
+            <fx:include source="Rapoarte.fxml"/>
+        </Tab>
     </TabPane>
 </AnchorPane>

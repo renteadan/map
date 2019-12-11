@@ -58,4 +58,8 @@ public class AbstractService<ID, E extends Entity<ID>> implements Service<ID, E>
     for(Observable x:observableList)
       x.getNotified();
   }
+
+  public AbstractRepository<ID, E> getRepo() {
+    return repo;
+  }
 }

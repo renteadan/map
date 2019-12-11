@@ -2,6 +2,7 @@ package service;
 
 import entity.Grade;
 import entity.Report;
+import exception.ValidationException;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -37,11 +38,19 @@ public class ReportService<ID> extends AbstractService<ID, Report<ID>> {
     }
     return new Vector<>(grades.values());
   }
-  public Vector<Report> calculateAll() {
+  public void calculateAll() {
     Vector<Report> reps = groupGrades();
     for(Report r: reps) {
       r.calculateAverage();
+      try {
+        this.add(r);
+      } catch (ValidationException ignored) {
+      }
     }
-    return reps;
+  }
+
+  @Override
+  public Report<ID> add(Report<ID> entity) throws ValidationException {
+    return super.getRepo().save(entity);
   }
 }

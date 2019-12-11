@@ -140,5 +140,73 @@
     </void>
    </object>
   </void>
+  <void method="put">
+   <string>3</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>9</int>
+      <int>19</int>
+      <int>25</int>
+      <int>41</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>feedback</string>
+    </void>
+    <void property="grade">
+     <int>6</int>
+    </void>
+    <void property="homework">
+     <object class="entity.Homework">
+      <void property="description">
+       <string>tema2</string>
+      </void>
+      <void property="endWeek">
+       <int>14</int>
+      </void>
+      <void property="id">
+       <string>2</string>
+      </void>
+      <void property="startWeek">
+       <int>11</int>
+      </void>
+     </object>
+    </void>
+    <void property="homeworkId">
+     <string>2</string>
+    </void>
+    <void property="id">
+     <string>3</string>
+    </void>
+    <void property="professor">
+     <string>Daci</string>
+    </void>
+    <void property="student">
+     <object class="entity.Student">
+      <void property="email">
+       <string>portocala@email.com</string>
+      </void>
+      <void property="firstName">
+       <string>Ala</string>
+      </void>
+      <void property="group">
+       <string>331</string>
+      </void>
+      <void property="id">
+       <string>2</string>
+      </void>
+      <void property="lastName">
+       <string>Bala</string>
+      </void>
+     </object>
+    </void>
+    <void property="studentId">
+     <string>2</string>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

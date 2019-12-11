@@ -25,6 +25,10 @@ public class Report<ID> extends Entity<ID> {
     this.student = student;
   }
 
+  public String getName() {
+    return student.getFirstName() + " " + student.getLastName();
+  }
+
   private Student student;
 
   public Report() {

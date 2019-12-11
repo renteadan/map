@@ -19,6 +19,10 @@ public interface Validator<E extends Entity> {
         assert entity instanceof Grade;
         GradeValidator.validate((Grade) entity);
         break;
+      case "Report":
+        assert entity instanceof Report;
+        ReportValidator.validate((Report) entity);
+        break;
       default:
         throw new ValidationException("Class doesn't have validator");
     }
