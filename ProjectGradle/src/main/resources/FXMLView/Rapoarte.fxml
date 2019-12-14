@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportController">
     <right>
         <GridPane BorderPane.alignment="CENTER">
@@ -22,6 +26,10 @@
                         <Font size="25.0" />
                     </font>
                 </Label>
+            <Button fx:id="examButton" alignment="CENTER" mnemonicParsing="false" onAction="#loadExam" text="Students eligible for exam" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="1" />
+            <Button fx:id="allButton" alignment="CENTER" mnemonicParsing="false" onAction="#loadAll" text="All Students" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="timeButton" mnemonicParsing="false" onAction="#loadOnTimeStudents" text="Students With no Delays" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="2" />
+            <Button fx:id="homeworkButton" mnemonicParsing="false" text="Hardest Homework" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#findHardestHomework"/>
             </children>
         </GridPane>
     </right>

@@ -103,6 +103,6 @@ public class Homework<ID> extends Entity<ID> {
   }
 
   public int getWeight() {
-    return endWeek - startWeek;
+    return endWeek - startWeek + 1;
   }
 }

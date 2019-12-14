@@ -1,14 +1,19 @@
 package controller;
 
 import Observer.Observable;
+import com.sun.tools.javac.util.Pair;
 import entity.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.GradeService;
 import service.ReportService;
+
+import java.util.Vector;
 
 public class ReportController implements Observable {
 
@@ -16,6 +21,7 @@ public class ReportController implements Observable {
   private ReportService<String> service;
 
   @FXML public TableView<Report<String>> table;
+  @FXML public Button examButton, allButton, timeButton, homeworkButton;
 
   private void initRepo() {
     service = new ReportService<>(grades);
@@ -25,12 +31,38 @@ public class ReportController implements Observable {
     loadTable();
   }
 
+  @FXML
+  public void loadAll(){
+    loadData();
+  }
+
   @SuppressWarnings("unchecked")
   private void loadData() {
     service.makeEmpty();
     service.calculateAll();
     table.getItems().clear();
     for (Report x: service.getAll())
+      table.getItems().add(x);
+  }
+
+  @FXML
+  public void loadOnTimeStudents() {
+    service.makeEmpty();
+    service.calculateAll();
+    table.getItems().clear();
+    for (Report x: service.getOnTimeStudents())
+      table.getItems().add(x);
+  }
+
+  @FXML
+  public void loadExam(ActionEvent ac) {
+    loadExamStudents();
+  }
+  private void loadExamStudents() {
+    service.makeEmpty();
+    service.calculateAll();
+    table.getItems().clear();
+    for (Report x: service.getExamStudents())
       table.getItems().add(x);
   }
 
@@ -43,6 +75,16 @@ public class ReportController implements Observable {
     professorColumn.setCellValueFactory(new PropertyValueFactory<Homework<Integer>, String>("average"));
     gradeColumn.setCellValueFactory(new PropertyValueFactory<Homework<String>, String>("name"));
     table.getColumns().addAll(idColumn, professorColumn, gradeColumn);
+  }
+
+  @FXML
+  public void findHardestHomework() {
+    Pair<Homework, Integer> aux = service.hardestHomework();
+    if(aux.fst == null) {
+      showMessage("No grades were found!");
+      return;
+    }
+    showMessage(String.format("Hardest homework was %s with an average of %d", aux.fst.getDescription(), aux.snd));
   }
 
   private void loadTable() {

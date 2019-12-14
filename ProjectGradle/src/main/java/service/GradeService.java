@@ -6,12 +6,12 @@ import entity.Homework;
 import entity.Student;
 import entity.StudyYear;
 import exception.ValidationException;
-import repository.GradeFileRepo;
 import repository.XmlRepo;
-
+import com.sun.tools.javac.util.Pair;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
 
@@ -46,6 +46,40 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     if (instanceFile == null)
       instanceFile = new GradeService(filename);
     return instanceFile;
+  }
+
+  public Pair<Homework, Integer> hardestHomework() {
+    HashMap<Homework, Pair<Integer, Integer>> aux = new HashMap<>();
+    for(Grade x:getAll()) {
+      if(aux.containsKey(x.getHomework())) {
+        int a = aux.get(x.getHomework()).fst+x.getGrade();
+        int b = aux.get(x.getHomework()).snd+1;
+        aux.put(x.getHomework(), new Pair<>(a ,b));
+      }
+      else {
+        aux.put(x.getHomework(), new Pair<>(x.getGrade(), 1));
+      }
+    }
+    Homework min = null;
+    int minAverage = 11;
+    for(Homework x: aux.keySet()) {
+      Pair<Integer, Integer> pereche = aux.get(x);
+      int medie = pereche.fst / pereche.snd;
+      if(medie < minAverage) {
+        min = x;
+        minAverage = medie;
+      }
+    }
+    return new Pair<>(min, minAverage);
+  }
+
+  public HashSet<Student> getOnTimeStudents() {
+    HashSet<Student> set = new HashSet<>();
+    for(Grade g: getAll()) {
+      if (StudyYear.getWeekOf(g.getDate()) <= g.getHomework().getEndWeek())
+        set.add(g.getStudent());
+    }
+    return  set;
   }
 
   @Override

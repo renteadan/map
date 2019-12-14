@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="11.0.4" class="java.beans.XMLDecoder">
+<java version="11.0.5" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
    <string>1</string>
@@ -24,18 +24,18 @@
      <int>10</int>
     </void>
     <void property="homework">
-     <object class="entity.Homework">
+     <object class="entity.Homework" id="Homework0">
       <void property="description">
        <string>Tema1</string>
       </void>
       <void property="endWeek">
-       <int>13</int>
+       <int>10</int>
       </void>
       <void property="id">
        <string>1</string>
       </void>
       <void property="startWeek">
-       <int>10</int>
+       <int>9</int>
       </void>
      </object>
     </void>
@@ -173,6 +173,223 @@
     </void>
     <void property="studentId">
      <string>1</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>4</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>14</int>
+      <int>11</int>
+      <int>30</int>
+      <int>20</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>esti praf</string>
+    </void>
+    <void property="grade">
+     <int>4</int>
+    </void>
+    <void property="homework">
+     <object idref="Homework0"/>
+    </void>
+    <void property="homeworkId">
+     <string>1</string>
+    </void>
+    <void property="id">
+     <string>4</string>
+    </void>
+    <void property="professor">
+     <string>rau</string>
+    </void>
+    <void property="student">
+     <object class="entity.Student" id="Student1">
+      <void property="email">
+       <string>portocala@email.com</string>
+      </void>
+      <void property="firstName">
+       <string>Ala</string>
+      </void>
+      <void property="group">
+       <string>331</string>
+      </void>
+      <void property="id">
+       <string>2</string>
+      </void>
+      <void property="lastName">
+       <string>Bala</string>
+      </void>
+     </object>
+    </void>
+    <void property="studentId">
+     <string>2</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>5</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>14</int>
+      <int>11</int>
+      <int>29</int>
+      <int>45</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>nu ai facut nimic</string>
+    </void>
+    <void property="grade">
+     <int>2</int>
+    </void>
+    <void property="homework">
+     <object class="entity.Homework" id="Homework1">
+      <void property="description">
+       <string>tema3</string>
+      </void>
+      <void property="endWeek">
+       <int>11</int>
+      </void>
+      <void property="id">
+       <string>4</string>
+      </void>
+      <void property="startWeek">
+       <int>11</int>
+      </void>
+     </object>
+    </void>
+    <void property="homeworkId">
+     <string>4</string>
+    </void>
+    <void property="id">
+     <string>5</string>
+    </void>
+    <void property="professor">
+     <string>proff</string>
+    </void>
+    <void property="student">
+     <object idref="Student1"/>
+    </void>
+    <void property="studentId">
+     <string>2</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>6</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>14</int>
+      <int>11</int>
+      <int>47</int>
+      <int>31</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string> NOTA A FOST DIMINUATÄ‚ DATORITÄ‚ ÃŽNTÃ‚RZIERILOR</string>
+    </void>
+    <void property="grade">
+     <int>9</int>
+    </void>
+    <void property="homework">
+     <object idref="Homework0"/>
+    </void>
+    <void property="homeworkId">
+     <string>1</string>
+    </void>
+    <void property="id">
+     <string>6</string>
+    </void>
+    <void property="professor">
+     <string>porff</string>
+    </void>
+    <void property="student">
+     <object class="entity.Student">
+      <void property="email">
+       <string>george@email.com</string>
+      </void>
+      <void property="firstName">
+       <string>George</string>
+      </void>
+      <void property="group">
+       <string>223</string>
+      </void>
+      <void property="id">
+       <string>3</string>
+      </void>
+      <void property="lastName">
+       <string>George</string>
+      </void>
+     </object>
+    </void>
+    <void property="studentId">
+     <string>3</string>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>7</string>
+   <object class="entity.Grade">
+    <void property="date">
+     <object class="java.time.LocalDateTime" method="of">
+      <int>2019</int>
+      <object idref="Month0"/>
+      <int>14</int>
+      <int>12</int>
+      <int>0</int>
+      <int>59</int>
+     </object>
+    </void>
+    <void property="feedback">
+     <string>nimic</string>
+    </void>
+    <void property="grade">
+     <int>10</int>
+    </void>
+    <void property="homework">
+     <object idref="Homework1"/>
+    </void>
+    <void property="homeworkId">
+     <string>4</string>
+    </void>
+    <void property="id">
+     <string>7</string>
+    </void>
+    <void property="professor">
+     <string>nimic</string>
+    </void>
+    <void property="student">
+     <object class="entity.Student">
+      <void property="email">
+       <string>munte@gmail.com</string>
+      </void>
+      <void property="firstName">
+       <string>Ghita</string>
+      </void>
+      <void property="group">
+       <string>113</string>
+      </void>
+      <void property="id">
+       <string>4</string>
+      </void>
+      <void property="lastName">
+       <string>Munteanu</string>
+      </void>
+     </object>
+    </void>
+    <void property="studentId">
+     <string>4</string>
     </void>
    </object>
   </void>

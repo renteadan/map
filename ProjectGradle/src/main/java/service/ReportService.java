@@ -1,10 +1,14 @@
 package service;
 
+import com.sun.tools.javac.util.Pair;
 import entity.Grade;
+import entity.Homework;
 import entity.Report;
+import entity.Student;
 import exception.ValidationException;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Vector;
 
 public class ReportService<ID> extends AbstractService<ID, Report<ID>> {
@@ -47,6 +51,29 @@ public class ReportService<ID> extends AbstractService<ID, Report<ID>> {
       } catch (ValidationException ignored) {
       }
     }
+  }
+
+  public Iterable<Report> getOnTimeStudents() {
+    HashSet<Student> set = gradeService.getOnTimeStudents();
+    Vector<Report> aux = new Vector<>();
+    for(Report x: getAll()) {
+      if(set.contains(x.getStudent()))
+        aux.add(x);
+    }
+    return aux;
+  }
+
+  public Pair<Homework, Integer> hardestHomework() {
+    return gradeService.hardestHomework();
+  }
+
+  public Iterable<Report> getExamStudents() {
+    Vector<Report> aux = new Vector<>();
+    for(Report x: getAll()) {
+      if (x.getAverage() > 4.0f)
+        aux.add(x);
+    }
+    return aux;
   }
 
   @Override

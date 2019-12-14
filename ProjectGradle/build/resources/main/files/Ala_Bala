@@ -5,3 +5,5 @@
 {feedback=feedback, tema=1, deadline=13, nota=10, predata=11}
 {feedback=feedback, tema=1, deadline=13, nota=10, predata=11}
 {feedback=feedback, tema=2, deadline=14, nota=6, predata=11}
+{feedback=esti praf, tema=1, deadline=13, nota=5, predata=11}
+{feedback=nu ai facut nimic, tema=4, deadline=12, nota=2, predata=11}
