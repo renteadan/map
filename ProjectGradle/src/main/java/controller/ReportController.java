@@ -2,7 +2,10 @@ package controller;
 
 import Observer.Observable;
 import com.sun.tools.javac.util.Pair;
-import entity.*;
+import entity.Entity;
+import entity.Grade;
+import entity.Homework;
+import entity.Report;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,8 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import service.GradeService;
 import service.ReportService;
-
-import java.util.Vector;
 
 public class ReportController implements Observable {
 
@@ -79,12 +80,12 @@ public class ReportController implements Observable {
 
   @FXML
   public void findHardestHomework() {
-    Pair<Homework, Integer> aux = service.hardestHomework();
+    Pair<Homework, Float> aux = service.hardestHomework();
     if(aux.fst == null) {
       showMessage("No grades were found!");
       return;
     }
-    showMessage(String.format("Hardest homework was %s with an average of %d", aux.fst.getDescription(), aux.snd));
+    showMessage(String.format("Hardest homework was %s with an average of %.2f", aux.fst.getDescription(), aux.snd));
   }
 
   private void loadTable() {

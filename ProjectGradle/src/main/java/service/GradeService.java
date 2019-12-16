@@ -48,7 +48,7 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     return instanceFile;
   }
 
-  public Pair<Homework, Integer> hardestHomework() {
+  public Pair<Homework, Float> hardestHomework() {
     HashMap<Homework, Pair<Integer, Integer>> aux = new HashMap<>();
     for(Grade x:getAll()) {
       if(aux.containsKey(x.getHomework())) {
@@ -61,10 +61,10 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
       }
     }
     Homework min = null;
-    int minAverage = 11;
+    float minAverage = 11;
     for(Homework x: aux.keySet()) {
       Pair<Integer, Integer> pereche = aux.get(x);
-      int medie = pereche.fst / pereche.snd;
+      float medie = (float) pereche.fst / pereche.snd;
       if(medie < minAverage) {
         min = x;
         minAverage = medie;
@@ -164,6 +164,15 @@ public class GradeService<ID> extends AbstractService<ID, Grade<ID>> {
     for(Grade x:getAll()) {
       if (x.getHomeworkId().equals(homeworkId) && StudyYear.getWeekOf(x.getDate()) == week)
         vec.add(find((ID) x.getId()));
+    }
+    return vec;
+  }
+
+  public Vector<Grade> getGradesByStudent(ID studentId) {
+    Vector<Grade> vec = new Vector<>();
+    for(Grade x:getAll()) {
+      if (x.getStudent().getId().equals(studentId))
+        vec.add(x);
     }
     return vec;
   }

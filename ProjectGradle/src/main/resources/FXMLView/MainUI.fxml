@@ -17,5 +17,8 @@
         <Tab text="Reports">
             <fx:include source="Rapoarte.fxml"/>
         </Tab>
+        <Tab text="Chart">
+            <fx:include source="ChartView.fxml"/>
+        </Tab>
     </TabPane>
 </AnchorPane>

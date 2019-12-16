@@ -134,8 +134,14 @@ public class GradeController implements Observable {
   private void studentChoice() {
     ChoiceDialog<Student> dialog = new ChoiceDialog<Student>();
     dialog.getItems().clear();
-    for (Student x: stService.getAll())
+    boolean set = false;
+    for (Student x: stService.getAll()) {
+      if(!set) {
+        set = true;
+        dialog.setSelectedItem(x);
+      }
       dialog.getItems().add(x);
+    }
     dialog.setTitle("Student");
     dialog.setHeaderText("Select a student");
     dialog.setContentText("Students:");
@@ -154,8 +160,14 @@ public class GradeController implements Observable {
   private void homeworkChoice() {
     ChoiceDialog<Homework> dialog = new ChoiceDialog<>();
     dialog.getItems().clear();
-    for (Homework x: hmService.getAll())
+    boolean set = false;
+    for (Homework x: hmService.getAll()) {
+      if(!set) {
+        set = true;
+        dialog.setSelectedItem(x);
+      }
       dialog.getItems().add(x);
+    }
     dialog.setTitle("Homework");
     dialog.setHeaderText("Select a homework");
     dialog.setContentText("Homework:");

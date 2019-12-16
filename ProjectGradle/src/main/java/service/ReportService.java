@@ -63,7 +63,7 @@ public class ReportService<ID> extends AbstractService<ID, Report<ID>> {
     return aux;
   }
 
-  public Pair<Homework, Integer> hardestHomework() {
+  public Pair<Homework, Float> hardestHomework() {
     return gradeService.hardestHomework();
   }
 

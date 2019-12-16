@@ -96,7 +96,9 @@ class GradeTest {
     gr.add(gr3);
     ReportService<String> service = new ReportService<>(gr);
     service.calculateAll();
-    Report r = service.find("1");
-    assertEquals(r.getAverage(), 8.f);
+    Report r = service.find("2");
+    assertEquals(r.getAverage(), 9.0f);
+    gr.delete("2");
+    gr.delete("3");
   }
 }
