@@ -8,13 +8,13 @@ namespace LabCSharp.Resources.Service
 	class BaseService<T> : IService<T> where T: class, IBaseEntity
 	{
 		protected BaseGateway<T> Gateway;
-		protected readonly Validator<T> Validator;
+		protected readonly IValidator<T> Validator;
 		public BaseService() {
 			Gateway = new BaseGateway<T>();
 			Validator = new Validator<T>();
 		}
 
-		public BaseService(BaseGateway<T> gateway, Validator<T> validator)
+		public BaseService(BaseGateway<T> gateway, IValidator<T> validator)
 		{
 			Gateway = gateway;
 			Validator = validator;

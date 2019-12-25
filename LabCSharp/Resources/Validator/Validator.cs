@@ -8,6 +8,5 @@
 				throw new System.NullReferenceException();
 		}
 
-		public Validator() { }
 	}
 }

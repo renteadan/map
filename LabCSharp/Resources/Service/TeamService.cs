@@ -1,5 +1,7 @@
 ﻿
 using System.Collections.Generic;
+using System.Data.Linq;
+using System.Linq;
 using LabCSharp.Resources.Entity;
 using LabCSharp.Resources.Gateway;
 using LabCSharp.Resources.Validator;
@@ -14,14 +16,14 @@ namespace LabCSharp.Resources.Service
 			_gateway = new TeamGateway();
 		}
 
-		public List<Player> GetPlayers(Team team)
+		public EntitySet<Player> GetPlayers(Team team)
 		{
 			return _gateway.GetTeamPlayers(team);
 		}
 
-		public List<Player> GetTeamPlayersInGame(Team team, Game game)
+		public new List<Team> GetAll()
 		{
-			return _gateway.GetTeamPlayersInGame(team, game);
+			return Gateway.GetAll();
 		}
 	}
 }

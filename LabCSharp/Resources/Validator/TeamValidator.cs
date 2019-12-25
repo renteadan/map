@@ -3,14 +3,12 @@ using LabCSharp.Resources.Exception;
 
 namespace LabCSharp.Resources.Validator
 {
-	public class TeamValidator : Validator<Team>
+	public class TeamValidator : IValidator<Team>
 	{
-		public override void Validate(Team entity)
+		public void Validate(Team entity)
 		{
 			if (entity.Name == "")
 				throw new ValidationException("Team name can't be empty!");
 		}
-
-		public TeamValidator(): base() { }
 	}
 }
