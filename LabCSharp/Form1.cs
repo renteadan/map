@@ -1,9 +1,8 @@
-﻿using LabCSharp.Gateway;
-using LabCSharp.Entity;
+﻿using LabCSharp.Entity;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using LabCSharp.Service;
+using LabCSharp.Resources.Service;
 
 namespace LabCSharp
 {
