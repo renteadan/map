@@ -35,7 +35,17 @@ namespace LabCSharp
 
     private void button1_Click(object sender, EventArgs e)
     {
-	    new GamePlayers().Show();
+	    new GamePlayers().ShowDialog();
+    }
+
+    private void StudentCreate_Click(object sender, EventArgs e)
+    {
+	    new CreateStudent().ShowDialog();
+    }
+
+    private void button1_Click_1(object sender, EventArgs e)
+    {
+	    new AssignPlayer().ShowDialog();
     }
   }
 }

@@ -22,21 +22,11 @@
       <Association Name="Team_Game1" Member="Team1" ThisKey="HostTeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Players" Member="Players">
-    <Type Name="Player">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TeamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Player_ActivePlayer" Member="ActivePlayers" ThisKey="Id" OtherKey="PlayerId" Type="ActivePlayer" />
-      <Association Name="Team_Player" Member="Team" ThisKey="TeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
-      <Association Name="Student_Player" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Schools" Member="Schools">
     <Type Name="School">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
-      <Association Name="School_Team" Member="Teams" ThisKey="Id" OtherKey="SchoolId" Type="Team" />
+      <Association Name="School_Team" Member="Teams" ThisKey="Id" OtherKey="SchoolId" Type="Team" Cardinality="One" />
       <Association Name="School_Student" Member="Students" ThisKey="Id" OtherKey="SchoolId" Type="Student" />
     </Type>
   </Table>
@@ -45,7 +35,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="SchoolId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Student_Player" Member="Players" ThisKey="Id" OtherKey="StudentId" Type="Player" />
+      <Association Name="Student_Player" Member="Players" ThisKey="Id" OtherKey="StudentId" Type="Player" Cardinality="One" />
       <Association Name="School_Student" Member="School" ThisKey="SchoolId" OtherKey="Id" Type="School" IsForeignKey="true" />
     </Type>
   </Table>
@@ -58,6 +48,16 @@
       <Column Name="Played" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Game_ActivePlayer" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
       <Association Name="Player_ActivePlayer" Member="Player" ThisKey="PlayerId" OtherKey="Id" Type="Player" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Players" Member="Players">
+    <Type Name="Player">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TeamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Player_ActivePlayer" Member="ActivePlayers" ThisKey="Id" OtherKey="PlayerId" Type="ActivePlayer" />
+      <Association Name="Student_Player" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
+      <Association Name="Team_Player" Member="Team" ThisKey="TeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

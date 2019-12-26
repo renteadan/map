@@ -28,9 +28,11 @@
     /// </summary>
     private void InitializeComponent()
     {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.TeamsView = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
+			this.ShowGames = new System.Windows.Forms.Button();
+			this.StudentCreate = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.TeamsView)).BeginInit();
 			this.SuspendLayout();
@@ -46,8 +48,8 @@
 			this.TeamsView.Name = "TeamsView";
 			this.TeamsView.RowHeadersVisible = false;
 			this.TeamsView.RowHeadersWidth = 51;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.TeamsView.RowsDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.TeamsView.RowsDefaultCellStyle = dataGridViewCellStyle2;
 			this.TeamsView.RowTemplate.Height = 24;
 			this.TeamsView.Size = new System.Drawing.Size(334, 185);
 			this.TeamsView.TabIndex = 0;
@@ -64,15 +66,35 @@
 			this.label1.Text = "Teams";
 			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
+			// ShowGames
+			// 
+			this.ShowGames.Location = new System.Drawing.Point(13, 216);
+			this.ShowGames.Name = "ShowGames";
+			this.ShowGames.Size = new System.Drawing.Size(75, 23);
+			this.ShowGames.TabIndex = 2;
+			this.ShowGames.Text = "Games";
+			this.ShowGames.UseVisualStyleBackColor = true;
+			this.ShowGames.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// StudentCreate
+			// 
+			this.StudentCreate.Location = new System.Drawing.Point(125, 216);
+			this.StudentCreate.Name = "StudentCreate";
+			this.StudentCreate.Size = new System.Drawing.Size(100, 23);
+			this.StudentCreate.TabIndex = 3;
+			this.StudentCreate.Text = "Add Student";
+			this.StudentCreate.UseVisualStyleBackColor = true;
+			this.StudentCreate.Click += new System.EventHandler(this.StudentCreate_Click);
+			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(13, 216);
+			this.button1.Location = new System.Drawing.Point(272, 216);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 2;
+			this.button1.TabIndex = 4;
 			this.button1.Text = "button1";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
 			// 
 			// Form1
 			// 
@@ -80,6 +102,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.button1);
+			this.Controls.Add(this.StudentCreate);
+			this.Controls.Add(this.ShowGames);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.TeamsView);
 			this.Name = "Form1";
@@ -95,6 +119,8 @@
 
         private System.Windows.Forms.DataGridView TeamsView;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button ShowGames;
+		private System.Windows.Forms.Button StudentCreate;
 		private System.Windows.Forms.Button button1;
 	}
 }

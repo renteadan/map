@@ -70,6 +70,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Forms\AssignPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\AssignPlayer.Designer.cs">
+      <DependentUpon>AssignPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Forms\CreateStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\CreateStudent.Designer.cs">
+      <DependentUpon>CreateStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Forms\GamePlayers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +122,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\Forms\AssignPlayer.resx">
+      <DependentUpon>AssignPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Forms\CreateStudent.resx">
+      <DependentUpon>CreateStudent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Forms\GamePlayers.resx">
       <DependentUpon>GamePlayers.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,11 +154,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="NBA.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NBA_log.ldf">
       <DependentUpon>NBA.mdf</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

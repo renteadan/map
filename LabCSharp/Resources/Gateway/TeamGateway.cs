@@ -10,7 +10,7 @@ namespace LabCSharp.Resources.Gateway
 
 		public EntitySet<Player> GetTeamPlayers(Team team)
 		{
-			return team.Players;
+			return Table.First(item => item.Id == team.Id).Players;
 		}
 	}
 }
