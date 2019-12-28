@@ -45,5 +45,10 @@ namespace LabCSharp.Resources.Service
 			Validator.Validate(entity);
 			return Gateway.UpdateOne(entity);
 		}
+
+		public IEnumerable<T> GetAllExcept(IEnumerable<T> except, IEqualityComparer<T> comparer)
+		{
+			return Gateway.GetAllExcept(except, comparer);
+		}
 	}
 }

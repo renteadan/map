@@ -39,17 +39,6 @@
       <Association Name="School_Student" Member="School" ThisKey="SchoolId" OtherKey="Id" Type="School" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ActivePlayers" Member="ActivePlayers">
-    <Type Name="ActivePlayer">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PlayerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="GameId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PointsScored" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Played" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Game_ActivePlayer" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
-      <Association Name="Player_ActivePlayer" Member="Player" ThisKey="PlayerId" OtherKey="Id" Type="Player" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Players" Member="Players">
     <Type Name="Player">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -58,6 +47,18 @@
       <Association Name="Player_ActivePlayer" Member="ActivePlayers" ThisKey="Id" OtherKey="PlayerId" Type="ActivePlayer" />
       <Association Name="Student_Player" Member="Student" ThisKey="StudentId" OtherKey="Id" Type="Student" IsForeignKey="true" />
       <Association Name="Team_Player" Member="Team" ThisKey="TeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ActivePlayers" Member="ActivePlayers">
+    <Type Name="ActivePlayer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GameId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PointsScored" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Played" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TeamId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Game_ActivePlayer" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
+      <Association Name="Player_ActivePlayer" Member="Player" ThisKey="PlayerId" OtherKey="Id" Type="Player" IsForeignKey="true" DeleteRule="SET NULL" />
     </Type>
   </Table>
 </Database>

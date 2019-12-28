@@ -50,6 +50,7 @@ namespace LabCSharp.Resources.Forms
 			ActivePlayersView.Columns.Remove("GameId");
 			ActivePlayersView.Columns.Remove("PlayerId");
 			ActivePlayersView.Columns.Remove("Game");
+			ActivePlayersView.Columns.Remove("TeamId");
 		}
 	}
 }

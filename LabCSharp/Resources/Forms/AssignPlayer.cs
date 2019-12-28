@@ -85,10 +85,5 @@ namespace LabCSharp.Resources.Forms
 			_playerService.DeleteOne(aux);
 			SetDataSource();
 		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-			SetDataSource();
-		}
 	}
 }

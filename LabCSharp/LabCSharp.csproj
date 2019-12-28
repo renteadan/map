@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Entity\IBaseEntity.cs" />
+    <Compile Include="Resources\Entity\TeamEqualityComparer.cs" />
     <Compile Include="Resources\Exception\ValidationException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -70,11 +71,23 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Forms\ActivePlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\ActivePlayer.Designer.cs">
+      <DependentUpon>ActivePlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Forms\AssignPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Resources\Forms\AssignPlayer.Designer.cs">
       <DependentUpon>AssignPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Forms\CreateGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\CreateGame.Designer.cs">
+      <DependentUpon>CreateGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\Forms\CreateStudent.cs">
       <SubType>Form</SubType>
@@ -82,11 +95,23 @@
     <Compile Include="Resources\Forms\CreateStudent.Designer.cs">
       <DependentUpon>CreateStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Forms\GameDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\GameDetails.Designer.cs">
+      <DependentUpon>GameDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Forms\GamePlayers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Resources\Forms\GamePlayers.Designer.cs">
       <DependentUpon>GamePlayers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Forms\GamesInPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\Forms\GamesInPeriod.Designer.cs">
+      <DependentUpon>GamesInPeriod.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\Gateway\BaseGateway.cs" />
     <Compile Include="Resources\Entity\NBALeague.cs">
@@ -105,6 +130,7 @@
     <Compile Include="Resources\Service\BaseService.cs" />
     <Compile Include="Resources\Service\GameService.cs" />
     <Compile Include="Resources\Service\IService.cs" />
+    <Compile Include="Resources\Service\PlayerService.cs" />
     <Compile Include="Resources\Service\TeamService.cs" />
     <Compile Include="Resources\Validator\GameValidator.cs" />
     <Compile Include="Resources\Validator\IValidator.cs" />
@@ -122,14 +148,26 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\Forms\ActivePlayer.resx">
+      <DependentUpon>ActivePlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Forms\AssignPlayer.resx">
       <DependentUpon>AssignPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Forms\CreateGame.resx">
+      <DependentUpon>CreateGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Forms\CreateStudent.resx">
       <DependentUpon>CreateStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Forms\GameDetails.resx">
+      <DependentUpon>GameDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Forms\GamePlayers.resx">
       <DependentUpon>GamePlayers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Forms\GamesInPeriod.resx">
+      <DependentUpon>GamesInPeriod.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Resources\Entity\NBALeague.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
@@ -153,12 +191,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NBA.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="NBA.mdf" />
     <Content Include="NBA_log.ldf">
       <DependentUpon>NBA.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

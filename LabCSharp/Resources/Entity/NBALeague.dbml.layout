@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.125, 8.5" name="NBALeague">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.375, 8.5" name="NBALeague">
   <DataContextMoniker Name="/NBALeagueDataContext" />
   <nestedChildShapes>
     <classShape Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" absoluteBounds="3.125, 5, 2, 1.3862939453125005">
@@ -8,10 +8,10 @@
         <elementListCompartment Id="d6ac7526-5148-48fa-b7a9-061a2d8009cf" absoluteBounds="3.14, 5.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" absoluteBounds="6.25, 4.375, 2, 1.5785953776041666">
+    <classShape Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" absoluteBounds="7.75, 4.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/NBALeagueDataContext/Game" />
       <nestedChildShapes>
-        <elementListCompartment Id="93e4579b-da32-4fde-a349-96fe3599806f" absoluteBounds="6.265, 4.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="93e4579b-da32-4fde-a349-96fe3599806f" absoluteBounds="7.765, 5.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="d1afcde2-9623-4ce8-8fc7-8795aa1d2be1" absoluteBounds="0.75, 3.5, 2, 1.193992513020834">
@@ -26,14 +26,14 @@
         <elementListCompartment Id="24db40de-d02a-40fd-a72b-9b96828c256b" absoluteBounds="3.64, 2.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 5.47679768880208); (6.25 : 5.47679768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.125 : 5.60179768880208); (7.44791666666667 : 5.60179768880208 : JumpStart); (7.61458333333333 : 5.60179768880208 : JumpEnd); (7.75 : 5.60179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Game" />
       <nodes>
         <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
         <classShapeMoniker Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.125 : 5.17589884440104); (6.25 : 5.17589884440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.125 : 5.23839884440104); (7.44791666666667 : 5.23839884440104 : JumpStart); (7.61458333333333 : 5.23839884440104 : JumpEnd); (7.75 : 5.23839884440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Game1" />
       <nodes>
         <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
@@ -54,44 +54,44 @@
         <classShapeMoniker Id="e5bbd144-a0db-49b3-ac20-fbb2c44bebc1" />
       </nodes>
     </associationConnector>
-    <classShape Id="0055b95a-2308-4881-9db4-14f0d2123755" absoluteBounds="9.875, 2.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/NBALeagueDataContext/ActivePlayer" />
-      <nestedChildShapes>
-        <elementListCompartment Id="64c755af-d39e-4d69-ac3c-84c338a1227e" absoluteBounds="9.89, 3.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(8.25 : 5.23724659375); (8.76041666666667 : 5.23724659375 : JumpStart); (8.92708333333333 : 5.23724659375 : JumpEnd); (10.875 : 5.23724659375); (10.875 : 4.52089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/NBALeagueDataContext/Game/Game_ActivePlayer" />
-      <nodes>
-        <classShapeMoniker Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" />
-        <classShapeMoniker Id="0055b95a-2308-4881-9db4-14f0d2123755" />
-      </nodes>
-    </associationConnector>
     <classShape Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" absoluteBounds="7.375, 1.75, 2, 1.3862939453125">
       <DataClassMoniker Name="/NBALeagueDataContext/Player" />
       <nestedChildShapes>
         <elementListCompartment Id="63ee88e7-bdde-47e6-bbbd-3febaf7f7287" absoluteBounds="7.39, 2.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.375 : 2.94314697265625); (9.875 : 2.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/NBALeagueDataContext/Player/Player_ActivePlayer" />
-      <nodes>
-        <classShapeMoniker Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" />
-        <classShapeMoniker Id="0055b95a-2308-4881-9db4-14f0d2123755" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 2.44314697265625); (7.375 : 2.44314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.625 : 2.44314697265625); (7.375 : 2.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NBALeagueDataContext/Student/Student_Player" />
       <nodes>
         <classShapeMoniker Id="e5bbd144-a0db-49b3-ac20-fbb2c44bebc1" />
         <classShapeMoniker Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.125 : 6.20119466145833); (8.84375 : 6.20119466145833); (8.84375 : 3.1362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.125 : 6.32619466145833); (7.53125 : 6.32619466145833); (7.53125 : 3.1362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Player" />
       <nodes>
         <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
         <classShapeMoniker Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="49379d8e-ff7a-4339-ae3e-899522e46b59" absoluteBounds="10.125, 3, 2, 1.9631982421875">
+      <DataClassMoniker Name="/NBALeagueDataContext/ActivePlayer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="62cda205-ee46-4bca-a795-b012bf4c730f" absoluteBounds="10.14, 3.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.75 : 4.625); (8.75 : 3.98159912109375); (10.125 : 3.98159912109375)]" fixedFrom="Algorithm" fixedTo="NotFixed">
+      <AssociationMoniker Name="/NBALeagueDataContext/Game/Game_ActivePlayer" />
+      <nodes>
+        <classShapeMoniker Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" />
+        <classShapeMoniker Id="49379d8e-ff7a-4339-ae3e-899522e46b59" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.375 : 2.3749995); (11.125 : 2.3749995); (11.125 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NBALeagueDataContext/Player/Player_ActivePlayer" />
+      <nodes>
+        <classShapeMoniker Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" />
+        <classShapeMoniker Id="49379d8e-ff7a-4339-ae3e-899522e46b59" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

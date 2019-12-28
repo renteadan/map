@@ -42,12 +42,12 @@ namespace LabCSharp.Resources.Entity
     partial void InsertStudent(Student instance);
     partial void UpdateStudent(Student instance);
     partial void DeleteStudent(Student instance);
-    partial void InsertActivePlayer(ActivePlayer instance);
-    partial void UpdateActivePlayer(ActivePlayer instance);
-    partial void DeleteActivePlayer(ActivePlayer instance);
     partial void InsertPlayer(Player instance);
     partial void UpdatePlayer(Player instance);
     partial void DeletePlayer(Player instance);
+    partial void InsertActivePlayer(ActivePlayer instance);
+    partial void UpdateActivePlayer(ActivePlayer instance);
+    partial void DeleteActivePlayer(ActivePlayer instance);
     #endregion
 		
 		public NBALeagueDataContext() : 
@@ -112,19 +112,19 @@ namespace LabCSharp.Resources.Entity
 			}
 		}
 		
-		public System.Data.Linq.Table<ActivePlayer> ActivePlayers
-		{
-			get
-			{
-				return this.GetTable<ActivePlayer>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Player> Players
 		{
 			get
 			{
 				return this.GetTable<Player>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ActivePlayer> ActivePlayers
+		{
+			get
+			{
+				return this.GetTable<ActivePlayer>();
 			}
 		}
 	}
@@ -937,246 +937,6 @@ namespace LabCSharp.Resources.Entity
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ActivePlayers")]
-	public partial class ActivePlayer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _PlayerId;
-		
-		private int _GameId;
-		
-		private System.Nullable<int> _PointsScored;
-		
-		private bool _Played;
-		
-		private EntityRef<Game> _Game;
-		
-		private EntityRef<Player> _Player;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnPlayerIdChanging(int value);
-    partial void OnPlayerIdChanged();
-    partial void OnGameIdChanging(int value);
-    partial void OnGameIdChanged();
-    partial void OnPointsScoredChanging(System.Nullable<int> value);
-    partial void OnPointsScoredChanged();
-    partial void OnPlayedChanging(bool value);
-    partial void OnPlayedChanged();
-    #endregion
-		
-		public ActivePlayer()
-		{
-			this._Game = default(EntityRef<Game>);
-			this._Player = default(EntityRef<Player>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerId", DbType="Int NOT NULL")]
-		public int PlayerId
-		{
-			get
-			{
-				return this._PlayerId;
-			}
-			set
-			{
-				if ((this._PlayerId != value))
-				{
-					if (this._Player.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPlayerIdChanging(value);
-					this.SendPropertyChanging();
-					this._PlayerId = value;
-					this.SendPropertyChanged("PlayerId");
-					this.OnPlayerIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GameId", DbType="Int NOT NULL")]
-		public int GameId
-		{
-			get
-			{
-				return this._GameId;
-			}
-			set
-			{
-				if ((this._GameId != value))
-				{
-					if (this._Game.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGameIdChanging(value);
-					this.SendPropertyChanging();
-					this._GameId = value;
-					this.SendPropertyChanged("GameId");
-					this.OnGameIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PointsScored", DbType="Int")]
-		public System.Nullable<int> PointsScored
-		{
-			get
-			{
-				return this._PointsScored;
-			}
-			set
-			{
-				if ((this._PointsScored != value))
-				{
-					this.OnPointsScoredChanging(value);
-					this.SendPropertyChanging();
-					this._PointsScored = value;
-					this.SendPropertyChanged("PointsScored");
-					this.OnPointsScoredChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Played", DbType="Bit NOT NULL")]
-		public bool Played
-		{
-			get
-			{
-				return this._Played;
-			}
-			set
-			{
-				if ((this._Played != value))
-				{
-					this.OnPlayedChanging(value);
-					this.SendPropertyChanging();
-					this._Played = value;
-					this.SendPropertyChanged("Played");
-					this.OnPlayedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_ActivePlayer", Storage="_Game", ThisKey="GameId", OtherKey="Id", IsForeignKey=true)]
-		public Game Game
-		{
-			get
-			{
-				return this._Game.Entity;
-			}
-			set
-			{
-				Game previousValue = this._Game.Entity;
-				if (((previousValue != value) 
-							|| (this._Game.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Game.Entity = null;
-						previousValue.ActivePlayers.Remove(this);
-					}
-					this._Game.Entity = value;
-					if ((value != null))
-					{
-						value.ActivePlayers.Add(this);
-						this._GameId = value.Id;
-					}
-					else
-					{
-						this._GameId = default(int);
-					}
-					this.SendPropertyChanged("Game");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_ActivePlayer", Storage="_Player", ThisKey="PlayerId", OtherKey="Id", IsForeignKey=true)]
-		public Player Player
-		{
-			get
-			{
-				return this._Player.Entity;
-			}
-			set
-			{
-				Player previousValue = this._Player.Entity;
-				if (((previousValue != value) 
-							|| (this._Player.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Player.Entity = null;
-						previousValue.ActivePlayers.Remove(this);
-					}
-					this._Player.Entity = value;
-					if ((value != null))
-					{
-						value.ActivePlayers.Add(this);
-						this._PlayerId = value.Id;
-					}
-					else
-					{
-						this._PlayerId = default(int);
-					}
-					this.SendPropertyChanged("Player");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Players")]
 	public partial class Player : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1394,6 +1154,270 @@ namespace LabCSharp.Resources.Entity
 		{
 			this.SendPropertyChanging();
 			entity.Player = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ActivePlayers")]
+	public partial class ActivePlayer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _PlayerId;
+		
+		private int _GameId;
+		
+		private System.Nullable<int> _PointsScored;
+		
+		private bool _Played;
+		
+		private System.Nullable<int> _TeamId;
+		
+		private EntityRef<Game> _Game;
+		
+		private EntityRef<Player> _Player;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPlayerIdChanging(System.Nullable<int> value);
+    partial void OnPlayerIdChanged();
+    partial void OnGameIdChanging(int value);
+    partial void OnGameIdChanged();
+    partial void OnPointsScoredChanging(System.Nullable<int> value);
+    partial void OnPointsScoredChanged();
+    partial void OnPlayedChanging(bool value);
+    partial void OnPlayedChanged();
+    partial void OnTeamIdChanging(System.Nullable<int> value);
+    partial void OnTeamIdChanged();
+    #endregion
+		
+		public ActivePlayer()
+		{
+			this._Game = default(EntityRef<Game>);
+			this._Player = default(EntityRef<Player>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerId", DbType="Int")]
+		public System.Nullable<int> PlayerId
+		{
+			get
+			{
+				return this._PlayerId;
+			}
+			set
+			{
+				if ((this._PlayerId != value))
+				{
+					if (this._Player.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayerIdChanging(value);
+					this.SendPropertyChanging();
+					this._PlayerId = value;
+					this.SendPropertyChanged("PlayerId");
+					this.OnPlayerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GameId", DbType="Int NOT NULL")]
+		public int GameId
+		{
+			get
+			{
+				return this._GameId;
+			}
+			set
+			{
+				if ((this._GameId != value))
+				{
+					if (this._Game.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGameIdChanging(value);
+					this.SendPropertyChanging();
+					this._GameId = value;
+					this.SendPropertyChanged("GameId");
+					this.OnGameIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PointsScored", DbType="Int")]
+		public System.Nullable<int> PointsScored
+		{
+			get
+			{
+				return this._PointsScored;
+			}
+			set
+			{
+				if ((this._PointsScored != value))
+				{
+					this.OnPointsScoredChanging(value);
+					this.SendPropertyChanging();
+					this._PointsScored = value;
+					this.SendPropertyChanged("PointsScored");
+					this.OnPointsScoredChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Played", DbType="Bit NOT NULL")]
+		public bool Played
+		{
+			get
+			{
+				return this._Played;
+			}
+			set
+			{
+				if ((this._Played != value))
+				{
+					this.OnPlayedChanging(value);
+					this.SendPropertyChanging();
+					this._Played = value;
+					this.SendPropertyChanged("Played");
+					this.OnPlayedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamId", DbType="Int")]
+		public System.Nullable<int> TeamId
+		{
+			get
+			{
+				return this._TeamId;
+			}
+			set
+			{
+				if ((this._TeamId != value))
+				{
+					this.OnTeamIdChanging(value);
+					this.SendPropertyChanging();
+					this._TeamId = value;
+					this.SendPropertyChanged("TeamId");
+					this.OnTeamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_ActivePlayer", Storage="_Game", ThisKey="GameId", OtherKey="Id", IsForeignKey=true)]
+		public Game Game
+		{
+			get
+			{
+				return this._Game.Entity;
+			}
+			set
+			{
+				Game previousValue = this._Game.Entity;
+				if (((previousValue != value) 
+							|| (this._Game.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Game.Entity = null;
+						previousValue.ActivePlayers.Remove(this);
+					}
+					this._Game.Entity = value;
+					if ((value != null))
+					{
+						value.ActivePlayers.Add(this);
+						this._GameId = value.Id;
+					}
+					else
+					{
+						this._GameId = default(int);
+					}
+					this.SendPropertyChanged("Game");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_ActivePlayer", Storage="_Player", ThisKey="PlayerId", OtherKey="Id", IsForeignKey=true, DeleteRule="SET NULL")]
+		public Player Player
+		{
+			get
+			{
+				return this._Player.Entity;
+			}
+			set
+			{
+				Player previousValue = this._Player.Entity;
+				if (((previousValue != value) 
+							|| (this._Player.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Player.Entity = null;
+						previousValue.ActivePlayers.Remove(this);
+					}
+					this._Player.Entity = value;
+					if ((value != null))
+					{
+						value.ActivePlayers.Add(this);
+						this._PlayerId = value.Id;
+					}
+					else
+					{
+						this._PlayerId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Player");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

@@ -27,5 +27,10 @@ namespace LabCSharp.Resources.Service
 		{
 			return _gateway.GetTeamPlayersInGame(team, game);
 		}
+
+		public Dictionary<Team, int> GetGameWithScore(Game game)
+		{
+			return _gateway.GetGameWithScore(game);
+		}
 	}
 }

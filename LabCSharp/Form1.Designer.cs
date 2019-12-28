@@ -34,6 +34,9 @@
 			this.ShowGames = new System.Windows.Forms.Button();
 			this.StudentCreate = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
+			this.GameCreate = new System.Windows.Forms.Button();
+			this.ActivePlayerButton = new System.Windows.Forms.Button();
+			this.GamesPeriodButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.TeamsView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -70,9 +73,9 @@
 			// 
 			this.ShowGames.Location = new System.Drawing.Point(13, 216);
 			this.ShowGames.Name = "ShowGames";
-			this.ShowGames.Size = new System.Drawing.Size(75, 23);
+			this.ShowGames.Size = new System.Drawing.Size(75, 47);
 			this.ShowGames.TabIndex = 2;
-			this.ShowGames.Text = "Games";
+			this.ShowGames.Text = "Game overview";
 			this.ShowGames.UseVisualStyleBackColor = true;
 			this.ShowGames.Click += new System.EventHandler(this.button1_Click);
 			// 
@@ -90,17 +93,50 @@
 			// 
 			this.button1.Location = new System.Drawing.Point(272, 216);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.Size = new System.Drawing.Size(114, 23);
 			this.button1.TabIndex = 4;
-			this.button1.Text = "button1";
+			this.button1.Text = "Assign player";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			// 
+			// GameCreate
+			// 
+			this.GameCreate.Location = new System.Drawing.Point(12, 269);
+			this.GameCreate.Name = "GameCreate";
+			this.GameCreate.Size = new System.Drawing.Size(108, 23);
+			this.GameCreate.TabIndex = 5;
+			this.GameCreate.Text = "Create Game";
+			this.GameCreate.UseVisualStyleBackColor = true;
+			this.GameCreate.Click += new System.EventHandler(this.GameCreate_Click);
+			// 
+			// ActivePlayerButton
+			// 
+			this.ActivePlayerButton.Location = new System.Drawing.Point(142, 269);
+			this.ActivePlayerButton.Name = "ActivePlayerButton";
+			this.ActivePlayerButton.Size = new System.Drawing.Size(106, 23);
+			this.ActivePlayerButton.TabIndex = 6;
+			this.ActivePlayerButton.Text = "Active Player";
+			this.ActivePlayerButton.UseVisualStyleBackColor = true;
+			this.ActivePlayerButton.Click += new System.EventHandler(this.ActivePlayerButton_Click);
+			// 
+			// GamesPeriodButton
+			// 
+			this.GamesPeriodButton.Location = new System.Drawing.Point(290, 269);
+			this.GamesPeriodButton.Name = "GamesPeriodButton";
+			this.GamesPeriodButton.Size = new System.Drawing.Size(131, 23);
+			this.GamesPeriodButton.TabIndex = 7;
+			this.GamesPeriodButton.Text = "Games between";
+			this.GamesPeriodButton.UseVisualStyleBackColor = true;
+			this.GamesPeriodButton.Click += new System.EventHandler(this.GamesPeriodButton_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.GamesPeriodButton);
+			this.Controls.Add(this.ActivePlayerButton);
+			this.Controls.Add(this.GameCreate);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.StudentCreate);
 			this.Controls.Add(this.ShowGames);
@@ -122,6 +158,9 @@
 		private System.Windows.Forms.Button ShowGames;
 		private System.Windows.Forms.Button StudentCreate;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button GameCreate;
+		private System.Windows.Forms.Button ActivePlayerButton;
+		private System.Windows.Forms.Button GamesPeriodButton;
 	}
 }
 

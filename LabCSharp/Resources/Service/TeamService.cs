@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using LabCSharp.Resources.Entity;
 using LabCSharp.Resources.Gateway;
 using LabCSharp.Resources.Validator;
@@ -24,6 +25,11 @@ namespace LabCSharp.Resources.Service
 		public new List<Team> GetAll()
 		{
 			return Gateway.GetAll();
+		}
+
+		public IEnumerable<Team> GetAllExcept(EntitySet<Team> team)
+		{
+			return _gateway.GetAllExcept(team);
 		}
 	}
 }

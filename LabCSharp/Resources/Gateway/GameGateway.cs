@@ -19,8 +19,7 @@ namespace LabCSharp.Resources.Gateway
 		public List<ActivePlayer> GetTeamPlayersInGame(Team team, Game game)
 		{
 			var query = from activePlayer in Context.GetTable<ActivePlayer>()
-				join player in Context.GetTable<Player>() on activePlayer.PlayerId equals player.Id
-				where player.TeamId == team.Id && activePlayer.GameId == game.Id
+				where activePlayer.TeamId == team.Id && activePlayer.GameId == game.Id
 				select activePlayer;
 			return query.ToList();
 		}
@@ -28,8 +27,7 @@ namespace LabCSharp.Resources.Gateway
 		public Dictionary<Team, int> GetGameWithScore(Game game)
 		{
 			var query = from activePlayer in Context.GetTable<ActivePlayer>()
-				join player in Context.GetTable<Player>() on activePlayer.PlayerId equals player.Id
-				join team in Context.GetTable<Team>() on player.TeamId equals team.Id
+				join team in Context.GetTable<Team>() on activePlayer.TeamId equals team.Id
 				where activePlayer.GameId == game.Id
 				group activePlayer by team
 				into teams

@@ -12,12 +12,13 @@ namespace LabCSharp.Resources.Gateway
 
 	  public BaseGateway()
 	  {
-		  UpdateContext();
+
+      UpdateContext();
 	  }
 
 	  private void UpdateContext()
 	  {
-      Context = new NBALeagueDataContext();
+		  Context = new NBALeagueDataContext();
       Table = Context.GetTable<T>();
     }
 
@@ -61,6 +62,13 @@ namespace LabCSharp.Resources.Gateway
                    where entity != null
                    select entity;
       return query.ToList();
+    }
+
+    public IEnumerable<T> GetAllExcept(IEnumerable<T> except, IEqualityComparer<T> comparer)
+    {
+	    EntitySet<T> set = new EntitySet<T>();
+	    set.SetSource(GetAll());
+	    return set.Except(except, comparer);
     }
   }
 }

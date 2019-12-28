@@ -47,5 +47,20 @@ namespace LabCSharp
     {
 	    new AssignPlayer().ShowDialog();
     }
+
+	  private void GameCreate_Click(object sender, EventArgs e)
+	  {
+		  new CreateGame().ShowDialog();
+	  }
+
+    private void ActivePlayerButton_Click(object sender, EventArgs e)
+    {
+	    new Resources.Forms.ActivePlayer().ShowDialog();
+    }
+
+    private void GamesPeriodButton_Click(object sender, EventArgs e)
+    {
+	    new GamesInPeriod().ShowDialog();
+    }
   }
 }
