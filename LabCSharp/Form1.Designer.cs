@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.TeamsView = new System.Windows.Forms.DataGridView();
 			this.label1 = new System.Windows.Forms.Label();
 			this.ShowGames = new System.Windows.Forms.Button();
@@ -51,8 +51,8 @@
 			this.TeamsView.Name = "TeamsView";
 			this.TeamsView.RowHeadersVisible = false;
 			this.TeamsView.RowHeadersWidth = 51;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.TeamsView.RowsDefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.TeamsView.RowsDefaultCellStyle = dataGridViewCellStyle1;
 			this.TeamsView.RowTemplate.Height = 24;
 			this.TeamsView.Size = new System.Drawing.Size(334, 185);
 			this.TeamsView.TabIndex = 0;

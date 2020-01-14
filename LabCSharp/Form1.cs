@@ -10,15 +10,19 @@ namespace LabCSharp
   public partial class Form1 : Form
   {
 	  private readonly TeamService _teamService;
+	  private readonly StudentService _studentService;
     public Form1()
     {
 	    _teamService = new TeamService();
+      _studentService = new StudentService();
       InitializeComponent();
     }
 
     private void Form1_Load(object sender, EventArgs e)
     {
-	    TeamsView.DataSource = _teamService.GetAll();
+	    _teamService.PopulateTeams();
+      _studentService.PopulateStudents();
+      TeamsView.DataSource = _teamService.GetAll();
       TeamsView.Columns.Remove("SchoolId");
       TeamsView.Columns.Remove("Id");
     }

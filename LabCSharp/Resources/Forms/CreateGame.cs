@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.Linq;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using LabCSharp.Resources.Entity;
-using LabCSharp.Resources.Gateway;
 using LabCSharp.Resources.Service;
 
 namespace LabCSharp.Resources.Forms
@@ -45,7 +39,14 @@ namespace LabCSharp.Resources.Forms
 		private void GameAdd_Click(object sender, EventArgs e)
 		{
 			Game game = new Game() {Date = DateSelect.Value, GuestTeamId = _guestTeam.Id, HostTeamId = _hostTeam.Id};
-			_gameService.InsertOne(game);
+			try
+			{
+				_gameService.InsertOne(game);
+			} catch(System.Exception)
+			{
+				Close();
+			}
+			Close();
 		}
 
 		private void DateSelect_ValueChanged(object sender, EventArgs e)

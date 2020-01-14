@@ -5,21 +5,10 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="SchoolId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Player" Member="Players" ThisKey="Id" OtherKey="TeamId" Type="Player" />
       <Association Name="Team_Game" Member="Games" ThisKey="Id" OtherKey="GuestTeamId" Type="Game" />
       <Association Name="Team_Game1" Member="Games1" ThisKey="Id" OtherKey="HostTeamId" Type="Game" />
-      <Association Name="Team_Player" Member="Players" ThisKey="Id" OtherKey="TeamId" Type="Player" />
       <Association Name="School_Team" Member="School" ThisKey="SchoolId" OtherKey="Id" Type="School" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Games" Member="Games">
-    <Type Name="Game">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
-      <Column Name="HostTeamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="GuestTeamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Game_ActivePlayer" Member="ActivePlayers" ThisKey="Id" OtherKey="GameId" Type="ActivePlayer" />
-      <Association Name="Team_Game" Member="Team" ThisKey="GuestTeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
-      <Association Name="Team_Game1" Member="Team1" ThisKey="HostTeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Schools" Member="Schools">
@@ -57,8 +46,19 @@
       <Column Name="PointsScored" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Played" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="TeamId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Game_ActivePlayer" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
       <Association Name="Player_ActivePlayer" Member="Player" ThisKey="PlayerId" OtherKey="Id" Type="Player" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="Game_ActivePlayer" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Games" Member="Games">
+    <Type Name="Game">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="HostTeamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GuestTeamId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_ActivePlayer" Member="ActivePlayers" ThisKey="Id" OtherKey="GameId" Type="ActivePlayer" />
+      <Association Name="Team_Game" Member="Team" ThisKey="GuestTeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
+      <Association Name="Team_Game1" Member="Team1" ThisKey="HostTeamId" OtherKey="Id" Type="Team" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

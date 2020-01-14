@@ -8,12 +8,6 @@
         <elementListCompartment Id="d6ac7526-5148-48fa-b7a9-061a2d8009cf" absoluteBounds="3.14, 5.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" absoluteBounds="7.75, 4.625, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/NBALeagueDataContext/Game" />
-      <nestedChildShapes>
-        <elementListCompartment Id="93e4579b-da32-4fde-a349-96fe3599806f" absoluteBounds="7.765, 5.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="d1afcde2-9623-4ce8-8fc7-8795aa1d2be1" absoluteBounds="0.75, 3.5, 2, 1.193992513020834">
       <DataClassMoniker Name="/NBALeagueDataContext/School" />
       <nestedChildShapes>
@@ -26,20 +20,6 @@
         <elementListCompartment Id="24db40de-d02a-40fd-a72b-9b96828c256b" absoluteBounds="3.64, 2.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.125 : 5.60179768880208); (7.44791666666667 : 5.60179768880208 : JumpStart); (7.61458333333333 : 5.60179768880208 : JumpEnd); (7.75 : 5.60179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Game" />
-      <nodes>
-        <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
-        <classShapeMoniker Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.125 : 5.23839884440104); (7.44791666666667 : 5.23839884440104 : JumpStart); (7.61458333333333 : 5.23839884440104 : JumpEnd); (7.75 : 5.23839884440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Game1" />
-      <nodes>
-        <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
-        <classShapeMoniker Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(2.75 : 4.69399251302083); (3.125 : 5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NBALeagueDataContext/School/School_Team" />
       <nodes>
@@ -67,7 +47,7 @@
         <classShapeMoniker Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.125 : 6.32619466145833); (7.53125 : 6.32619466145833); (7.53125 : 3.1362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.125 : 5.21875); (7.96875 : 5.21875); (7.96875 : 3.1362939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Player" />
       <nodes>
         <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
@@ -80,18 +60,38 @@
         <elementListCompartment Id="62cda205-ee46-4bca-a795-b012bf4c730f" absoluteBounds="10.14, 3.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.75 : 4.625); (8.75 : 3.98159912109375); (10.125 : 3.98159912109375)]" fixedFrom="Algorithm" fixedTo="NotFixed">
-      <AssociationMoniker Name="/NBALeagueDataContext/Game/Game_ActivePlayer" />
-      <nodes>
-        <classShapeMoniker Id="45b8665e-afe8-4f00-94b2-b3ded3561b88" />
-        <classShapeMoniker Id="49379d8e-ff7a-4339-ae3e-899522e46b59" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.375 : 2.3749995); (11.125 : 2.3749995); (11.125 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.375 : 2.3749995); (11.125 : 2.3749995); (11.125 : 3)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NBALeagueDataContext/Player/Player_ActivePlayer" />
       <nodes>
         <classShapeMoniker Id="296e3ccb-99c1-4c4f-9ab2-a6ea18256017" />
         <classShapeMoniker Id="49379d8e-ff7a-4339-ae3e-899522e46b59" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7c2b9a4b-9552-415a-a608-cb4173723b0e" absoluteBounds="8.625, 5.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/NBALeagueDataContext/Game" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ee2d01cf-9b82-49b9-8d81-a5c2aaca9d64" absoluteBounds="8.64, 5.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.375 : 5.5); (10.375 : 4.9631982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NBALeagueDataContext/Game/Game_ActivePlayer" />
+      <nodes>
+        <classShapeMoniker Id="7c2b9a4b-9552-415a-a608-cb4173723b0e" />
+        <classShapeMoniker Id="49379d8e-ff7a-4339-ae3e-899522e46b59" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 5.94314697265625); (8.625 : 5.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Game" />
+      <nodes>
+        <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
+        <classShapeMoniker Id="7c2b9a4b-9552-415a-a608-cb4173723b0e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 5.65907348632813); (8.625 : 5.65907348632813)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NBALeagueDataContext/Team/Team_Game1" />
+      <nodes>
+        <classShapeMoniker Id="2b85f431-f49c-4a48-a5c9-11c57612a41e" />
+        <classShapeMoniker Id="7c2b9a4b-9552-415a-a608-cb4173723b0e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

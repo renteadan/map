@@ -131,6 +131,7 @@
     <Compile Include="Resources\Service\GameService.cs" />
     <Compile Include="Resources\Service\IService.cs" />
     <Compile Include="Resources\Service\PlayerService.cs" />
+    <Compile Include="Resources\Service\StudentService.cs" />
     <Compile Include="Resources\Service\TeamService.cs" />
     <Compile Include="Resources\Validator\GameValidator.cs" />
     <Compile Include="Resources\Validator\IValidator.cs" />
@@ -191,9 +192,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NBA.mdf" />
+    <Content Include="NBA.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NBA_log.ldf">
       <DependentUpon>NBA.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

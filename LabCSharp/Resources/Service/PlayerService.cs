@@ -16,7 +16,7 @@ namespace LabCSharp.Resources.Service
 			EntitySet<Player> aux = new EntitySet<Player>();
 			foreach (var variable in second)
 			{
-				aux.Add(new Player(){Id = (int) variable.PlayerId});
+				if (variable.PlayerId != null) aux.Add(new Player() {Id = (int) variable.PlayerId});
 			}
 			return first.Except(aux, new PlayerEqualityComparer());
 		}

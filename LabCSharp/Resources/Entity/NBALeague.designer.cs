@@ -33,9 +33,6 @@ namespace LabCSharp.Resources.Entity
     partial void InsertTeam(Team instance);
     partial void UpdateTeam(Team instance);
     partial void DeleteTeam(Team instance);
-    partial void InsertGame(Game instance);
-    partial void UpdateGame(Game instance);
-    partial void DeleteGame(Game instance);
     partial void InsertSchool(School instance);
     partial void UpdateSchool(School instance);
     partial void DeleteSchool(School instance);
@@ -48,6 +45,9 @@ namespace LabCSharp.Resources.Entity
     partial void InsertActivePlayer(ActivePlayer instance);
     partial void UpdateActivePlayer(ActivePlayer instance);
     partial void DeleteActivePlayer(ActivePlayer instance);
+    partial void InsertGame(Game instance);
+    partial void UpdateGame(Game instance);
+    partial void DeleteGame(Game instance);
     #endregion
 		
 		public NBALeagueDataContext() : 
@@ -88,14 +88,6 @@ namespace LabCSharp.Resources.Entity
 			}
 		}
 		
-		public System.Data.Linq.Table<Game> Games
-		{
-			get
-			{
-				return this.GetTable<Game>();
-			}
-		}
-		
 		public System.Data.Linq.Table<School> Schools
 		{
 			get
@@ -127,6 +119,14 @@ namespace LabCSharp.Resources.Entity
 				return this.GetTable<ActivePlayer>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Game> Games
+		{
+			get
+			{
+				return this.GetTable<Game>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Teams")]
@@ -141,11 +141,11 @@ namespace LabCSharp.Resources.Entity
 		
 		private int _SchoolId;
 		
+		private EntitySet<Player> _Players;
+		
 		private EntitySet<Game> _Games;
 		
 		private EntitySet<Game> _Games1;
-		
-		private EntitySet<Player> _Players;
 		
 		private EntityRef<School> _School;
 		
@@ -163,9 +163,9 @@ namespace LabCSharp.Resources.Entity
 		
 		public Team()
 		{
+			this._Players = new EntitySet<Player>(new Action<Player>(this.attach_Players), new Action<Player>(this.detach_Players));
 			this._Games = new EntitySet<Game>(new Action<Game>(this.attach_Games), new Action<Game>(this.detach_Games));
 			this._Games1 = new EntitySet<Game>(new Action<Game>(this.attach_Games1), new Action<Game>(this.detach_Games1));
-			this._Players = new EntitySet<Player>(new Action<Player>(this.attach_Players), new Action<Player>(this.detach_Players));
 			this._School = default(EntityRef<School>);
 			OnCreated();
 		}
@@ -234,6 +234,19 @@ namespace LabCSharp.Resources.Entity
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Player", Storage="_Players", ThisKey="Id", OtherKey="TeamId")]
+		public EntitySet<Player> Players
+		{
+			get
+			{
+				return this._Players;
+			}
+			set
+			{
+				this._Players.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Game", Storage="_Games", ThisKey="Id", OtherKey="GuestTeamId")]
 		public EntitySet<Game> Games
 		{
@@ -257,19 +270,6 @@ namespace LabCSharp.Resources.Entity
 			set
 			{
 				this._Games1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Player", Storage="_Players", ThisKey="Id", OtherKey="TeamId")]
-		public EntitySet<Player> Players
-		{
-			get
-			{
-				return this._Players;
-			}
-			set
-			{
-				this._Players.Assign(value);
 			}
 		}
 		
@@ -327,6 +327,18 @@ namespace LabCSharp.Resources.Entity
 			}
 		}
 		
+		private void attach_Players(Player entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Players(Player entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
+		}
+		
 		private void attach_Games(Game entity)
 		{
 			this.SendPropertyChanging();
@@ -349,262 +361,6 @@ namespace LabCSharp.Resources.Entity
 		{
 			this.SendPropertyChanging();
 			entity.Team1 = null;
-		}
-		
-		private void attach_Players(Player entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Players(Player entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Games")]
-	public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.DateTime _Date;
-		
-		private int _HostTeamId;
-		
-		private int _GuestTeamId;
-		
-		private EntitySet<ActivePlayer> _ActivePlayers;
-		
-		private EntityRef<Team> _Team;
-		
-		private EntityRef<Team> _Team1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnHostTeamIdChanging(int value);
-    partial void OnHostTeamIdChanged();
-    partial void OnGuestTeamIdChanging(int value);
-    partial void OnGuestTeamIdChanged();
-    #endregion
-		
-		public Game()
-		{
-			this._ActivePlayers = new EntitySet<ActivePlayer>(new Action<ActivePlayer>(this.attach_ActivePlayers), new Action<ActivePlayer>(this.detach_ActivePlayers));
-			this._Team = default(EntityRef<Team>);
-			this._Team1 = default(EntityRef<Team>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime2 NOT NULL")]
-		public System.DateTime Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostTeamId", DbType="Int NOT NULL")]
-		public int HostTeamId
-		{
-			get
-			{
-				return this._HostTeamId;
-			}
-			set
-			{
-				if ((this._HostTeamId != value))
-				{
-					if (this._Team1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnHostTeamIdChanging(value);
-					this.SendPropertyChanging();
-					this._HostTeamId = value;
-					this.SendPropertyChanged("HostTeamId");
-					this.OnHostTeamIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GuestTeamId", DbType="Int NOT NULL")]
-		public int GuestTeamId
-		{
-			get
-			{
-				return this._GuestTeamId;
-			}
-			set
-			{
-				if ((this._GuestTeamId != value))
-				{
-					if (this._Team.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGuestTeamIdChanging(value);
-					this.SendPropertyChanging();
-					this._GuestTeamId = value;
-					this.SendPropertyChanged("GuestTeamId");
-					this.OnGuestTeamIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_ActivePlayer", Storage="_ActivePlayers", ThisKey="Id", OtherKey="GameId")]
-		public EntitySet<ActivePlayer> ActivePlayers
-		{
-			get
-			{
-				return this._ActivePlayers;
-			}
-			set
-			{
-				this._ActivePlayers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Game", Storage="_Team", ThisKey="GuestTeamId", OtherKey="Id", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.Games.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.Games.Add(this);
-						this._GuestTeamId = value.Id;
-					}
-					else
-					{
-						this._GuestTeamId = default(int);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Game1", Storage="_Team1", ThisKey="HostTeamId", OtherKey="Id", IsForeignKey=true)]
-		public Team Team1
-		{
-			get
-			{
-				return this._Team1.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team1.Entity;
-				if (((previousValue != value) 
-							|| (this._Team1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team1.Entity = null;
-						previousValue.Games1.Remove(this);
-					}
-					this._Team1.Entity = value;
-					if ((value != null))
-					{
-						value.Games1.Add(this);
-						this._HostTeamId = value.Id;
-					}
-					else
-					{
-						this._HostTeamId = default(int);
-					}
-					this.SendPropertyChanged("Team1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ActivePlayers(ActivePlayer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Game = this;
-		}
-		
-		private void detach_ActivePlayers(ActivePlayer entity)
-		{
-			this.SendPropertyChanging();
-			entity.Game = null;
 		}
 	}
 	
@@ -1175,9 +931,9 @@ namespace LabCSharp.Resources.Entity
 		
 		private System.Nullable<int> _TeamId;
 		
-		private EntityRef<Game> _Game;
-		
 		private EntityRef<Player> _Player;
+		
+		private EntityRef<Game> _Game;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1199,8 +955,8 @@ namespace LabCSharp.Resources.Entity
 		
 		public ActivePlayer()
 		{
-			this._Game = default(EntityRef<Game>);
 			this._Player = default(EntityRef<Player>);
+			this._Game = default(EntityRef<Game>);
 			OnCreated();
 		}
 		
@@ -1332,40 +1088,6 @@ namespace LabCSharp.Resources.Entity
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_ActivePlayer", Storage="_Game", ThisKey="GameId", OtherKey="Id", IsForeignKey=true)]
-		public Game Game
-		{
-			get
-			{
-				return this._Game.Entity;
-			}
-			set
-			{
-				Game previousValue = this._Game.Entity;
-				if (((previousValue != value) 
-							|| (this._Game.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Game.Entity = null;
-						previousValue.ActivePlayers.Remove(this);
-					}
-					this._Game.Entity = value;
-					if ((value != null))
-					{
-						value.ActivePlayers.Add(this);
-						this._GameId = value.Id;
-					}
-					else
-					{
-						this._GameId = default(int);
-					}
-					this.SendPropertyChanged("Game");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_ActivePlayer", Storage="_Player", ThisKey="PlayerId", OtherKey="Id", IsForeignKey=true, DeleteRule="SET NULL")]
 		public Player Player
 		{
@@ -1400,6 +1122,40 @@ namespace LabCSharp.Resources.Entity
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_ActivePlayer", Storage="_Game", ThisKey="GameId", OtherKey="Id", IsForeignKey=true)]
+		public Game Game
+		{
+			get
+			{
+				return this._Game.Entity;
+			}
+			set
+			{
+				Game previousValue = this._Game.Entity;
+				if (((previousValue != value) 
+							|| (this._Game.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Game.Entity = null;
+						previousValue.ActivePlayers.Remove(this);
+					}
+					this._Game.Entity = value;
+					if ((value != null))
+					{
+						value.ActivePlayers.Add(this);
+						this._GameId = value.Id;
+					}
+					else
+					{
+						this._GameId = default(int);
+					}
+					this.SendPropertyChanged("Game");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1418,6 +1174,250 @@ namespace LabCSharp.Resources.Entity
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Games")]
+	public partial class Game : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _Date;
+		
+		private int _HostTeamId;
+		
+		private int _GuestTeamId;
+		
+		private EntitySet<ActivePlayer> _ActivePlayers;
+		
+		private EntityRef<Team> _Team;
+		
+		private EntityRef<Team> _Team1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnHostTeamIdChanging(int value);
+    partial void OnHostTeamIdChanged();
+    partial void OnGuestTeamIdChanging(int value);
+    partial void OnGuestTeamIdChanged();
+    #endregion
+		
+		public Game()
+		{
+			this._ActivePlayers = new EntitySet<ActivePlayer>(new Action<ActivePlayer>(this.attach_ActivePlayers), new Action<ActivePlayer>(this.detach_ActivePlayers));
+			this._Team = default(EntityRef<Team>);
+			this._Team1 = default(EntityRef<Team>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime2 NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HostTeamId", DbType="Int NOT NULL")]
+		public int HostTeamId
+		{
+			get
+			{
+				return this._HostTeamId;
+			}
+			set
+			{
+				if ((this._HostTeamId != value))
+				{
+					if (this._Team1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHostTeamIdChanging(value);
+					this.SendPropertyChanging();
+					this._HostTeamId = value;
+					this.SendPropertyChanged("HostTeamId");
+					this.OnHostTeamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GuestTeamId", DbType="Int NOT NULL")]
+		public int GuestTeamId
+		{
+			get
+			{
+				return this._GuestTeamId;
+			}
+			set
+			{
+				if ((this._GuestTeamId != value))
+				{
+					if (this._Team.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGuestTeamIdChanging(value);
+					this.SendPropertyChanging();
+					this._GuestTeamId = value;
+					this.SendPropertyChanged("GuestTeamId");
+					this.OnGuestTeamIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Game_ActivePlayer", Storage="_ActivePlayers", ThisKey="Id", OtherKey="GameId")]
+		public EntitySet<ActivePlayer> ActivePlayers
+		{
+			get
+			{
+				return this._ActivePlayers;
+			}
+			set
+			{
+				this._ActivePlayers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Game", Storage="_Team", ThisKey="GuestTeamId", OtherKey="Id", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.Games.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.Games.Add(this);
+						this._GuestTeamId = value.Id;
+					}
+					else
+					{
+						this._GuestTeamId = default(int);
+					}
+					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Game1", Storage="_Team1", ThisKey="HostTeamId", OtherKey="Id", IsForeignKey=true)]
+		public Team Team1
+		{
+			get
+			{
+				return this._Team1.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team1.Entity;
+				if (((previousValue != value) 
+							|| (this._Team1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team1.Entity = null;
+						previousValue.Games1.Remove(this);
+					}
+					this._Team1.Entity = value;
+					if ((value != null))
+					{
+						value.Games1.Add(this);
+						this._HostTeamId = value.Id;
+					}
+					else
+					{
+						this._HostTeamId = default(int);
+					}
+					this.SendPropertyChanged("Team1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ActivePlayers(ActivePlayer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Game = this;
+		}
+		
+		private void detach_ActivePlayers(ActivePlayer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Game = null;
 		}
 	}
 }
