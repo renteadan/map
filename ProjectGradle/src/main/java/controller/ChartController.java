@@ -11,6 +11,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+
 import service.GradeService;
 import service.StudentService;
 
@@ -18,6 +19,7 @@ public class ChartController implements Observable {
 
   @FXML
   public BarChart<String, Number> chart;
+
   private GradeService<String> service;
   private StudentService<String> stService;
   @FXML
